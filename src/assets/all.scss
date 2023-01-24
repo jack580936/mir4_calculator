@@ -1,0 +1,115 @@
+@import "bootstrap";
+
+#equipment, .answer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 2rem;
+}
+
+
+.requirement {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: space-around;
+}
+
+.currency {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start
+}
+
+.input-group{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  max-height: 40px;
+  height: 40px;
+  width: auto;
+
+  & > * {
+    height: 100%
+  }
+
+  & > input {
+    text-align: center;
+  }
+}
+
+//.list-group{
+//  max-height: 50px;
+//  height: 50px;
+//  width: auto;
+//
+
+//  & > * {
+//    height: 100%;
+//    display: flex;
+//    flex-wrap: wrap;
+//}
+//  }
+.answer-img,.create{
+  display: flex;
+  flex-direction: row;
+
+  & > img.list-group-item {
+    max-height: 40px;
+    height: auto;
+    width: auto;
+    padding: 5px;
+  }
+  & > label {
+  width: 100% ;
+  }
+}
+
+.equipment_num {
+  & > div {
+    padding-left: 1rem;
+  }
+}
+
+.inventory {
+  padding-left: 1rem;
+}
+
+@mixin bs-contain {
+  background-size: cover;
+}
+
+.Legendary {
+  background-image: url("Rarity_legendary_bg.png");
+  @include bs-contain
+}
+
+.Epic {
+  background-image: url("Rarity_epic_bg.png");
+  @include bs-contain
+}
+
+.Rare {
+  background-image: url("Rarity_rare_bg.png");
+  @include bs-contain
+}
+
+.Uncommon {
+  background-image: url("Rarity_uncommon_bg.png");
+  @include bs-contain
+}
+
+.Common {
+  background-image: url("Rarity_common_bg.png");
+  @include bs-contain
+}
+
+.tab_page_bg {
+    //background-image: url("bg.jpg");
+    background-color: #f8f9fa;
+
+    * li, label, h4 {
+      background-color: #f8f9fa;
+    }
+  }
