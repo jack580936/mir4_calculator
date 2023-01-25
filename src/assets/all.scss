@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+:root{
+  background-color: #f8f9fa;
+}
+
 #equipment, .answer {
   display: flex;
   flex-wrap: wrap;
@@ -54,6 +58,7 @@
 .answer-img,.create{
   display: flex;
   flex-direction: row;
+  -webkit-text-stroke-width: thin;
 
   & > img.list-group-item {
     max-height: 40px;
@@ -81,27 +86,27 @@
 }
 
 .Legendary {
-  background-image: url("Rarity_legendary_bg.png");
+  background-image: url("./Rarity_legendary_bg.png");
   @include bs-contain
 }
 
 .Epic {
-  background-image: url("Rarity_epic_bg.png");
+  background-image: url("./Rarity_epic_bg.png");
   @include bs-contain
 }
 
 .Rare {
-  background-image: url("Rarity_rare_bg.png");
+  background-image: url("./Rarity_rare_bg.png");
   @include bs-contain
 }
 
 .Uncommon {
-  background-image: url("Rarity_uncommon_bg.png");
+  background-image: url("./Rarity_uncommon_bg.png");
   @include bs-contain
 }
 
 .Common {
-  background-image: url("Rarity_common_bg.png");
+  background-image: url("./Rarity_common_bg.png");
   @include bs-contain
 }
 
