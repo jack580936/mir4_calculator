@@ -25,6 +25,9 @@ git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git main:gh-pages
-git push -f https://github.com/jack580936/mir4_calculator.git main:gh-pages
+git push -f git@github.com:jack580936/mir4_calculator.git main:gh-pages
 
 cd ..
+
+# shellcheck disable=SC2216
+yes | rm -r dist/
