@@ -1,6 +1,6 @@
 @import "bootstrap";
-
-:root{
+#app{
+  height: 100vh;
   background-color: #f8f9fa;
 }
 
@@ -43,22 +43,14 @@
   }
 }
 
-//.list-group{
-//  max-height: 50px;
-//  height: 50px;
-//  width: auto;
-//
-
-//  & > * {
-//    height: 100%;
-//    display: flex;
-//    flex-wrap: wrap;
-//}
-//  }
+.list-group-item {
+    border: none !important;
+}
 .answer-img,.create{
   display: flex;
   flex-direction: row;
   -webkit-text-stroke-width: thin;
+  align-items: center;
 
   & > img.list-group-item {
     max-height: 40px;
@@ -67,7 +59,7 @@
     padding: 5px;
   }
   & > label {
-  width: 100% ;
+  width: calc(100% - 40px) ;
   }
 }
 

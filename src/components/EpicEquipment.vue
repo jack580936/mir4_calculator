@@ -9,7 +9,7 @@
           <h4 class="col-12">製作數量</h4>
           <template v-for="item in list" class="material">
             <div class="input-group input-group-sm">
-              <img :src="`${item.key}.png`" :class="`input-group img-thumbnail Epic`" alt="...">
+              <img :src="getImageUrl(`${item.key}`)" :class="`input-group img-thumbnail Epic`" alt="...">
               <label class="input-group-text">{{ item.name }} </label>
               <input v-model.number="item.value" :min="minimum" :max="maximum"
                      oninput="validity.valid||(value='');" class="form-control" type="number">
@@ -21,7 +21,7 @@
           <div class="inventory mb-3 col-12 col-sm-6 col-xl-6 col-xxl-4">
             <template v-for="(material,index) in material_category" :key="index">
               <div class="input-group input-group-sm">
-                <img :src="`${material.class}.png`" :class="`input-group img-thumbnail ${material.level}`"
+                <img :src="getImageUrl(`${material.class}`)" :class="`input-group img-thumbnail ${material.level}`"
                      alt>
                 <label class="input-group-text">{{ material.show_name }}</label>
                 <input v-model.number="material.value" :min="minimum"
@@ -35,7 +35,7 @@
         <div class="inventory mb-3 col-12 col-xl-6 col-xxl-4">
           <template v-for="item in currencies" class="material">
             <div class="input-group input-group-sm">
-              <img :src="`${item.name}.png`" class="input-group img-thumbnail Uncommon" alt="...">
+              <img :src="getImageUrl(`${item.name}`)" class="input-group img-thumbnail Uncommon" alt="...">
               <label class="input-group-text">{{ item.show_name }}</label>
               <input v-model.number="item.value" :min="minimum" oninput="validity.valid||(value='');"
                      class="form-control" type="number">
@@ -50,10 +50,17 @@
             <h4 v-if="list" class="list-group-item">{{ strategy.type_name }}</h4>
             <template v-for="material_name in strategy.method">
               <div class="list-group list-group-sm answer-img">
-                <img v-if="material_name.value>0 && !['dark_steel', 'powder', 'money'].includes(material_name.name)" :src="`${material_name.name}.png`" :class="`list-group-item img-thumbnail ${strategy.class}`" alt="...">
-                <img v-else-if="material_name.value>0 && ['dark_steel', 'powder', 'money'].includes(material_name.name)" :src="`${material_name.name}.png`" :class="`list-group-item img-thumbnail Uncommon`" alt="...">
-                <label v-if="material_name.value>0" class="material list-group-item col-12">{{ material_name.show_name }} : {{ material_name.value.toLocaleString() }}</label>
-                <label v-else-if="material_name.value<0" class="material list-group-item col-12">{{ material_name.value }} : enough</label>
+                <img v-if="material_name.value>0 && !['dark_steel', 'powder', 'money'].includes(material_name.name)"
+                     :src="getImageUrl(`${material_name.name}`)" :class="`list-group-item img-thumbnail ${strategy.class}`"
+                     alt="...">
+                <img v-else-if="material_name.value>0 && ['dark_steel', 'powder', 'money'].includes(material_name.name)"
+                     :src="getImageUrl(`${material_name.name}`)" :class="`list-group-item img-thumbnail Uncommon`" alt="...">
+                <label v-if="material_name.value>0" class="material list-group-item col-12">{{
+                    material_name.show_name
+                  }} : {{ material_name.value.toLocaleString() }}</label>
+                <label v-else-if="material_name.value<0" class="material list-group-item col-12">{{
+                    material_name.value
+                  }} : enough</label>
               </div>
             </template>
           </div>
@@ -62,8 +69,10 @@
           <h4> 製作費用：</h4>
           <template v-for="(value,key) in {'dark_steel': '黑鐵','money':'銅幣'}">
             <div class="list-group create">
-              <img v-if="manufacture_fee()[key]>0" :src="`${key}.png`" :class="`list-group-item img-thumbnail Uncommon`" alt="...">
-              <label v-if="manufacture_fee()[key]>0" class="list-group-item col-12">{{value}}：{{ manufacture_fee()[key].toLocaleString() }}</label>
+              <img v-if="manufacture_fee()[key]>0" :src="getImageUrl(`${key}`)" :class="`list-group-item img-thumbnail Uncommon`"
+                   alt="...">
+              <label v-if="manufacture_fee()[key]>0"
+                     class="list-group-item col-12">{{ value }}：{{ manufacture_fee()[key].toLocaleString() }}</label>
             </div>
           </template>
         </div>
@@ -151,9 +160,9 @@ export default {
   },
   computed: {
     result_data_for_display() {
-      return [{method: this.total_needed('Epic'), type_name: "英雄",class:'Epic'},
-        {method: this.total_needed('Rare'), type_name: "稀有",class:'Rare'},
-        {method: this.total_needed('Uncommon'), type_name: "高級",class:'Uncommon'}]
+      return [{method: this.total_needed('Epic'), type_name: "英雄", class: 'Epic'},
+        {method: this.total_needed('Rare'), type_name: "稀有", class: 'Rare'},
+        {method: this.total_needed('Uncommon'), type_name: "高級", class: 'Uncommon'}]
     },
     init_inventory() {
       return this.inventories()
@@ -162,12 +171,15 @@ export default {
   },
   methods: {
     showAnswer(weaponList) {
-     for(const weapon of weaponList){
-      if(weapon.value > 0){
-        return true
+      for (const weapon of weaponList) {
+        if (weapon.value > 0) {
+          return true
         }
-     }
+      }
       return false
+    },
+    getImageUrl(url) {
+      return new URL(`/src/assets/${url}.png`, import.meta.url).href;
     },
     total_needed(level) {
       let total_needed = {}
