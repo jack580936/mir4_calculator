@@ -161,8 +161,8 @@ export default {
   computed: {
     result_data_for_display() {
       return [{method: this.total_needed('Epic'), type_name: "英雄", class: 'Epic'},
-        {method: this.total_needed('Rare'), type_name: "稀有", class: 'Rare'},
-        {method: this.total_needed('Uncommon'), type_name: "高級", class: 'Uncommon'}]
+        {method: this.total_needed('Rare'), type_name: "稀有 ➙ 英雄", class: 'Rare'},
+        {method: this.total_needed('Uncommon'), type_name: "高級 ➙ 英雄", class: 'Uncommon'}]
     },
     init_inventory() {
       return this.inventories()
@@ -332,6 +332,11 @@ export default {
           }
         })
       } else if (classification === 'Uncommon') {
+        for (let [_, v] of Object.entries(total_cost['Epic'])) {
+          darkSteel += v * 5000
+          powder += v * 25
+          money += v * 20000
+        }
         for (let [_, v] of Object.entries(total_cost['Rare'])) {
           darkSteel += v * 1000
           powder += v * 2
