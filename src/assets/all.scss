@@ -102,6 +102,10 @@
   @include bs-contain
 }
 
+h4,h5{
+  padding-top: 0.5rem;
+}
+
 .tab_page_bg {
     //background-image: url("bg.jpg");
     background-color: #f8f9fa;

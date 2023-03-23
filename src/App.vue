@@ -4,8 +4,8 @@ import { ref, shallowRef } from 'vue'
 import EpicEquipment from "@/components/EpicEquipment.vue";
 import LegendaryEquipment from "@/components/LegendaryEquipment.vue";
 
-const currentTab = ref(EpicEquipment)
-const tabs = ref({'傳奇裝備':LegendaryEquipment,'英雄裝備':EpicEquipment})
+const currentTab = shallowRef(EpicEquipment)
+const tabs = shallowRef({'傳奇裝備':LegendaryEquipment,'英雄裝備':EpicEquipment})
 
 </script>
 
