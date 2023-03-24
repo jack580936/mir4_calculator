@@ -3,9 +3,10 @@ import { ref, shallowRef } from 'vue'
 
 import EpicEquipment from "@/components/EpicEquipment.vue";
 import LegendaryEquipment from "@/components/LegendaryEquipment.vue";
-
+import InternalStrength from "@/components/InternalStrength.vue";
+import Ad from "@/components/Ad.vue";
 const currentTab = shallowRef(EpicEquipment)
-const tabs = shallowRef({'傳奇裝備':LegendaryEquipment,'英雄裝備':EpicEquipment})
+const tabs = shallowRef({'傳奇裝備':LegendaryEquipment,'英雄裝備':EpicEquipment,'內功':InternalStrength,'廣告':Ad})
 
 </script>
 
