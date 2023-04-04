@@ -43,7 +43,7 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
         </div>
       </ul>
       <keep-alive>
-        <component :is="currentTab" class="tab_page_bg"></component>
+        <component :is="currentTab"></component>
       </keep-alive>
     </div>
   </main>

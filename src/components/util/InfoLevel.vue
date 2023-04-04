@@ -3,10 +3,8 @@
     <div class="form-group">
       <label for="levelInput">輸入等級:</label>
       <div class="input-group">
-        <div class="input-group-prepend">
           <span class="input-group-text">等級</span>
-        </div>
-        <input type="number" id="levelInput" class="form-control" v-model.number="userLevel" min="1" max="999">
+          <input type="number" id="levelInput" class="form-control" v-model.number="userLevel" min="1" max="999">
       </div>
     </div>
     <table>
@@ -29,21 +27,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-if="userData">
-          <td>{{ userData.level }}</td>
-          <td>{{ userData.exp }}</td>
-          <td>{{ userData.hp }}</td>
-          <td>{{ userData.mp }}</td>
-          <td>{{ userData.PHYSATK }}</td>
-          <td>{{ userData.spellATK }}</td>
-          <td>{{ userData.PHYSDEF }}</td>
-          <td>{{ userData.spellDEF }}</td>
-          <td>{{ userData.accuracy }}</td>
-          <td>{{ userData.eva }}</td>
-          <td>{{ userData.BOSSATKDMGBoost }}</td>
-          <td>{{ userData.BOSSDMGReduction }}</td>
-          <td>{{ userData.PVPATKDMGBoost }}</td>
-          <td>{{ userData.RecommendedPS }}</td>
+        <tr v-if="userData" v-for="(levelData, index) in userData" :key="index">
+          <td>{{ levelData.level }}</td>
+          <td>{{ levelData.exp }}</td>
+          <td>{{ levelData.hp }}</td>
+          <td>{{ levelData.mp }}</td>
+          <td>{{ levelData.PHYSATK }}</td>
+          <td>{{ levelData.spellATK }}</td>
+          <td>{{ levelData.PHYSDEF }}</td>
+          <td>{{ levelData.spellDEF }}</td>
+          <td>{{ levelData.accuracy }}</td>
+          <td>{{ levelData.eva }}</td>
+          <td>{{ levelData.BOSSATKDMGBoost }}</td>
+          <td>{{ levelData.BOSSDMGReduction }}</td>
+          <td>{{ levelData.PVPATKDMGBoost }}</td>
+          <td>{{ levelData.RecommendedPS }}</td>
         </tr>
       </tbody>
     </table>
@@ -83,11 +81,22 @@ export default {
       RecommendedPS: Number(row[13]),
     }));
   },
-  computed: {
-    userData() {
-      return this.lvls.find((lvl) => lvl.level === this.userLevel);
-    },
+computed: {
+  userData() {
+    const data = [];
+    const levelsToShow = 10; // Change this number to show more or fewer levels
+
+    for (let i = this.userLevel; i <= this.userLevel + levelsToShow; i++) {
+      const levelData = this.lvls.find((lvl) => lvl.level === i);
+
+      if (levelData) {
+        data.push(levelData);
+      }
+    }
+
+    return data;
   },
+},
 };
 </script>
 
@@ -96,29 +105,33 @@ export default {
 table {
   border-collapse: collapse;
   width: 100%;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 thead th {
   background-color: #f2f2f2;
   color: #333;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 
 tbody td {
   border-bottom: 1px solid #ddd;
   padding: 8px;
+  text-align: center;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  padding: 1rem;
   width: 10rem;
 }
 .input-group-text {
   background-color: #f2f2f2;
   color: #333;
   font-weight: bold;
+
 }
 .form-control {
   border-color: #ddd;

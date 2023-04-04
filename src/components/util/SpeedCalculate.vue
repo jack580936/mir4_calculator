@@ -73,7 +73,7 @@ export default {
 .quick-seconds {
   display: flex;
   flex-direction: row;
-  margin: 1rem 0 1rem 0;
+  margin: 8rem 0 1rem 0;
   justify-content: center
 }
 
