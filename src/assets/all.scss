@@ -11,6 +11,11 @@
   padding: 2rem;
 }
 
+.demo{
+ height: 100vh;
+
+}
+
 
 .requirement {
     display: flex;
@@ -121,16 +126,27 @@ h4,h5{
   height: 10px;
 }
 
-/* track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+}
+::-webkit-scrollbar-corner { background: rgba(0,0,0,0.5); }
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scroll-bar-color) var(--scroll-bar-bg-color);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
 
 /* handle */
 ::-webkit-scrollbar-thumb {
   background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
-  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
-  border-radius: 100px;
+  box-shadow: inset 10px 2px 5px 0 rgba(#fff, 0.5);
+  border-radius: 50px;
 }
 
 .rightTab-container {
@@ -139,6 +155,11 @@ h4,h5{
 
 .leftTab-container {
   float: left;
+}
+
+.container-fluid {
+  padding: 0;
+  margin: 0;
 }
 
 .nav{
