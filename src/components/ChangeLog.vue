@@ -40,6 +40,17 @@ export default {
             '應該會換個方式寫',
             '那就這樣囉 88',
           ],
+          show: false
+        },
+        {
+          title: 'Version 1.2',
+          changes: [
+            '現在又多了一個查詢等級資料的功能',
+            '左上角有等級可以填',
+            '對了，資料是從',
+            'https://www.mir4.wiki/wiki/Level',
+            '抓下來的',
+          ],
           show: true
         },
         // {

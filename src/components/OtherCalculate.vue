@@ -1,9 +1,10 @@
 <script setup>
 import {ref, shallowRef} from 'vue'
-import speedCalculate from "@/components/SpeedCalculate.vue";
+import speedCalculate from "@/components/util/SpeedCalculate.vue";
+import infoLevel from "@/components/util/InfoLevel.vue";
 
 const currentTab = shallowRef(speedCalculate)
-const tabs = shallowRef({'採集挖礦速度計算': speedCalculate,})
+const tabs = shallowRef({'採集挖礦速度計算': speedCalculate,'各等級資訊':infoLevel})
 </script>
 
 <template>
