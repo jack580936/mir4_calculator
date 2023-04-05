@@ -26,10 +26,12 @@ export default {
 <style>
 iframe {
   border: none;
-  padding: 0;
+  margin: 0;
+  padding: 0 0 0 250px;
   width: 100%;
   height: 100%;
-  margin: 0 0 0 250px;
+
+  overflow: scroll;
 }
 
 .container-fluid {
