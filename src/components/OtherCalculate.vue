@@ -58,7 +58,7 @@ export default {
 .container-fluid {
   margin-left: 250px;
   width: calc(100% - 250px);
-  height: calc(100% - 41px);;
+  height: calc(100% - 41px);
   overflow: auto;
   /* 其他樣式 */
 }

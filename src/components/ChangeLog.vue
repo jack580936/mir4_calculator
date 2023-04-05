@@ -15,6 +15,17 @@ export default {
     return {
       logs: [
         {
+          title: 'Version 1.3',
+          changes: [
+            '多了奇緣但只有最後兩個',
+            '奇緣攻略作者是 愤怒滴小白',
+            '如果有不妥請告訴我，我會把攻略拿掉',
+            '另外體質內功的部分還在找資料',
+            '現在只有圖而已XDD',
+          ],
+          show: true
+        },
+        {
           title: 'Version 1.2',
           changes: [
             '現在又多了一個查詢等級資料的功能',
@@ -23,7 +34,7 @@ export default {
             'https://www.mir4.wiki/wiki/Level',
             '抓下來的',
           ],
-          show: true
+          show: false
         },
         {
           title: 'Version 1.1',
