@@ -1,8 +1,8 @@
 <template>
+  <div class="container-fluid">
   <div class="quick-seconds">
     <button v-for="i in 10" :key="i" @click="quickSetSeconds(i)" class="quick-seconds-button">{{ i }}</button>
   </div>
-  <div class="container-fluid">
   <div class="speed-boosts">
     <div class="speed">
       <label class="speed-boosts-label">秒數:</label>
@@ -47,6 +47,15 @@ export default {
 </script>
 
 <style scoped>
+
+.container-fluid {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  height: calc(100% - 41px);
+  overflow: auto;
+  /* 其他樣式 */
+}
+
 .speed-boosts {
   display: flex;
   align-items: center;

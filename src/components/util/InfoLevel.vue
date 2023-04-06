@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <div class="form-group">
       <label for="levelInput">輸入等級:</label>
       <div class="input-group">
@@ -101,6 +101,14 @@ computed: {
 </script>
 
 <style scoped>
+
+.container-fluid {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  height: calc(100% - 41px);
+  overflow: auto;
+  /* 其他樣式 */
+}
 /* 加上 CSS 樣式，可以自行設計表格外觀 */
 table {
   border-collapse: collapse;
@@ -121,6 +129,10 @@ tbody td {
   border-bottom: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+}
+
+tbody tr:hover {
+  background-color: #e6f2ff;
 }
 
 .form-group {

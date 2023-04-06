@@ -25,9 +25,7 @@ const tabs = shallowRef({'採集挖礦速度計算': speedCalculate, '各等級�
         </div>
       </div>
     </div>
-    <div class="container-fluid">
       <component :is="currentTab"></component>
-    </div>
   </div>
 
 </template>
@@ -55,13 +53,7 @@ export default {
   color: rgb(91, 102, 135);
   list-style-type: none;
 }
-.container-fluid {
-  margin-left: 250px;
-  width: calc(100% - 250px);
-  height: calc(100% - 41px);
-  overflow: auto;
-  /* 其他樣式 */
-}
+
 
 .menu-item{
   padding: 10px 35px;
