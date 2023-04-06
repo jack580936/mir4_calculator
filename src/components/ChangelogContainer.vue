@@ -29,10 +29,14 @@ export default {
 <style>
 .changelog-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: column
+  flex-direction: column;
+  background-color: #0c1e35;
+  height: calc(100vh - 42px);
+  color: azure;
+  overflow: auto;
 }
 
 .changelog-card {
