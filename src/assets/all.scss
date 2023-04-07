@@ -166,3 +166,29 @@ h4,h5{
 .nav{
   justify-content: space-between;
 }
+
+.github-logo{
+
+  > a {
+    > img {
+      width: 30px;
+      height: 30px;
+      margin: 0.3rem 1rem 0 1rem;
+    }
+  }
+}
+
+.container-fluid {
+  width: calc(100%);
+  height: calc(100vh - 42px);
+  overflow: hidden;
+  /* 其他樣式 */
+}
+
+#sidebar {
+  position: fixed;
+  width: 250px;
+  height: calc(100% - 41px);
+  background-color: #0c1e35;
+  /* 其他樣式 */
+}

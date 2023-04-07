@@ -102,13 +102,12 @@ computed: {
 
 <style scoped>
 
-.container-fluid {
-  margin-left: 250px;
-  width: calc(100% - 250px);
-  height: calc(100% - 41px);
+.container-fluid{
+
+  padding-left: 250px;
   overflow: auto;
-  /* 其他樣式 */
 }
+
 /* 加上 CSS 樣式，可以自行設計表格外觀 */
 table {
   border-collapse: collapse;

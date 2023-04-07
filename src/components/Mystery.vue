@@ -21,6 +21,9 @@ import PdfViewer from "@/components/util/PdfViewer.vue";
             </nav>
           </div>
         </div>
+        <div class="sidebar-footer">
+          <p>如有侵權，請告知，將立即下架。</p>
+        </div>
       </div>
     </div>
     <PdfViewer :pdfUrl="pdfUrl"/>
@@ -49,13 +52,6 @@ export default {
 
 <style scoped>
 
-#sidebar {
-  position: fixed;
-  width: 250px;
-  height: calc(100% - 42px);
-  background-color: #0c1e35;
-  /* 其他樣式 */
-}
 .menu-header{
   font-weight: 600;
   padding: 10px 15px;
@@ -82,6 +78,18 @@ ul{
 .active {
   background-color: #ffcc00; /* your desired highlight color */
   color: #ffffff; /* your desired text color */
+}
+
+.sidebar-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  padding: 0.5rem;
+  margin: 0;
+  color: #e6f2ff;
+  font-size: smaller;
+  text-align: -webkit-center;
 }
 
 </style>

@@ -37,13 +37,8 @@ export default {
 </script>
 
 <style scoped>
-#sidebar {
-  position: fixed;
-  width: 250px;
-  height: calc(100% - 41px);
-  background-color: #0c1e35;
-  /* 其他樣式 */
-}
+
+
 .menu-header{
   font-weight: 600;
   padding: 10px 15px;

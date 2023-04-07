@@ -42,6 +42,13 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
                   name
                 }}</span>
             </li>
+            <li>
+              <div class="github-logo">
+                <a href="https://github.com/jack580936/mir4_calculator" target="_blank">
+                  <img :src="getImageUrl('icon/github-mark.png')" alt="Github logo"/>
+                </a>
+              </div>
+            </li>
           </ul>
         </div>
       </ul>
@@ -52,6 +59,17 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
   </main>
 </template>
 
+
+<script>
+export default {
+  name: "App",
+  methods: {
+    getImageUrl(url) {
+      return new URL(`/src/assets/${url}`, import.meta.url).href;
+    },
+  }
+}
+</script>
 <style>
 
 </style>

@@ -24,13 +24,13 @@ export default {
 </script>
 
 <style>
+
 iframe {
   border: none;
   margin: 0;
   padding: 0 0 0 250px;
   width: 100%;
   height: 100%;
-
   overflow: scroll;
 }
 
