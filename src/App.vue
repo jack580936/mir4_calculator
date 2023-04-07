@@ -5,11 +5,12 @@ import EpicEquipment from "@/components/EpicEquipment.vue";
 import LegendaryEquipment from "@/components/LegendaryEquipment.vue";
 import Constitution from "@/components/Constitution.vue";
 import OtherCalculate from "@/components/OtherCalculate.vue";
-import mystery  from "@/components/Mystery.vue";
+import mystery from "@/components/Mystery.vue";
 import Ad from "@/components/Ad.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
+import legendaryEquipment from "@/components/LegendaryEquipment.vue";
 
-const currentTab = shallowRef(LegendaryEquipment)
+const currentTab = shallowRef(ChangeLog)
 const tabs = shallowRef({
   '傳奇裝備': LegendaryEquipment,
   '英雄裝備': EpicEquipment,
@@ -27,7 +28,7 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
         <div class="leftTab-container">
           <ul class="nav">
             <template v-for="(component,name) in tabs">
-              <li  class="nav-item">
+              <li class="nav-item">
                 <span @click="currentTab = component"
                       :class="['nav-link' , { active: currentTab === component }]">{{ name }}</span>
               </li>
@@ -44,7 +45,7 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
           </ul>
         </div>
       </ul>
-      <keep-alive>
+      <keep-alive :include="epicEquipment && legendaryEquipment">
         <component :is="currentTab"></component>
       </keep-alive>
     </div>

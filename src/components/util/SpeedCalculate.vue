@@ -24,8 +24,8 @@ export default {
   name: "SpeedCalculate",
   data() {
     return {
-      speed: 0,
-      seconds: 0,
+      speed: null,
+      seconds: null,
     };
   },
   methods: {

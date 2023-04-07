@@ -77,7 +77,7 @@
 export default {
   data() {
     return {
-      name: "legendary_equipment",
+      name: "legendaryEquipment",
       minimum: 0,
       maximum: 100,
       materials: {

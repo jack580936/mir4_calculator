@@ -85,7 +85,7 @@
 export default {
   data() {
     return {
-      name: "epic_equipment",
+      name: "epicEquipment",
       minimum: 0,
       maximum: 100,
       materials: {
