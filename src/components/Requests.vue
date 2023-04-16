@@ -11,16 +11,20 @@
             <nav class="menu open-current-submenu">
               <ul>
                 <li class="menu-header"><span> 委託 </span></li>
-                <li v-for="(component,name,index) in tabs" :key="index" :class="['menu-item',{ active: currentTab === component }]"  @click="currentTab = component">
-                  <span>{{ name  }}</span>
+                <li v-for="(component,name,index) in tabs" :key="index"
+                    :class="['menu-item',{ active: currentTab === component }]" @click="currentTab = component">
+                  <span>{{ name }}</span>
                 </li>
               </ul>
             </nav>
           </div>
         </div>
+        <div class="sidebar-footer">
+          <p>圖片太小，點一下會放大唷 (,,・ω・,,)</p>
+        </div>
       </div>
     </div>
-      <component :is="currentTab"></component>
+    <component :is="currentTab"></component>
   </div>
 
 </template>
@@ -28,6 +32,7 @@
 <script>
 import {ref, shallowRef} from 'vue'
 import SabukCastle from "@/components/requests/SabukCastle.vue";
+
 export default {
   name: "Requests",
   data() {

@@ -11,16 +11,20 @@
             <nav class="menu open-current-submenu">
               <ul>
                 <li class="menu-header"><span> 地圖 </span></li>
-                <li v-for="(component,name,index) in tabs" :key="index" :class="['menu-item',{ active: currentTab === component }]"  @click="currentTab = component">
-                  <span>{{ name  }}</span>
+                <li v-for="(component,name,index) in tabs" :key="index"
+                    :class="['menu-item',{ active: currentTab === component }]" @click="currentTab = component">
+                  <span>{{ name }}</span>
                 </li>
               </ul>
             </nav>
           </div>
         </div>
+        <div class="sidebar-footer">
+          <p>圖片太小，點一下會放大唷 (,,・ω・,,)</p>
+        </div>
       </div>
     </div>
-      <component :is="currentTab"></component>
+    <component :is="currentTab"></component>
   </div>
 
 </template>
@@ -32,6 +36,7 @@ import MagicSquare from "@/components/map_resource/MagicSquare.vue";
 import RockcutTomb from "@/components/map_resource/RockcutTomb.vue";
 import RockcutLab from "@/components/map_resource/RockcutLab.vue";
 import PhantasiaValley from "@/components/map_resource/PhantasiaValley.vue";
+
 export default {
   name: "Resource",
   data() {
@@ -85,4 +90,5 @@ ul {
   background-color: #ffcc00; /* your desired highlight color */
   color: #ffffff; /* your desired text color */
 }
+
 </style>
