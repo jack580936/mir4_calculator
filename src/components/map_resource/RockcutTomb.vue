@@ -6,8 +6,8 @@ import MapViewer from "@/components/util/MapViewer.vue";
 <template>
   <MapViewer
       PageTitle="石刻墓(Rockcut Tomb)"
-      :images="[{title: '石刻墓3F(紅色部分)', url: `${getImageUrl('map_resource/RockcutTomb3F.png')}`},
-                {title: '菁英石刻墓3F(黃色部分)', url: `${getImageUrl('map_resource/RockcutTomb3F.png')}`}]"
+      :images="[{title: '石刻墓3F(寶箱)(紅色部分)', url: `${getImageUrl('map_resource/RockcutTomb3F.png')}`},
+                {title: '菁英石刻墓3F(寶箱)(黃色部分)', url: `${getImageUrl('map_resource/RockcutTomb3F.png')}`}]"
   />
 </template>
 

@@ -3,7 +3,7 @@
     <ul>
       <template v-for="(title, index) in imageTitles" :key="index">
         <li :class="{ active: currentTab === title }">
-          <a href="#" @click.prevent="scrollToImage(index)" @click="currentTab= title">{{ title }}</a>
+          <a href="#" @click.prevent="scrollToImage(index)">{{ title }}</a>
         </li>
       </template>
     </ul>
