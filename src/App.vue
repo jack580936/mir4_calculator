@@ -10,7 +10,7 @@ import Ad from "@/components/Ad.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
 import legendaryEquipment from "@/components/LegendaryEquipment.vue";
 
-const currentTab = shallowRef(ChangeLog)
+const currentTab = shallowRef(Constitution)
 const tabs = shallowRef({
   '傳奇裝備': LegendaryEquipment,
   '英雄裝備': EpicEquipment,

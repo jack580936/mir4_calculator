@@ -26,7 +26,7 @@ import PdfViewer from "@/components/util/PdfViewer.vue";
         </div>
       </div>
     </div>
-    <PdfViewer :pdfUrl="pdfUrl"/>
+    <PdfViewer :pdfUrl="pdfUrl" :pdfTitle="pdfUrl"/>
   </div>
 </template>
 <script>

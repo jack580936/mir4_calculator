@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <iframe
-      :src="getPdfUrl(pdfUrl)"
+      :src="`${getPdfUrl(pdfUrl)}#view=fitH`" :title="pdfTitle" height="100%" width="100%"
     ></iframe>
   </div>
 </template>
@@ -11,6 +11,10 @@ export default {
   name: "PdfViewer",
   props: {
     pdfUrl: {
+      type: String,
+      required: true
+    },
+    pdfTitle: {
       type: String,
       required: true
     }
