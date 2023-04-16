@@ -6,8 +6,8 @@ import MapViewer from "@/components/util/MapViewer.vue";
 <template>
   <MapViewer
       PageTitle="石刻迷宮(Rockcut Labyrinth)"
-      :images="[{title: '石刻迷宮3F', url: `${getImageUrl('map_resource/RockcutLab3F.png')}`},
-                {title: '石刻迷宮4F', url: `${getImageUrl('map_resource/RockcutLab4F.png')}`}]"
+      :images="[{title: '石刻迷宮3F(寶箱)', url: `${getImageUrl('map_resource/RockcutLab3F.png')}`},
+                {title: '石刻迷宮4F(寶箱)', url: `${getImageUrl('map_resource/RockcutLab4F.png')}`}]"
   />
 </template>
 

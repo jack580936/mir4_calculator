@@ -6,7 +6,7 @@ import MapViewer from "@/components/util/MapViewer.vue";
 <template>
   <MapViewer
       PageTitle="夢村秘谷(Phantasia Valley)"
-      :images="[{title: '夢村秘谷3F', url: `${getImageUrl('map_resource/PhantasiaValley3F.png')}`}]"
+      :images="[{title: '夢村秘谷3F(寶箱)', url: `${getImageUrl('map_resource/PhantasiaValley3F.png')}`}]"
   />
 </template>
 
