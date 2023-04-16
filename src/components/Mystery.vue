@@ -80,16 +80,4 @@ ul{
   color: #ffffff; /* your desired text color */
 }
 
-.sidebar-footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  padding: 0.5rem;
-  margin: 0;
-  color: #e6f2ff;
-  font-size: smaller;
-  text-align: -webkit-center;
-}
-
 </style>
