@@ -6,16 +6,20 @@ import LegendaryEquipment from "@/components/LegendaryEquipment.vue";
 import Constitution from "@/components/Constitution.vue";
 import OtherCalculate from "@/components/OtherCalculate.vue";
 import mystery from "@/components/Mystery.vue";
+import Resource from "@/components/Resource.vue";
+import Requests from "@/components/Requests.vue";
 import Ad from "@/components/Ad.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
 import legendaryEquipment from "@/components/LegendaryEquipment.vue";
 
-const currentTab = shallowRef(Constitution)
+const currentTab = shallowRef(Resource)
 const tabs = shallowRef({
   '傳奇裝備': LegendaryEquipment,
   '英雄裝備': EpicEquipment,
   '體質內功': Constitution,
   '奇緣': mystery,
+  '資源點': Resource,
+  '委託': Requests,
   '一些小功能': OtherCalculate
 })
 const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
@@ -63,6 +67,11 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      currentTab: '鐵礦',
+    }
+  },
   methods: {
     getImageUrl(url) {
       return new URL(`/src/assets/${url}`, import.meta.url).href;

@@ -15,6 +15,21 @@ export default {
     return {
       logs: [
         {
+          title: 'Version 1.4',
+          changes: [
+            '我確診好了讚啦!',
+            '但我好像有長新冠QQ',
+            '說說更新吧',
+            '現在可以查詢委託的資料了，但現在只有一個阿古寫的',
+            '現在也可以看到一些地圖的採集採礦寶箱地點囉',
+            '但一樣只有一點點',
+            '將就用吧XD',
+            '20230416'
+
+          ],
+          show: true
+        },
+        {
           title: 'Version 1.3',
           changes: [
             '多了奇緣但只有最後兩個',
@@ -25,7 +40,7 @@ export default {
             '對了，我現在確診請小心使用',
             '可能咻一下妳就中獎了呢:D'
           ],
-          show: true
+          show: false
         },
         {
           title: 'Version 1.2',
