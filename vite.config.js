@@ -16,4 +16,11 @@ export default defineConfig({
     port: '7414'
   },
   base: '/mir4_calculator/',
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: `assets/[name].[ext]`
+      }
+    }
+  },
 });
