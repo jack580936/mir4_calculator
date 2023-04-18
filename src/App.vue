@@ -67,11 +67,6 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
 <script>
 export default {
   name: "App",
-  data() {
-    return {
-      currentTab: '鐵礦',
-    }
-  },
   methods: {
     getImageUrl(url) {
       return new URL(`/src/assets/${url}`, import.meta.url).href;
