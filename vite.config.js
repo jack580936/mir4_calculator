@@ -19,7 +19,16 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        assetFileNames: `assets/[name].[ext]`
+        assetFileNames: (assetInfo) => {
+          let extType = assetInfo.name.split('.')[1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+            extType = 'img';
+          }
+          if (extType === 'pdf') {
+            return `assets/pdf/[name][extname]`;
+          }
+          return `assets/${extType}/[name]-[hash][extname]`;
+        },
       }
     }
   },
