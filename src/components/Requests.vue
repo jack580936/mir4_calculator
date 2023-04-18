@@ -32,7 +32,7 @@
 <script>
 import {ref, shallowRef} from 'vue'
 import SabukCastle from "@/components/requests/SabukCastle.vue";
-
+import {getImageUrl} from "../utils";
 export default {
   name: "Requests",
   data() {
@@ -45,9 +45,7 @@ export default {
     }
   },
   methods: {
-    getImageUrl(url) {
-      return new URL(`/src/assets/${url}`, import.meta.url).href;
-    },
+    getImageUrl,
   }
 }
 </script>

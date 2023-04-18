@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import {getImageUrl} from "../utils";
 export default {
   name: "Constitution",
   data() {
@@ -42,9 +43,7 @@ export default {
     this.changeCat();
   },
   methods: {
-    getImageUrl(url) {
-      return new URL(`/src/assets/${url}`, import.meta.url).href;
-    },
+    getImageUrl,
     handleClick() {
       this.clickCount++;
       if (this.clickCount >= 10) {

@@ -14,12 +14,11 @@ import MapViewer from "@/components/util/MapViewer.vue";
 </template>
 
 <script>
+import {getImageUrl} from "../../utils";
 export default {
   name: "SeceryPeak",
   methods: {
-    getImageUrl(url) {
-      return new URL(`/src/assets/${url}`, import.meta.url).href;
-    },
+    getImageUrl,
   }
 }
 </script>

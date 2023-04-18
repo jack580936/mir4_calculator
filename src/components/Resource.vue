@@ -31,6 +31,7 @@
 
 <script>
 import {ref, shallowRef} from 'vue'
+import {getImageUrl} from "../utils";
 import SecertPeak from "@/components/map_resource/SeceryPeak.vue";
 import MagicSquare from "@/components/map_resource/MagicSquare.vue";
 import RockcutTomb from "@/components/map_resource/RockcutTomb.vue";
@@ -53,9 +54,7 @@ export default {
     }
   },
   methods: {
-    getImageUrl(url) {
-      return new URL(`/src/assets/${url}`, import.meta.url).href;
-    },
+    getImageUrl,
   }
 }
 </script>
