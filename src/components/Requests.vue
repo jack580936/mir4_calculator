@@ -37,7 +37,7 @@ export default {
   name: "Requests",
   data() {
     return {
-      currentTab: shallowRef(),
+      currentTab: shallowRef(SabukCastle),
       tabs: shallowRef({
         '沙巴克城': SabukCastle,
 
