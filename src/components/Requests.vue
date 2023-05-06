@@ -30,15 +30,21 @@
 
 <script>
 import {ref, shallowRef} from 'vue'
-import SabukCastle from "@/components/requests/SabukCastle.vue";
 import {getImageUrl} from "@/utils";
+import SabukCastle from "@/components/requests/SabukCastle.vue";
+import PhantasiaDesert from "@/components/requests/PhantasiaDesert.vue";
+import NineDragonIceField from "@/components/requests/NineDragonIceField.vue";
+import GorgeCliffPath from "@/components/requests/GorgeCliffPath.vue";
 export default {
   name: "Requests",
   data() {
     return {
       currentTab: shallowRef(SabukCastle),
       tabs: shallowRef({
+        '九龍冰原': NineDragonIceField,
         '沙巴克城': SabukCastle,
+        '峽谷懸崖路': GorgeCliffPath,
+        '夢村沙漠': PhantasiaDesert,
 
       })
     }

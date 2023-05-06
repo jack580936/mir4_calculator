@@ -13,6 +13,7 @@
     <div class="image-grid">
       <div class="image-container" v-for="(image, index) in images" :key="image.title">
         <h4 :id="`image-${index}`">{{ image.title }}</h4>
+        <span style="white-space: pre-line">{{ image.description || "" }}</span>
         <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)" />
       </div>
       <div v-if="showLargeImage" class="large-image-container" @click="showLargeImage = false">
@@ -187,6 +188,14 @@ h1{
 .image-container {
   text-align: center;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.image-container > span {
+  color: #e6f2ff;
+  text-align: left;
 }
 img {
   width: 70%;
