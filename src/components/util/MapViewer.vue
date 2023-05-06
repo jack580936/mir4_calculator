@@ -140,7 +140,7 @@ h1{
   padding-left: 250px;
 }
 .nav-bar {
-  background-color: #34495e  ;
+  background-color: rgba(34, 48, 60, 0.5);
   padding: 10px 10px 10px 10px;
   max-height: 44px;
   overflow-x: overlay;

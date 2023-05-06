@@ -18,6 +18,9 @@
 
 .nav{
   --bs-nav-link-color: #8899A6;
+  --bs-nav-tabs-link-active-bg: #22303C;
+  --bs-nav-tabs-link-active-color: #fff;
+  --bs-nav-tabs-link-active-border-color: #8899A6;
   background-color: #192734 ;
 }
 
@@ -161,7 +164,7 @@ h4,h5{
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #15202B;
 }
 ::-webkit-scrollbar-corner { background: rgba(0,0,0,0.5); }
 
