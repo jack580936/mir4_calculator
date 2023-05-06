@@ -1,6 +1,14 @@
 # mir4_calculator
 
-This template should help get you started developing with Vue 3 in Vite.
+這是一個簡單的計算器，能夠提供Mir4的玩家一些能讓遊戲更容易遊玩的小功能。
+
+* 裝備材料計算
+* 奇緣攻略
+* 各地圖資源分布
+* 委託攻略
+* 一些小功能
+
+如果有任何建議或是想要新增的功能，歡迎在 Issues 中提出。
 
 ## Recommended IDE Setup
 
