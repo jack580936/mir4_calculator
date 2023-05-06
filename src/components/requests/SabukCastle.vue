@@ -12,7 +12,7 @@ import MapViewer from "@/components/util/MapViewer.vue";
 </template>
 
 <script>
-import {getImageUrl} from "../../utils";
+import {getImageUrl} from "@/utils";
 
 export default {
     name: "SabukCastle",

@@ -2,15 +2,15 @@
   <div class="nav-bar">
     <ul>
       <template v-for="(title, index) in imageTitles" :key="index">
-        <li :class="{ active: currentTab === title }">
+        <li class="" :class="{ active: currentTab === title }">
           <a href="#" @click.prevent="scrollToImage(index)">{{ title }}</a>
         </li>
       </template>
     </ul>
   </div>
   <div class="container-fluid" ref="container">
+    <h1>{{ PageTitle }}</h1>
     <div class="image-grid">
-      <h1>{{ PageTitle }}</h1>
       <div class="image-container" v-for="(image, index) in images" :key="image.title">
         <h4 :id="`image-${index}`">{{ image.title }}</h4>
         <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)" />
@@ -82,6 +82,39 @@ export default {
       }
       this.currentTab = currentTitle.innerText;
     });
+    const navBar = document.querySelector('.nav-bar');
+    let isMouseDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    navBar.addEventListener('mousedown', (e) => {
+      isMouseDown = true;
+      startX = e.pageX - navBar.offsetLeft;
+      scrollLeft = navBar.scrollLeft;
+    });
+
+    navBar.addEventListener('mouseleave', () => {
+      isMouseDown = false;
+    });
+
+    navBar.addEventListener('mouseup', () => {
+      isMouseDown = false;
+    });
+
+    navBar.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      e.preventDefault();
+      const x = e.pageX - navBar.offsetLeft;
+      const walk = (x - startX) * 3; // 控制滾動速度，調整這個值可以改變速度
+      navBar.scrollLeft = scrollLeft - walk;
+    });
+
+    navBar.addEventListener('touchstart', (e) => {
+      isMouseDown = true;
+      startX = e.touches[0].pageX - navBar.offsetLeft;
+      scrollLeft = navBar.scrollLeft;
+    });
+
   },
 };
 </script>
@@ -90,14 +123,35 @@ export default {
 .container-fluid {
   margin-left: 0;
   width: 100%;
-  height: calc(100vh - 86px);
+  height: calc(100vh - 42px);
   overflow: auto;
-  background-color: #f7f8fd;
+  background-color: #01132d;
+}
+h1,h4{
+  color: #eff1fc;
+}
+h4{
+  padding-top: 3rem;
 }
 
+h1{
+  text-align: center;
+  padding-top: 5rem;
+  padding-left: 250px;
+}
 .nav-bar {
   background-color: #34495e  ;
-  padding: 10px 10px 10px 260px;
+  padding: 10px 10px 10px 10px;
+  max-height: 44px;
+  overflow-x: overlay;
+  position: fixed;
+  left: 250px;
+  right: 0;
+
+}
+.nav-bar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
 }
 
 .nav-bar ul {
@@ -105,6 +159,7 @@ export default {
   list-style: none;
   margin: 0;
   padding: 0;
+  width: max-content;
   flex-direction: row;
   justify-content: flex-start;
 }
@@ -125,7 +180,9 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-left: 250px;
+  padding-bottom: 18rem;
   overflow: hidden;
+
 }
 .image-container {
   text-align: center;
@@ -134,7 +191,6 @@ export default {
 img {
   width: 70%;
   height: 70%;
-
 }
 
 .large-image-container {

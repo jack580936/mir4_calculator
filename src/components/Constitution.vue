@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {getImageUrl} from "../utils";
+import {getImageUrl} from "@/utils";
 export default {
   name: "Constitution",
   data() {

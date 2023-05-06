@@ -31,12 +31,15 @@
 
 <script>
 import {ref, shallowRef} from 'vue'
-import {getImageUrl} from "../utils";
+import {getImageUrl} from "@/utils";
 import SecertPeak from "@/components/map_resource/SeceryPeak.vue";
 import MagicSquare from "@/components/map_resource/MagicSquare.vue";
-import RockcutTomb from "@/components/map_resource/RockcutTomb.vue";
-import RockcutLab from "@/components/map_resource/RockcutLab.vue";
-import PhantasiaValley from "@/components/map_resource/PhantasiaValley.vue";
+import PhantasiaAreaChest from "@/components/map_resource/PhantasiaAreaChest.vue";
+import SabukAreaChest from "@/components/map_resource/SabukAreaChest.vue";
+import PhantasiaAreaResource from "@/components/map_resource/PhantasiaAreaResource.vue";
+import SabukAreaResource from "@/components/map_resource/SabukAreaResource.vue";
+import SnowFieldAreaResource from "@/components/map_resource/SnowFieldAreaResource.vue";
+import SpiritualCenterArea from "@/components/map_resource/SpiritualCenterArea.vue";
 
 export default {
   name: "Resource",
@@ -46,9 +49,12 @@ export default {
       tabs: shallowRef({
         '秘庭峰': SecertPeak,
         '魔方陣': MagicSquare,
-        '石刻墓': RockcutTomb,
-        '石刻迷宮': RockcutLab,
-        '夢村秘谷': PhantasiaValley,
+        '雪原地區(採集)': SnowFieldAreaResource,
+        '沙巴克地區(採集)': SabukAreaResource,
+        '沙巴克地區(寶箱)': SabukAreaChest,
+        '夢村地區(採集)': PhantasiaAreaResource,
+        '夢村地區(寶箱)': PhantasiaAreaChest,
+        '道觀地區': SpiritualCenterArea,
 
       })
     }

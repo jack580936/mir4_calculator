@@ -26,13 +26,12 @@
     </div>
     <component :is="currentTab"></component>
   </div>
-
 </template>
 
 <script>
 import {ref, shallowRef} from 'vue'
 import SabukCastle from "@/components/requests/SabukCastle.vue";
-import {getImageUrl} from "../utils";
+import {getImageUrl} from "@/utils";
 export default {
   name: "Requests",
   data() {
