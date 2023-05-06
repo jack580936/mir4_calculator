@@ -66,16 +66,19 @@ export default {
 .speed-boosts-label {
   font-size: 18px;
   margin-bottom: 5px;
+  color: #e6f2ff;
 }
 
 .speed-boosts-input {
   border: none;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #22303C;
   padding: 5px;
   margin: 10px;
   width: 100px;
   font-size: 18px;
   outline: none;
+  color: #e6f2ff;
+  background-color: #192734;
   text-align: center;
 }
 
@@ -88,7 +91,8 @@ export default {
 
 .quick-seconds-button {
   border: none;
-  background-color: #f5f5f5;
+  background-color: #22303C;
+  color: #e6f2ff;
   padding: 5px 10px;
   margin-right: 5px;
   font-size: 14px;

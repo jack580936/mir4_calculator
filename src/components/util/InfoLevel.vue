@@ -117,7 +117,7 @@ table {
 }
 
 thead th {
-  background-color: #f2f2f2;
+  background-color: #8899A6;
   color: #333;
   font-weight: bold;
   text-align: center;
@@ -128,15 +128,20 @@ tbody td {
   border-bottom: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  color: #e6f2ff;
 }
 
-tbody tr:hover {
+tbody tr:hover,tbody tr:hover > td {
   background-color: #e6f2ff;
+  color: #333;
 }
 
 .form-group {
   padding: 1rem;
   width: 10rem;
+}
+label {
+  color: #e6f2ff;
 }
 .input-group-text {
   background-color: #f2f2f2;

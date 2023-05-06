@@ -1,7 +1,7 @@
 @import "bootstrap";
 #app{
   height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #15202B;
 }
 
 #equipment, .answer {
@@ -16,6 +16,19 @@
 
 }
 
+.nav{
+  --bs-nav-link-color: #8899A6;
+  background-color: #192734 ;
+}
+
+.nav-link:hover{
+  color: #fff;
+}
+
+.nav-tabs{
+  --bs-nav-tabs-border-color: #8899A6;
+
+}
 
 .requirement {
     display: flex;
@@ -48,14 +61,19 @@
   }
 }
 
+.input-group-sm > .form-control{
+  color: #ccc;
+  background-color: unset;
+}
+
 .list-group-item {
     border: none !important;
     background-color: #f8f9fa;
+    padding-bottom: .7rem;
 }
 .answer-img,.create{
   display: flex;
   flex-direction: row;
-  -webkit-text-stroke-width: thin;
   align-items: center;
 
   & > img.list-group-item {
@@ -114,10 +132,25 @@ h4,h5{
 
 .tab_page_bg {
     //background-image: url("bg.jpg");
-    background-color: #f8f9fa;
+    background-color: #15202B;
+    color: #eeeef4;
 
     * li, label, h4 {
-      background-color: #f8f9fa;
+      background-color: #15202B;
+      color: #eeeef4;
+    }
+    .input-group > input,{
+      color: #eeeef4;
+      background-color: #15202B;
+      border-color: #223040;
+    }
+     .input-group > label {
+       color: #eeeef4;
+       border-color: #223040;
+     }
+    .input-group > img {
+      border-color: #223040;
+      background-color: #192734 ;
     }
   }
 
@@ -189,7 +222,7 @@ h4,h5{
   position: fixed;
   width: 250px;
   height: calc(100% - 41px);
-  background-color: #010f2d;
+  background-color: #22303C;
   /* 其他樣式 */
 }
 

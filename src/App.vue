@@ -8,7 +8,6 @@ import OtherCalculate from "@/components/OtherCalculate.vue";
 import mystery from "@/components/Mystery.vue";
 import Resource from "@/components/Resource.vue";
 import Requests from "@/components/Requests.vue";
-import Ad from "@/components/Ad.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
 import legendaryEquipment from "@/components/LegendaryEquipment.vue";
 
@@ -22,13 +21,13 @@ const tabs = shallowRef({
   '委託': Requests,
   '一些小功能': OtherCalculate
 })
-const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
+const rightTab = shallowRef({'更新日誌': ChangeLog})
 </script>
 
 <template>
   <main>
     <div class="demo">
-      <ul class="nav nav-tabs sticky-top navbar-light bg-light">
+      <ul class="nav nav-tabs sticky-top">
         <div class="leftTab-container">
           <ul class="nav">
             <template v-for="(component,name) in tabs">
@@ -49,7 +48,7 @@ const rightTab = shallowRef({'廣告': Ad, '更新日誌': ChangeLog})
             <li>
               <div class="github-logo">
                 <a href="https://github.com/jack580936/mir4_calculator" target="_blank">
-                  <img :src="getImageUrl('icon/github-mark.png')" alt="Github logo"/>
+                  <img :src="getImageUrl('icon/github-mark-white.png')" alt="Github logo"/>
                 </a>
               </div>
             </li>

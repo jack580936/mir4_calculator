@@ -33,14 +33,15 @@ export default {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  background-color: #0c1e35;
+  background-color: #15202B;
   height: calc(100vh - 42px);
   color: azure;
   overflow: auto;
 }
 
 .changelog-card {
-  border: 1px solid #ccc;
+  border: 1px solid #22303C;
+  background-color: #192734;
   padding: 10px;
   margin: 10px;
   max-width: 600px;

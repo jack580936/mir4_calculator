@@ -125,7 +125,7 @@ export default {
   width: 100%;
   height: calc(100vh - 42px);
   overflow: auto;
-  background-color: #01132d;
+  background-color: #15202B;
 }
 h1,h4{
   color: #eff1fc;
