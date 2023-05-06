@@ -32,7 +32,7 @@
 <script>
 import {ref, shallowRef} from 'vue'
 import {getImageUrl} from "@/utils";
-import SecertPeak from "@/components/map_resource/SeceryPeak.vue";
+import SecertPeak from "@/components/map_resource/SecretPeak.vue";
 import MagicSquare from "@/components/map_resource/MagicSquare.vue";
 import PhantasiaAreaChest from "@/components/map_resource/PhantasiaAreaChest.vue";
 import SabukAreaChest from "@/components/map_resource/SabukAreaChest.vue";

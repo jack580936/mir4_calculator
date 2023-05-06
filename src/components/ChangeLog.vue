@@ -15,6 +15,18 @@ export default {
     return {
       logs: [
         {
+          title: 'Version 1.5',
+          changes: [
+            '我換了整體的配色',
+            '希望有比較好看',
+            '加了一些地圖的採集採礦寶箱地點',
+            '也添加了 夢村沙漠、沙巴克城、峽谷懸崖路、九龍冰原的一些委託',
+            '20230506'
+
+          ],
+          show: true
+        },
+        {
           title: 'Version 1.4',
           changes: [
             '我確診好了讚啦!',
@@ -27,7 +39,7 @@ export default {
             '20230416'
 
           ],
-          show: true
+          show: false
         },
         {
           title: 'Version 1.3',
