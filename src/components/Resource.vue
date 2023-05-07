@@ -40,22 +40,22 @@ import PhantasiaAreaResource from "@/components/map_resource/PhantasiaAreaResour
 import SabukAreaResource from "@/components/map_resource/SabukAreaResource.vue";
 import SnowFieldAreaResource from "@/components/map_resource/SnowFieldAreaResource.vue";
 import SpiritualCenterArea from "@/components/map_resource/SpiritualCenterArea.vue";
-
+import ValleyResource from "@/components/map_resource/ValleyResource.vue";
 export default {
   name: "Resource",
   data() {
     return {
-      currentTab: shallowRef(SecertPeak),
+      currentTab: shallowRef(SnowFieldAreaResource),
       tabs: shallowRef({
-        '秘庭峰': SecertPeak,
-        '魔方陣': MagicSquare,
         '雪原地區(採集)': SnowFieldAreaResource,
         '沙巴克地區(採集)': SabukAreaResource,
         '沙巴克地區(寶箱)': SabukAreaChest,
         '夢村地區(採集)': PhantasiaAreaResource,
         '夢村地區(寶箱)': PhantasiaAreaChest,
         '道觀地區': SpiritualCenterArea,
-
+        '秘庭峰': SecertPeak,
+        '魔方陣': MagicSquare,
+        '秘谷': ValleyResource,
       })
     }
   },
