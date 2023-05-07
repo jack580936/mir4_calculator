@@ -6,14 +6,16 @@
   <div class="legendary_equipment tab_page_bg container-fluid" >
     <div class="row col-12">
       <div id="equipment" class="col-12 col-xl-6">
-        <div id="equipment_num" class="equipment_num mb-3 col-12 col-xl-4 ">
+        <div id="equipment_num" class="equipment_num mb-3 col-12 col-xl-6 ">
           <h4 class="col-12">製作數量</h4>
           <template v-for="item in list" class="material">
             <div class="input-group input-group-sm">
               <img :src="getImageUrl(`${item.key}.png`)" :class="`input-group img-thumbnail Legendary`" alt="...">
               <label class="input-group-text">{{ item.name }} </label>
+              <button class="btn add-btn" type="button" @mousedown="startCount(item,100)" @mouseup="stopCount" @mouseleave="stopCount">+</button>
               <input v-model.number="item.value" :min="minimum" :max="maximum"
                      oninput="validity.valid||(value='');" class="form-control" type="number">
+              <button class="btn minus-btn" type="button"  @mousedown="startDecrement(item)" @mouseup="stopDecrement" @mouseleave="stopDecrement">-</button>
             </div>
           </template>
         </div>
@@ -25,9 +27,11 @@
                 <img :src="getImageUrl(`${material.class}.png`)" :class="`input-group img-thumbnail ${material.level}`"
                      alt>
                 <label class="input-group-text">{{ material.show_name }}</label>
+                <button class="btn add-btn" type="button" @mousedown="startCount(material)" @mouseup="stopCount" @mouseleave="stopCount">+</button>
                 <input v-model.number="material.value" :min="minimum"
                        oninput="validity.valid||(value='');"
                        class="form-control" type="number">
+                <button class="btn minus-btn" type="button" @mousedown="startDecrement(material)" @mouseup="stopDecrement" @mouseleave="stopDecrement">-</button>
               </div>
             </template>
           </div>
@@ -38,8 +42,10 @@
             <div class="input-group input-group-sm">
               <img :src="getImageUrl(`${item.name}.png`)" class="input-group img-thumbnail Uncommon" alt="...">
               <label class="input-group-text">{{ item.show_name }}</label>
+              <button class="btn add-btn" type="button" @mousedown="startCount(item,100)" @mouseup="stopCount" @mouseleave="stopCount">+</button>
               <input v-model.number="item.value" :min="minimum" oninput="validity.valid||(value='');"
                      class="form-control" type="number">
+              <button class="btn minus-btn" type="button" @mousedown="startDecrement(item)" @mouseup="stopDecrement" @mouseleave="stopDecrement">-</button>
             </div>
           </template>
         </div>
@@ -81,6 +87,8 @@ export default {
       name: "legendaryEquipment",
       minimum: 0,
       maximum: 100,
+      interval: null, // 紀錄 setInterval 的 ID
+      decrementInterval: null, // 紀錄 setInterval 的 ID
       materials: {
         weapon: {
           'moon': 100,
@@ -343,7 +351,29 @@ export default {
       }
       return this.display_cost[classification]
     },
+    startCount(item,max=0) {
+      this.interval = setInterval(() => {
+        if (item.value < max || max === 0) {
+          item.value++;
+        }else {
+          this.stopCount();
+        }
+      }, 50);
+    },
+    stopCount() {
+      clearInterval(this.interval);
+    },
+    startDecrement(item) {
+      this.decrementInterval = setInterval(() => {
+        item.value = Math.max(item.value - 1, 0);
+      }, 50);
+    },
+    stopDecrement() {
+      // 清除 setInterval
+      clearInterval(this.decrementInterval);
+    },
   }
+
 }
 </script>
 

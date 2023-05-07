@@ -49,20 +49,53 @@
 
 .input-group{
   display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
+  text-align: center;
   max-height: 40px;
   height: 40px;
   width: auto;
 
   & > * {
-    height: 100%
+    height: 100%;
+  }
+
+  & > label {
+    width: 7em;
+    text-align: center;
   }
 
   & > input {
     text-align: center;
+    width: 3em;
   }
+
+  & > button {
+    border-color: #22303C ;
+    color: #eeeef4 ;
+    --bs-btn-active-bg: #8899A6;
+  }
+
+  & > button:hover {
+    border-color: #8899A6 ;
+    color: #eeeef4 ;
+  }
+
 }
+
+.input-group-text{
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
 
 .input-group-sm > .form-control{
   color: #ccc;
@@ -145,15 +178,15 @@ h4,h5{
     .input-group > input,{
       color: #eeeef4;
       background-color: #15202B;
-      border-color: #223040;
+      border-color: #22303C;
     }
      .input-group > label {
        color: #eeeef4;
-       border-color: #223040;
+       border-color: #22303C;
      }
     .input-group > img {
-      border-color: #223040;
       background-color: #192734 ;
+      border-color: #22303C;
     }
   }
 
