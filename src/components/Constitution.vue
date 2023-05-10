@@ -52,7 +52,6 @@ export default {
     },
     changeCat() {
       const randomIndex = Math.floor(Math.random() * (this.catList.length));
-      console.log(randomIndex);
       this.currentCat = this.getImageUrl(this.catList[randomIndex]);
     },
   },
