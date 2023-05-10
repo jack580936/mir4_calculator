@@ -477,7 +477,7 @@ export default {
         },
     },
     mounted() {
-      const container = document.querySelector('.container-fluid');
+      const container = document.querySelector('.container-fluid ');
       let isMouseDown = false;
       let startX = 0;
       let startY = 0;
@@ -495,25 +495,35 @@ export default {
         isMouseDown = false;
       });
 
-      container.addEventListener('mouseup', () => {
+      container.addEventListener('mouseup', (e) => {
         isMouseDown = false;
+        if (e.button === 2) {
+          container.style.cursor = '';
+        }
       });
 
       container.addEventListener('mousemove', (e) => {
         if (!isMouseDown) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        const y = e.pageY - container.offsetTop;
-        const walk_y = (y - startY) * 2; // 控制滾動速度，調整這個值可以改變速度
-        const walk_x = (x - startX) * 2; // 控制滾動速度，調整這個值可以改變速度
-        container.scrollLeft = scrollLeft - walk_x;
-        container.scrollTop = scrollTop - walk_y;
-      });
+        if (e.buttons === 2) {
+          container.style.cursor = 'grabbing';
 
+          const x = e.pageX - container.offsetLeft;
+          const y = e.pageY - container.offsetTop;
+          const walk_y = (y - startY) * 2; // 控制滾動速度，調整這個值可以改變速度
+          const walk_x = (x - startX) * 2; // 控制滾動速度，調整這個值可以改變速度
+          container.scrollLeft = scrollLeft - walk_x;
+          container.scrollTop = scrollTop - walk_y;
+        }
+      });
+      container.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+      });
       container.addEventListener('touchstart', (e) => {
         isMouseDown = true;
         startX = e.touches[0].pageX - container.offsetLeft;
+        startY = e.touches[0].pageY - container.offsetTop;
         scrollLeft = container.scrollLeft;
+        scrollTop = container.scrollTop;
       });
     }
 }

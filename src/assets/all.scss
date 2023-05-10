@@ -8,7 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .demo{
@@ -115,7 +115,7 @@ input[type=number]::-webkit-outer-spin-button {
     max-height: 40px;
     height: auto;
     width: auto;
-    padding: 5px;
+    padding: 3px;
   }
   & > label {
   width: calc(100% - 40px) ;
