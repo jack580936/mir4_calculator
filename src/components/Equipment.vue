@@ -5,7 +5,7 @@
     <div class="epic_equipment tab_page_bg container-fluid">
         <div class="row col-12">
             <div id="equipment" class="col-12 col-xl-6">
-                <div id="equipment_num" class="equipment_num mb-3 col-12 col-xl-4 ">
+                <div id="equipment_num" class="equipment_num mb-3 col-12 col-xl-6 ">
                     <h4 class="col-12">製作數量</h4>
                     <template v-for="item in list" class="material">
                         <div class="input-group input-group-sm">
@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import {getImageUrl} from "../utils";
+import {getImageUrl} from "@/utils";
 
 export default {
     name: "Equipment",

@@ -17,7 +17,7 @@ import MapViewer from "@/components/util/MapViewer.vue";
                 {title: '1-6層草', url: `${getImageUrl('map_resource/SecertPeak/sp1-6-plants.png')}`},
                 {title: '1-6層真氣', url: `${getImageUrl('map_resource/SecertPeak/sp1-6-energy.png')}`},
                 {title: '1-6層寶箱', url: `${getImageUrl('map_resource/SecertPeak/sp1-6-chest.png')}`},
-                {title: '小惡魔逃跑', url: `${getImageUrl('map_resource/SecertPeak/sp-goblin-guard.png')}`},
+                {title: '小惡魔警衛', url: `${getImageUrl('map_resource/SecertPeak/sp-goblin-guard.png')}`},
                 {title: '小惡魔獵人', url: `${getImageUrl('map_resource/SecertPeak/sp-goblin-hunter.png')}`},
                 {title: 'BOSS出現時間', url: `${getImageUrl('map_resource/BossTime.png')}`}]"
   />

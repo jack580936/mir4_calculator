@@ -26,16 +26,16 @@ const rightTab = shallowRef({'更新日誌': ChangeLog})
 <template>
   <main>
     <div class="demo">
-      <ul class="nav nav-tabs sticky-top">
-        <div class="leftTab-container nav">
+      <div class="nav nav-tabs sticky-top">
+        <ul class="leftTab-container nav">
             <template v-for="(component,name) in tabs">
               <li class="nav-item">
                 <span @click="currentTab = component"
                       :class="['nav-link' , { active: currentTab === component }]">{{ name }}</span>
               </li>
             </template>
-        </div>
-        <div class="rightTab-container nav">
+        </ul>
+        <ul class="rightTab-container nav">
             <li v-for="(component,name,index) in rightTab" :key="index" class="nav-item">
               <span @click="currentTab = component" :class="['nav-link' , { active: currentTab === component }]">{{
                   name
@@ -48,9 +48,9 @@ const rightTab = shallowRef({'更新日誌': ChangeLog})
                 </a>
               </div>
             </li>
-        </div>
-      </ul>
-      <keep-alive :include="EpicEquipment && LegendaryEquipment">
+        </ul>
+      </div>
+      <keep-alive :include="Equipment">
         <component :is="currentTab"></component>
       </keep-alive>
     </div>
