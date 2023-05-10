@@ -233,7 +233,8 @@ export default {
                 return [
                     {method: this.total_needed(class_name), type_name: type_name, class: class_name},
                     {method: this.total_needed('Epic'), type_name: "英雄 ➙ " + type_name, class: 'Epic'},
-                    {method: this.total_needed('Rare'), type_name: "稀有 ➙ " + type_name, class: 'Rare'}
+                    {method: this.total_needed('Rare'), type_name: "稀有 ➙ " + type_name, class: 'Rare'},
+                    {method: this.total_needed('Uncommon'), type_name: "高級 ➙ " + type_name, class: 'Uncommon'},
                 ];
             }
 
@@ -284,9 +285,9 @@ export default {
                 {name: 'Rare', show_name: '稀有'},
                 {name: 'Uncommon', show_name: '高級'}
             ];
-            if (this.ClassName === 'Legendary') {
-                level_mapping.pop()
-            }
+            // if (this.ClassName === 'Legendary') {
+            //     level_mapping.pop()
+            // }
             if (this.ClassName === 'Epic') {
                 level_mapping.shift()
             }
@@ -322,7 +323,7 @@ export default {
                 Uncommon: {Uncommon: 1},
                 Rare: {Rare: 1, Uncommon: 10},
                 Epic: {Epic: 1, Rare: 10, Uncommon: 100},
-                Legendary: {Legendary: 1, Epic: 10, Rare: 100}
+                Legendary: {Legendary: 1, Epic: 10, Rare: 100, Uncommon: 1000}
             };
             const weight = mapper[this.ClassName];
             for (const [key, value] of Object.entries(this.materials[this.ClassName][type])) {
@@ -474,6 +475,46 @@ export default {
               }
           }, 50);
         },
+    },
+    mounted() {
+      const container = document.querySelector('.container-fluid');
+      let isMouseDown = false;
+      let startX = 0;
+      let startY = 0;
+      let scrollLeft = 0;
+      let scrollTop = 0;
+        container.addEventListener('mousedown', (e) => {
+        isMouseDown = true;
+        startX = e.pageX - container.offsetLeft;
+        startY = e.pageY - container.offsetTop;
+        scrollLeft = container.scrollLeft;
+        scrollTop = container.scrollTop;
+      });
+
+      container.addEventListener('mouseleave', () => {
+        isMouseDown = false;
+      });
+
+      container.addEventListener('mouseup', () => {
+        isMouseDown = false;
+      });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const y = e.pageY - container.offsetTop;
+        const walk_y = (y - startY) * 2; // 控制滾動速度，調整這個值可以改變速度
+        const walk_x = (x - startX) * 2; // 控制滾動速度，調整這個值可以改變速度
+        container.scrollLeft = scrollLeft - walk_x;
+        container.scrollTop = scrollTop - walk_y;
+      });
+
+      container.addEventListener('touchstart', (e) => {
+        isMouseDown = true;
+        startX = e.touches[0].pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
     }
 }
 </script>

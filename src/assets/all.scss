@@ -35,10 +35,9 @@
 
 .requirement {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
-    align-content: flex-start;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .currency {
