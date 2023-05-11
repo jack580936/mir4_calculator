@@ -14,10 +14,10 @@
       <div class="image-container" v-for="(image, index) in images" :key="image.title">
         <h4 :id="`image-${index}`">{{ image.title }}</h4>
         <span style="white-space: pre-line">{{ image.description || "" }}</span>
-        <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)" />
+        <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)"/>
       </div>
       <div v-if="showLargeImage" class="large-image-container" @click="showLargeImage = false">
-        <img :src="largeImageUrl" :alt="largeImageTitle" />
+        <img :src="largeImageUrl" :alt="largeImageTitle"/>
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@ export default {
     scrollToImage(index) {
       const element = document.getElementById(`image-${index}`);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        element.scrollIntoView({behavior: "smooth"});
       }
     },
     enlargeImage(url) {
@@ -104,10 +104,12 @@ export default {
 
     navBar.addEventListener('mousemove', (e) => {
       if (!isMouseDown) return;
-      e.preventDefault();
-      const x = e.pageX - navBar.offsetLeft;
-      const walk = (x - startX) * 3; // 控制滾動速度，調整這個值可以改變速度
-      navBar.scrollLeft = scrollLeft - walk;
+      if (e.buttons === 1) {
+        e.preventDefault();
+        const x = e.pageX - navBar.offsetLeft;
+        const walk = (x - startX) * 2; // 控制滾動速度，調整這個值可以改變速度
+        navBar.scrollLeft = scrollLeft - walk;
+      }
     });
 
     navBar.addEventListener('touchstart', (e) => {
@@ -128,18 +130,21 @@ export default {
   overflow: auto;
   background-color: #15202B;
 }
-h1,h4{
+
+h1, h4 {
   color: #eff1fc;
 }
-h4{
+
+h4 {
   padding-top: 3rem;
 }
 
-h1{
+h1 {
   text-align: center;
   padding-top: 5rem;
   padding-left: 250px;
 }
+
 .nav-bar {
   background-color: rgba(34, 48, 60, 0.5);
   padding: 10px 10px 10px 10px;
@@ -150,6 +155,7 @@ h1{
   right: 0;
 
 }
+
 .nav-bar::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -185,6 +191,7 @@ h1{
   overflow: hidden;
 
 }
+
 .image-container {
   text-align: center;
   padding: 1rem;
@@ -193,10 +200,12 @@ h1{
   flex-wrap: nowrap;
   align-items: center;
 }
+
 .image-container > span {
   color: #e6f2ff;
   text-align: left;
 }
+
 img {
   width: 70%;
   height: 70%;
@@ -221,9 +230,11 @@ img {
   max-height: fit-content;
   scale: 1.25;
 }
-.nav-bar li.active a{
+
+.nav-bar li.active a {
   color: #333;
 }
+
 .active {
   background-color: #ffcc00; /* your desired highlight color */
   border-radius: 5px;

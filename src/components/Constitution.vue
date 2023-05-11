@@ -1,15 +1,17 @@
 <template>
   <div class="container-fluid constitution col-6">
     <div class="constitutionStatus">
-      <img v-if="!showGif" :src="getImageUrl('bg/constitution_bg.png')" alt="constitution" @click="handleClick" />
+      <img v-if="!showGif" :src="getImageUrl('bg/constitutionBg.png')" alt="constitution" @click="handleClick" />
       <template v-for="item in constitutionItem" :key="item">
         <input v-if="!showGif" v-model.number="item.value" :placeholder="`${item.name}`" :class="`input-box ${item.id}`" />
       </template>
       <select v-if="!showGif" class="input-box constitution-select" v-model="currentConstitution">
+        <option :value="null" disabled>選擇體質</option>
         <template v-for="number in numbers" :key="number">
-          <option :value="number" >{{number}}</option>
+          <option :value="number" >{{number}}階</option>
         </template>
       </select>
+
     </div>
     <div v-if="showGif" class="eggs">
       <div class="eggs-picture-group">
@@ -36,17 +38,17 @@ export default {
     return {
       clickCount: 0,
       showGif: false,
-      currentConstitution: 8,
+      currentConstitution: null,
       constitutionStart: 8,
-      constitutionEnd: 15,
+      constitutionEnd: 19,
       constitutionItem: {
-          phyDEF: { name: "物理防禦", id: "phyDEF", value: 0 },
-          spellDEF: { name: "法術防禦", id: "spellDEF", value: 0 },
-          hp: { name: "生命值", id: "hp", value: 0 },
-          mp: { name: "魔力", id: "mp", value: 0 },
-          EVA: { name: "閃避", id: "EVA", value: 0 },
-          accuracy: { name: "命中", id: "accuracy", value: 0 },
-          ATK: { name: "攻擊", id: "ATK", value: 0 },
+          phyDEF: { name: "物理防禦", id: "phyDEF", value: null },
+          spellDEF: { name: "法術防禦", id: "spellDEF", value: null },
+          hp: { name: "生命值", id: "hp", value: null },
+          mp: { name: "魔力", id: "mp", value: null },
+          EVA: { name: "閃避", id: "EVA", value: null },
+          accuracy: { name: "命中", id: "accuracy", value: null },
+          ATK: { name: "攻擊", id: "ATK", value: null },
       },
       catList: [
         "cat/cat1.jpg",
@@ -85,20 +87,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .constitution {
-  display: flex;
-  justify-content: flex-start;
-  align-items:  center;
-  background-color: #0c1e35;
-  width: 100%;
-  height: calc(100% - 42px);
-  overflow: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items:  center;
+    background-color: #0c1e35;
+    width: 100%;
+    height: calc(100% - 42px);
+    overflow: auto;
 }
 
 p{
-  color: azure;
-  text-align: center ;
+    color: azure;
+    text-align: center ;
 }
 
 .constitutionStatus {
@@ -121,43 +123,43 @@ p{
     }
 
     & > .phyDEF{
-        top: 30%;
+        top: 28%;
         left: 23%;
         transform: translate(-50%, -50%);
     }
 
     & > .spellDEF{
-        top: 30%;
+        top: 28%;
         left: 77%;
         transform: translate(-50%, -50%);
     }
 
     & > .hp{
-        top: 57%;
-        left: 11%;
+        top: 55%;
+        left: 11.5%;
         transform: translate(-50%, -50%);
     }
 
     & > .mp{
-        top: 57%;
-        left: 89%;
+        top: 55%;
+        left: 88.5%;
         transform: translate(-50%, -50%);
     }
 
     & > .EVA{
-        top: 85%;
+        top: 83%;
         left: 22%;
         transform: translate(-50%, -50%);
     }
 
     & > .accuracy{
-        top: 85%;
+        top: 83%;
         left: 77%;
         transform: translate(-50%, -50%);
     }
 
     & > .ATK{
-        top: 97%;
+        top: 95%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -178,16 +180,13 @@ p{
 
 }
 
-
-
 .eggs-picture-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 2rem;
-  padding-top: 1rem;;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem;
+    padding-top: 1rem;;
 }
 
 
