@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="epic_equipment tab_page_bg container-fluid">
+    <div class="epic_equipment tab_page_bg ">
         <div class="row col-12">
             <div id="equipment" class="col-12 col-xl-6">
                 <div id="equipment_num" class="equipment_num mb-3 col-12 col-xl-6 ">
@@ -94,8 +94,8 @@
 </template>
 
 <script>
-import {getImageUrl} from "@/utils";
-
+import {getImageUrl} from "../utils";
+import {counter} from "../utils/intervalCountNum.js"
 export default {
     name: "Equipment",
     props: {
@@ -443,38 +443,8 @@ export default {
             })
             return this.display_cost[classification]
         },
-        startCount(item, max=0 ,event) {
-            if (event.button !== 0) {
-                this.stopInterval();
-                return
-            }
+        ...counter,
 
-            this.interval = setInterval(() => {
-              if ((item.value < max || max === 0) && event.button === 0) {
-                  item.value++;
-              } else {
-                  this.stopInterval();
-              }
-          }, 50);
-        },
-        stopInterval() {
-          clearInterval(this.interval)
-          this.interval = null
-        },
-        startDecrement(item, min=0 ,event) {
-            if (event.button !== 0) {
-                this.stopInterval();
-                return
-            }
-
-            this.interval = setInterval(() => {
-              if ((item.value > min) && event.button === 0) {
-                  item.value--;
-              } else {
-                  this.stopInterval();
-              }
-          }, 50);
-        },
     },
     mounted() {
       const container = document.querySelector('.container-fluid ');
