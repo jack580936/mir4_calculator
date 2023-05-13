@@ -78,6 +78,7 @@
     color: #eeeef4 ;
   }
 
+
 }
 
 .input-group-text{
@@ -105,6 +106,10 @@ input[type=number]::-webkit-outer-spin-button {
     border: none !important;
     background-color: #f8f9fa;
     padding-bottom: .7rem;
+}
+
+.list-group{
+  flex-direction: column
 }
 .answer-img,.create{
   display: flex;
@@ -186,6 +191,7 @@ h4,h5{
     .input-group > img {
       background-color: #192734 ;
       border-color: #22303C;
+
     }
   }
 
