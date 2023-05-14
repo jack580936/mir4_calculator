@@ -9,9 +9,8 @@ import mystery from "@/components/Mystery.vue";
 import Resource from "@/components/Resource.vue";
 import Requests from "@/components/Requests.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
-import test from "@/components/util/test.vue";
 
-const currentTab = shallowRef(LegendaryEquipment)
+const currentTab = shallowRef(Constitution)
 const tabs = shallowRef({
   '傳奇裝備': LegendaryEquipment,
   '英雄裝備': EpicEquipment,
@@ -20,7 +19,6 @@ const tabs = shallowRef({
   '資源點': Resource,
   '委託': Requests,
   '一些小功能': OtherCalculate,
-  'test': test,
 })
 const rightTab = shallowRef({'更新日誌': ChangeLog})
 </script>

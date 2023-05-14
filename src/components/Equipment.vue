@@ -95,7 +95,7 @@
 
 <script>
 import {getImageUrl} from "@/utils";
-
+import {counter} from "@/utils/intervalCountNum"
 export default {
     name: "Equipment",
     props: {
@@ -274,9 +274,9 @@ export default {
             total_needed = this.subtractInventory(level, this.mergeDictionaries(weapon_needed, armor_needed, accessories_needed, secondary_weapon_needed, earrings_needed), total_inventory)
             this.cost[level] = JSON.parse(JSON.stringify(total_needed))
             this.total_cost[level] = this.material_upgrade_cost(level, this.cost)
-
-
-            return this.changeShowName(this.mergeDictionaries(total_needed, this.total_cost[level]))
+            let result = this.changeShowName(this.mergeDictionaries(total_needed, this.total_cost[level]))
+            console.log(result)
+            return result
         },
         inventories() {
             const level_mapping = [
@@ -443,38 +443,8 @@ export default {
             })
             return this.display_cost[classification]
         },
-        startCount(item, max=0 ,event) {
-            if (event.button !== 0) {
-                this.stopInterval();
-                return
-            }
+        ...counter,
 
-            this.interval = setInterval(() => {
-              if ((item.value < max || max === 0) && event.button === 0) {
-                  item.value++;
-              } else {
-                  this.stopInterval();
-              }
-          }, 50);
-        },
-        stopInterval() {
-          clearInterval(this.interval)
-          this.interval = null
-        },
-        startDecrement(item, min=0 ,event) {
-            if (event.button !== 0) {
-                this.stopInterval();
-                return
-            }
-
-            this.interval = setInterval(() => {
-              if ((item.value > min) && event.button === 0) {
-                  item.value--;
-              } else {
-                  this.stopInterval();
-              }
-          }, 50);
-        },
     },
     mounted() {
       const container = document.querySelector('.container-fluid ');
