@@ -45,7 +45,7 @@ export default {
   name: "Resource",
   data() {
     return {
-      currentTab: shallowRef(SnowFieldAreaResource),
+      currentTab: shallowRef(SecertPeak),
       tabs: shallowRef({
         '雪原地區(採集)': SnowFieldAreaResource,
         '沙巴克地區(採集)': SabukAreaResource,
