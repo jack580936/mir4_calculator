@@ -9,13 +9,12 @@ import mystery from "@/components/Mystery.vue";
 import Resource from "@/components/Resource.vue";
 import Requests from "@/components/Requests.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
-// import Equipment from "@/components/Equipment.vue";
 
 const currentTab = shallowRef(Constitution)
 const tabs = shallowRef({
   '傳奇裝備': LegendaryEquipment,
   '英雄裝備': EpicEquipment,
-  '體質內功': Constitution,
+  '體質': Constitution,
   '奇緣': mystery,
   '資源點': Resource,
   '委託': Requests,
