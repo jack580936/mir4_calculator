@@ -192,6 +192,7 @@ export default {
                 {show_name: '真氣', name: 'energy', level: 'Uncommon', class: '真氣', value: null},
                 {show_name: '生命精華', name: 'lifeEssence', level: 'Uncommon', class: '生命精華', value: null},
                 {show_name: '銅幣', name: 'money', level: 'Uncommon', class: '銅幣', value: null},
+                {show_name: '雪參', name: 'snowPanax', level: 'Rare', class: '雪參', value: null},
             ])
 
             return this.inventoryNum

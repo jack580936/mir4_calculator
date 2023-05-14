@@ -43,7 +43,13 @@
                         <img v-else-if="value>0 && ['真氣', '生命精華', '銅幣'].includes(materialName)"
                              :src="getImageUrl(`Constitution/${materialName}.png`)"
                              :class="`list-group-item img-thumbnail Uncommon`" alt="...">
-                        <label v-if="value>0" class="material list-group-item col-12">{{
+                        <img v-else-if="['雪參'].includes(materialName) && lvl === 'Rare'"
+                             :src="getImageUrl(`Constitution/${materialName}.png`)"
+                             :class="`list-group-item img-thumbnail Rare`" alt="...">
+                        <img v-else-if="['雪參'].includes(materialName) && lvl === 'Uncommon'"
+                             :src="getImageUrl(`Constitution/${materialName}.png`)"
+                             :class="`list-group-item img-thumbnail Uncommon`" alt="...">
+                        <label v-if="value>0 || ( ['雪參'].includes(materialName) && (lvl !== 'Legendary' && lvl !== 'Epic') )" class="material list-group-item col-12">{{
                             materialName
                             }} : {{ value.toLocaleString() }}</label>
                         <label v-else-if="value<0" class="material list-group-item col-12">{{
@@ -276,10 +282,11 @@ export default {
                 Object.assign(totalCost[lvl], {
                     '真氣': inventoryEnergy < energy ? (energy - inventoryEnergy) : 0,
                     '生命精華': inventoryLifeEssence < lifeEssence ? (lifeEssence - inventoryLifeEssence) : 0,
-                    '銅幣': inventoryMoney < money ? (money - inventoryMoney) : 0
-
+                    '銅幣': inventoryMoney < money ? (money - inventoryMoney) : 0,
+                    '雪參' : '∞'
                 });
             }
+            console.log(totalCost)
             return totalCost;
         },
 
