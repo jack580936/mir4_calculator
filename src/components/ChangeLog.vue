@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChangelogContainer :logs="logs" />
+    <ChangelogContainer :cards="logs" />
   </div>
 </template>
 
@@ -15,6 +15,15 @@ export default {
     return {
       logs: [
         {
+          title: 'Version 1.6',
+          changes: [
+            '1. 體質',
+            '2. 更新日誌',
+            '20230514'
+
+          ]
+        },
+        {
           title: 'Version 1.5',
           changes: [
             '我換了整體的配色',
@@ -26,8 +35,7 @@ export default {
             '地圖資源: https://mirkit.mir4collection.com/ ',
             '20230506'
 
-          ],
-          show: true
+          ]
         },
         {
           title: 'Version 1.4',
@@ -41,8 +49,7 @@ export default {
             '將就用吧XD',
             '20230416'
 
-          ],
-          show: false
+          ]
         },
         {
           title: 'Version 1.3',
@@ -54,8 +61,7 @@ export default {
             '現在只有圖而已XDD',
             '對了，我現在確診請小心使用',
             '可能咻一下妳就中獎了呢:D'
-          ],
-          show: false
+          ]
         },
         {
           title: 'Version 1.2',
@@ -65,8 +71,7 @@ export default {
             '對了，資料是從',
             'https://www.mir4.wiki/wiki/Level',
             '抓下來的',
-          ],
-          show: false
+          ]
         },
         {
           title: 'Version 1.1',
@@ -78,8 +83,7 @@ export default {
             '體質內功的資料找不到哈哈哈哈',
             '應該會換個方式寫',
             '那就這樣囉 88',
-          ],
-          show: false
+          ]
         },
 
         {
@@ -94,8 +98,7 @@ export default {
             '我只是一個後端工程師',
             '之後可能會嘗試放上一些地圖阿什麼的',
             '但不會是現在',
-          ],
-          show: false
+          ]
         },
 
         // {
@@ -108,8 +111,13 @@ export default {
         //   show: false
         // },
         // ...
-      ]
+      ],
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+
+</style>
