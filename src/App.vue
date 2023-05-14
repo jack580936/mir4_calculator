@@ -9,6 +9,7 @@ import mystery from "@/components/Mystery.vue";
 import Resource from "@/components/Resource.vue";
 import Requests from "@/components/Requests.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
+// import Equipment from "@/components/Equipment.vue";
 
 const currentTab = shallowRef(Constitution)
 const tabs = shallowRef({
@@ -50,7 +51,7 @@ const rightTab = shallowRef({'更新日誌': ChangeLog})
             </li>
         </ul>
       </div>
-      <keep-alive :include="Equipment">
+      <keep-alive>
         <component :is="currentTab"></component>
       </keep-alive>
     </div>

@@ -32,8 +32,8 @@
         <h4 class="col-12"> 總共需要以下材料： </h4>
         <div class="totalRequirement col-12 col-xl-12">
             <div v-for="(items, lvl) in getTotalUpgradeMaterial()" class="list-group list-group-flush">
-                <h4 v-if="ClassName === lvl" class="list-group-item">{{ClassName}}</h4>
-                <h4 v-else class="list-group-item">{{ lvl }} ➙ {{ClassName}}</h4>
+                <h4 v-if="ClassName === lvl" class="list-group-item">{{LevelShowName[ClassName]}}</h4>
+                <h4 v-else class="list-group-item">{{ LevelShowName[lvl] }} ➙ {{LevelShowName[ClassName]}}</h4>
                 <template v-for="(value, materialName) in items">
                     <div class="list-group list-group-sm answer-img">
                         <img v-if="value>0 && !['真氣', '生命精華', '銅幣'].includes(materialName)"
@@ -65,7 +65,7 @@ export default {
     props:{
         ClassName: {
             type: String,
-            default: 'Epic'
+            default: ''
         },
         currentTier: {
             type: Number,
@@ -86,7 +86,12 @@ export default {
     },
     data() {
         return {
-
+            LevelShowName:{
+                'Legendary': '傳說',
+                'Epic': '英雄',
+                'Rare': '稀有',
+                'Uncommon': '普通',
+            }
         };
     },
     computed: {
@@ -163,9 +168,7 @@ export default {
             let ClassName = this.currentTier >=14 ? 'Legendary': 'Epic';
 
             const totalCost  = this.subtractInventory(this.getConstitutionMaterialNeeded(totalUpgradeMaterial, ClassName), inventoryNum)
-            const result = this.calculateAllConstitutionCurrenciesCost(totalCost,inventoryNum)
-
-            return  result;
+            return  this.calculateAllConstitutionCurrenciesCost(totalCost, inventoryNum);
         },
         calculateConstitutionCurrenciesCost(startLevel, totalCost, targetLevel = '') {
             /* 總共需要幾個targetLevel的材料，從哪個階級開始升級，會一路計算到targetLevel
@@ -304,41 +307,6 @@ export default {
             }
             return result;
         },
-
-        inventories() {
-            const level_mapping = [
-                {name: 'Legendary', show_name: '傳說'},
-                {name: 'Epic', show_name: '英雄'},
-                {name: 'Rare', show_name: '稀有'},
-                {name: 'Uncommon', show_name: '高級'}
-            ];
-
-            this.name_mapping.forEach(item => {
-                let temp = [];
-                level_mapping.forEach(level => {
-                    if (!['energy', 'lifeEssence', 'money'].includes(item.name)) {
-                        temp.push({
-                            show_name: `${level.show_name}${item.show_name}`,
-                            name: `${level.name}_${item.name}`,
-                            level: level.name,
-                            class: item.name,
-                            value: null
-                        })
-                    }
-                })
-                if (temp.length > 0) {
-                    this.inventoryNum.push(temp)
-                }
-            })
-            this.inventoryNum.push([
-                {show_name: '真氣', name: 'energy', level: 'Uncommon', class: 'energy', value: null},
-                {show_name: '生命精華', name: 'lifeEssence', level: 'Uncommon', class: 'lifeEssence', value: null},
-                {show_name: '銅幣', name: 'money', level: 'Uncommon', class: 'money', value: null},
-            ])
-
-            return this.inventoryNum
-        },
-
     },
 };
 </script>

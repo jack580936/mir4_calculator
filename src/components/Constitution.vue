@@ -43,21 +43,21 @@ import ConstitutionAnswer from "@/components/ConstitutionAnswer.vue";
                 <template v-for="material_category in initInventoryNum">
                     <div class="inventory mb-3 col-12 col-sm-6 col-xl-4 col-xxl-4">
                         <template v-for="(material,index) in material_category" :key="index">
-                            <div class="input-group input-group-sm">
-                                <img :src="getImageUrl(`Constitution/${material.class}.png`)"
-                                     :class="`input-group img-thumbnail ${material.level}`"
-                                     alt>
-                                <label class="input-group-text">{{ material.show_name }}</label>
-                                <button class="btn add-btn" type="button" @mousedown="startCount(material,0 ,$event)"
-                                        @mouseup="stopInterval" @mouseleave="stopInterval">+
-                                </button>
-                                <input v-model.number="material.value" :min="minimum"
-                                       oninput="validity.valid||(value='');"
-                                       class="form-control" type="number">
-                                <button class="btn minus-btn" type="button" @mousedown="startDecrement(material,0 ,$event)"
-                                        @mouseup="stopInterval" @mouseleave="stopInterval">-
-                                </button>
-                            </div>
+                          <div class="input-group input-group-sm" v-if="material.level !== 'Legendary' || (currentTier >= 14)">
+                            <img :src="getImageUrl(`Constitution/${material.class}.png`)"
+                                 :class="`input-group img-thumbnail ${material.level}`"
+                                 alt>
+                            <label class="input-group-text">{{ material.show_name }}</label>
+                            <button class="btn add-btn" type="button" @mousedown="startCount(material,0 ,$event)"
+                                    @mouseup="stopInterval" @mouseleave="stopInterval">+
+                            </button>
+                            <input v-model.number="material.value" :min="minimum"
+                                   oninput="validity.valid||(value='');"
+                                   class="form-control" type="number">
+                            <button class="btn minus-btn" type="button" @mousedown="startDecrement(material,0 ,$event)"
+                                    @mouseup="stopInterval" @mouseleave="stopInterval">-
+                            </button>
+                          </div>
                         </template>
                     </div>
                 </template>
@@ -156,6 +156,7 @@ export default {
         setConstitutionLevel(){
             const constitutionAttribute = JSON.parse(JSON.stringify(this.constitutionData));
             let constitutionItem = JSON.parse(JSON.stringify(this.constitutionItem));
+            this.ClassName = this.currentTier >=14 ? 'Legendary' : 'Epic';
             Object.keys(constitutionItem).forEach((item) => {
                 this.constitutionItem[item].maxLevel = constitutionAttribute[item][this.currentTier-8].levels[4].level;
                 this.constitutionItem[item].minLevel = constitutionAttribute[item][this.currentTier-8].levels[0].level;
