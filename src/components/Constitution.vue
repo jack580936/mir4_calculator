@@ -1,3 +1,9 @@
+<script setup>
+
+import ConstitutionAnswer from "@/components/ConstitutionAnswer.vue";
+
+</script>
+
 <template>
     <div class="container-fluid constitution">
         <div v-if="showGif" class="eggs">
@@ -13,7 +19,7 @@
         <div class="constitutionStatus">
             <img v-if="!showGif" :src="getImageUrl('bg/constitutionBg.png')" alt="constitution" @click="handleClick"/>
             <template v-for="item in constitutionItem" :key="item">
-                <div v-if="!showGif && this.currentTier!==null" :class="`attrInput ${item.id}`">
+                <div v-if="!showGif && currentTier!==null" :class="`attrInput ${item.id}`">
                     <button class="btn add-btn" type="button" @mousedown="startCount(item,item.maxLevel+1 ,$event)"
                             @mouseup="stopInterval" @mouseleave="stopInterval">+
                     </button>
@@ -30,65 +36,11 @@
                 </template>
             </select>
         </div>
-            <div v-if="this.currentTier!==null" class="constitutionAnswer container-fluid">
-                <h4>還需要以下材料:</h4>
-                <div class="answer-list">
-                    <template v-for="item in constitutionItem" :key="item">
-                        <div class="answer mb-3 ">
-                            <div class="input-group input-group-sm">
-                                <img :src="getImageUrl(`Constitution/${item.id}.png`)"
-                                     :class="`input-group img-thumbnail`"
-                                     alt>
-                                <label class="input-group-text">{{ item.name }}</label>
-                            </div>
-                            <template v-for="upgradeItem in getAttrUpgradeData(this.currentTier,this.constitutionData[item.id],item.value)">
-                                <div class="list-group list-group-flush">
-                                    <img :src="getImageUrl(`Constitution/${upgradeItem.upgradeItem1}.png`)"
-                                         :class="`input-group img-thumbnail ${upgradeItem.classification}`"
-                                         alt>
-                                    <label class="list-group-item">{{ upgradeItem.upgradeItem1 }}</label>
-                                    <label class="list-group-item">{{ upgradeItem.upgradeAmount1 }}</label>
-                                </div>
-                                <div class="list-group list-group-flush">
-                                    <img :src="getImageUrl(`Constitution/${upgradeItem.upgradeItem2}.png`)"
-                                         :class="`input-group img-thumbnail ${upgradeItem.classification}`"
-                                         alt>
-                                    <label class="list-group-item">{{ upgradeItem.upgradeItem2 }}</label>
-                                    <label class="list-group-item">{{ upgradeItem.upgradeAmount2 }}</label>
-                                </div>
-                            </template>
-                        </div>
-                    </template>
-                </div>
-                <h4 class="col-12"> 總共需要以下材料： </h4>
-                <div class="totalRequirement col-12 col-xl-12">
-                    <div v-for="(items, lvl) in getTotalUpgradeMaterial()" class="list-group list-group-flush">
-                        <h4 v-if="ClassName === lvl" class="list-group-item">{{this.ClassName}}</h4>
-                        <h4 v-else class="list-group-item">{{ lvl }} ➙ {{this.ClassName}}</h4>
-                        <template v-for="(value, materialName) in items">
-                            <div class="list-group list-group-sm answer-img">
-                                <img v-if="value>0 && !['真氣', '生命精華', '銅幣'].includes(materialName)"
-                                     :src="getImageUrl(`Constitution/${materialName}.png`)"
-                                     :class="`list-group-item img-thumbnail ${lvl}`"
-                                     alt="...">
-                                <img v-else-if="value>0 && ['真氣', '生命精華', '銅幣'].includes(materialName)"
-                                     :src="getImageUrl(`Constitution/${materialName}.png`)"
-                                     :class="`list-group-item img-thumbnail Uncommon`" alt="...">
-                                <label v-if="value>0" class="material list-group-item col-12">{{
-                                    materialName
-                                    }} : {{ value.toLocaleString() }}</label>
-                                <label v-else-if="value<0" class="material list-group-item col-12">{{
-                                    value
-                                    }} : enough</label>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-            </div>
-            <div v-if="this.currentTier!==null" class="constitutionInventory container-fluid">
+        <ConstitutionAnswer :constitutionData="constitutionData" :constitutionItem="constitutionItem" :currentTier="currentTier" :ClassName="ClassName" :inventoryNum="inventoryNum" />
+            <div v-if="currentTier!==null" class="constitutionInventory container-fluid">
               <h4>庫存</h4>
               <div class="inventory-list" >
-                <template v-for="material_category in init_inventory">
+                <template v-for="material_category in initInventoryNum">
                     <div class="inventory mb-3 col-12 col-sm-6 col-xl-4 col-xxl-4">
                         <template v-for="(material,index) in material_category" :key="index">
                             <div class="input-group input-group-sm">
@@ -118,6 +70,7 @@
 import {getImageUrl} from "@/utils";
 import {counter} from "@/utils/intervalCountNum"
 import {attack, eva, mp, hp, spellDefense, physicalDefense, accuracy} from "@/utils/constitutionData";
+
 
 export default {
     name: "Constitution",
@@ -166,6 +119,9 @@ export default {
             totalUpgradeMaterial: {}
         };
     },
+    created() {
+
+    },
     mounted() {
         this.changeCat();
     },
@@ -173,10 +129,9 @@ export default {
         numbers() {
             return Array.from({length: this.constitutionEnd - this.constitutionStart + 1}, (_, i) => i + this.constitutionStart);
         },
-        init_inventory() {
+        initInventoryNum() {
 
             return this.inventories();
-
         },
 
     },
@@ -197,220 +152,10 @@ export default {
             this.clickCount = 0;
             this.showGif = false;
         },
-        getAttrUpgradeData(currentTier, constitutionAttribute, currentLevel) {
-            if ((this.currentTier === null) || (currentLevel === null)) {
-                return;
-            }
-            let totalUpgradeData = {};
-            const targetTier = constitutionAttribute[currentTier - 8]
-            let startLevel = targetTier.levels.findIndex((item) => item.level === currentLevel) !== -1 ? targetTier.levels.findIndex((item) => item.level === currentLevel) : 0;
-            let lastLevel = targetTier.levels[4].level;
-            const classification = targetTier.classification;
-            const upgradeItemName1 = targetTier.levels[0].upgradeItem1;
-            const upgradeItemName2 = targetTier.levels[0].upgradeItem2;
-            let totalUpgradeAmount1 = 0;
-            let totalUpgradeAmount2 = 0;
-            Object.assign(totalUpgradeData, {'upgradeItem1': upgradeItemName1,
-                                                    'upgradeAmount1': totalUpgradeAmount1,
-                                                    'upgradeItem2': upgradeItemName2,
-                                                    'upgradeAmount2': totalUpgradeAmount2,
-                                                    'classification': classification,});
-            if(lastLevel+1 === currentLevel){
-                return [totalUpgradeData];
-            }
-            for (let i = startLevel; i < targetTier.levels.length; i++) {
-                const level = targetTier.levels[i];
-                totalUpgradeAmount1 += level.upgradeAmount1;
-                totalUpgradeAmount2 += level.upgradeAmount2;
-                Object.assign(totalUpgradeData, {
-                    'upgradeAmount1': totalUpgradeAmount1,
-                    'upgradeAmount2': totalUpgradeAmount2
-                });
-            }
-            return [totalUpgradeData];
-        },
-        calculateUpgradeMaterial(){
-            let totalUpgradeData = {};
-            const constitutionAttribute = this.constitutionData;
-            let constitutionItem = this.constitutionItem;
-            for(let attr in constitutionAttribute){
-                let currentLevel = constitutionItem[attr].value;
-                let currentTier = this.currentTier;
-                let upgradeData = this.getAttrUpgradeData(currentTier, constitutionAttribute[attr], currentLevel);
-                if(upgradeData === undefined){
-                    continue;
-                }
-                upgradeData.forEach((item) => {
-                    // if(totalUpgradeData[item.classification] === undefined){
-                    //     totalUpgradeData[item.classification] = {};
-                    // }
-                    if(totalUpgradeData[item.upgradeItem1] === undefined){
-                        totalUpgradeData[item.upgradeItem1] = 0;
-                    }
-                    if(totalUpgradeData[item.upgradeItem2] === undefined){
-                        totalUpgradeData[item.upgradeItem2] = 0;
-                    }
-                    totalUpgradeData[item.upgradeItem1] += item.upgradeAmount1;
-                    totalUpgradeData[item.upgradeItem2] += item.upgradeAmount2;
-                })
-            }
-            this.totalUpgradeMaterial = totalUpgradeData;
-        },
-        getTotalUpgradeMaterial() {
-            if (this.currentTier === null) {
-                return;
-            }
-            let totalUpgradeMaterial = JSON.parse(JSON.stringify(this.totalUpgradeMaterial));
-            this.calculateUpgradeMaterial();
-            if(this.currentTier >=14){
-                this.ClassName = 'Legendary';
-            }
-            const totalCost  = this.subtractInventory(this.getConstitutionMaterialNeeded(this.totalUpgradeMaterial, this.ClassName), this.inventoryNum)
-            const result = this.calculateAllConstitutionCurrenciesCost(totalCost, this.inventoryNum)
-
-            return  result;
-        },
-        calculateConstitutionCurrenciesCost(startLevel, totalCost, targetLevel = '') {
-            /* 總共需要幾個targetLevel的材料，從哪個階級開始升級，會一路計算到targetLevel
-
-            targetLevel, startLevel => Legendary, Epic, Rare, Uncommon
-
-            totalCost 範例
-             totalCost = {
-              Legendary: { '花幽飲': 1, '毒角片': null, '藥草根': 1, '藥草葉': null, ... },
-              Epic: { '花幽飲': 20, '毒角片': null, '藥草根': 10, '藥草葉': null, ... },
-              Rare: { '花幽飲': 400, '毒角片': null, '藥草根': 100, '藥草葉': null, ... },
-              Uncommon: { '花幽飲': 8000, '毒角片': null, '藥草根': 1000, '藥草葉': null, ... }
-            }
-
-            return [energy, lifeEssence, money] => [integer, integer, integer]
-            */
-
-            const upgrade_rules = {
-                'Legendary': {},
-                'Epic': {
-                    'Legendary': {'energy': 12500, 'lifeEssence': 50, 'money': 50000}
-                },
-                'Rare': {
-                    'Epic': {'energy': 2500, 'lifeEssence': 10, 'money': 10000}
-                },
-                'Uncommon': {
-                    'Rare': {'energy': 500, 'lifeEssence': 2, 'money': 1000},
-                }
-            };
-            let energy = 0, lifeEssence = 0, money = 0;
-            let upgrade_cost = {};
-
-            if (targetLevel === '') {
-                upgrade_cost = upgrade_rules[startLevel];
-            } else {
-                let current_level = startLevel;
-                while (current_level !== targetLevel) {
-                    upgrade_cost = {...upgrade_rules[current_level], ...upgrade_cost};
-                    current_level = Object.keys(upgrade_rules[current_level])[0];
-                }
-            }
-
-            for (const [upgradeLvl, multiplier] of Object.entries(upgrade_cost)) {
-
-                for (const [key, v] of Object.entries(totalCost[upgradeLvl])) {
-                    if (['百年果', '毒角片', '花幽飲'].includes(key)) {
-                        energy += v * multiplier.energy;
-                        money += v * multiplier.money;
-                    } else {
-                        energy += v * multiplier.energy;
-                        money += v * multiplier.money;
-                        lifeEssence += v * multiplier.lifeEssence;
-                    }
-                }
-            }
-            return [energy, lifeEssence, money];
-        },
-
-        getConstitutionMaterialNeeded(needed, targetLevel = '') {
-            // 由最高階級需求數量，計算出其他階級需求數量
-            let totalMaterial = {};
-            if (targetLevel === null) {
-                return totalMaterial
-            }
-            const normalMapper = {
-                Uncommon: {Uncommon: 1},
-                Rare: {Rare: 1, Uncommon: 10},
-                Epic: {Epic: 1, Rare: 10, Uncommon: 100},
-                Legendary: {Legendary: 1, Epic: 10, Rare: 100, Uncommon: 1000}
-            };
-            const constitutionMapper = {
-                Uncommon: {Uncommon: 1},
-                Rare: {Rare: 1, Uncommon: 20},
-                Epic: {Epic: 1, Rare: 20, Uncommon: 400},
-                Legendary: {Legendary: 1, Epic: 20, Rare: 400, Uncommon: 8000}
-            };
-            const constitutionWeight = constitutionMapper[targetLevel];
-            const weight = normalMapper[targetLevel];
-            for (const [key, value] of Object.entries(needed)) {
-                for (const [lvl, _] of Object.entries(weight)) {
-                    totalMaterial[lvl] ??= {};
-                    if ((['花幽飲', '毒角片', '百年果'].includes(key))) {
-                        totalMaterial[lvl][key] = value * constitutionWeight[lvl];
-                    } else if (!(['energy', 'lifeEssence', 'money'].includes(key))) {
-                        totalMaterial[lvl][key] = value * weight[lvl];
-                    }
-                }
-
-            }
-            return totalMaterial;
-        },
-        calculateAllConstitutionCurrenciesCost(totalCost, totalInventory) {
-            if(Object.entries(totalCost).length === 0) return
-            let lvlList = ['Uncommon', 'Rare', 'Epic', 'Legendary'];
-            const inventoryEnergy = totalInventory.flat().find(obj => obj.name === `energy`).value;
-            const inventoryLifeEssence = totalInventory.flat().find(obj => obj.name === `lifeEssence`).value;
-            const inventoryMoney = totalInventory.flat().find(obj => obj.name === `money`).value;
-            if (this.ClassName === 'Epic') {
-                // 把Legendary拿掉 因為最高只到Epic
-                lvlList.pop()
-            }
-            for (let lvl of lvlList) {
-                const [energy, lifeEssence, money] = this.calculateConstitutionCurrenciesCost(lvl, totalCost, this.ClassName);
-
-                Object.assign(totalCost[lvl], {
-                    '真氣': inventoryEnergy < energy ? (energy - inventoryEnergy) : 0,
-                    '生命精華': inventoryLifeEssence < lifeEssence ? (lifeEssence - inventoryLifeEssence) : 0,
-                    '銅幣': inventoryMoney < money ? (money - inventoryMoney) : 0
-
-                });
-            }
-            return totalCost;
-        },
-
-        subtractInventory(needed, total_inventory) {
-            const result = {};
-            let mapper, weight;
-            mapper = {
-                Legendary: [1, 0, 0, 0],
-                Epic: [10, 1, 0, 0],
-                Rare: [100, 10, 1, 0],
-                Uncommon: [1000, 100, 10, 1]
-            };
-
-            for (let lvl of Object.keys(needed)) {
-                for (const key in needed[lvl]) {
-                    const LegendaryValue = total_inventory.flat().find(obj => obj.name === `Legendary_${key}`).value || 0;
-                    const EpicValue = total_inventory.flat().find(obj => obj.name === `Epic_${key}`).value || 0;
-                    const RareValue = total_inventory.flat().find(obj => obj.name === `Rare_${key}`).value || 0;
-                    const UncommonValue = total_inventory.flat().find(obj => obj.name === `Uncommon_${key}`).value || 0;
-                    weight = mapper[lvl];
-                    let value;
-                    result[lvl] ??= {};
-                    result[lvl][key] = (value = (needed[lvl][key] - LegendaryValue * weight[0] - EpicValue * weight[1] - RareValue * weight[2] - UncommonValue * weight[3])) > 0 ? value : null;
-                }
-            }
-            return result;
-        },
 
         setConstitutionLevel(){
-            const constitutionAttribute = this.constitutionData;
-            let constitutionItem = this.constitutionItem;
+            const constitutionAttribute = JSON.parse(JSON.stringify(this.constitutionData));
+            let constitutionItem = JSON.parse(JSON.stringify(this.constitutionItem));
             Object.keys(constitutionItem).forEach((item) => {
                 this.constitutionItem[item].maxLevel = constitutionAttribute[item][this.currentTier-8].levels[4].level;
                 this.constitutionItem[item].minLevel = constitutionAttribute[item][this.currentTier-8].levels[0].level;
@@ -443,9 +188,9 @@ export default {
                 }
             })
             this.inventoryNum.push([
-                {show_name: '真氣', name: 'energy', level: 'Uncommon', class: 'energy', value: null},
-                {show_name: '生命精華', name: 'lifeEssence', level: 'Uncommon', class: 'lifeEssence', value: null},
-                {show_name: '銅幣', name: 'money', level: 'Uncommon', class: 'money', value: null},
+                {show_name: '真氣', name: 'energy', level: 'Uncommon', class: '真氣', value: null},
+                {show_name: '生命精華', name: 'lifeEssence', level: 'Uncommon', class: '生命精華', value: null},
+                {show_name: '銅幣', name: 'money', level: 'Uncommon', class: '銅幣', value: null},
             ])
 
             return this.inventoryNum
