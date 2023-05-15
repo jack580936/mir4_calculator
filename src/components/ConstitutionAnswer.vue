@@ -171,9 +171,9 @@ export default {
 
             let totalUpgradeMaterial = JSON.parse(JSON.stringify(this.calculateUpgradeMaterial()));
             let inventoryNum = JSON.parse(JSON.stringify(this.inventoryNum));
-            let ClassName = this.currentTier >=14 ? 'Legendary': 'Epic';
 
-            const totalCost  = this.subtractInventory(this.getConstitutionMaterialNeeded(totalUpgradeMaterial, ClassName), inventoryNum)
+
+            const totalCost  = this.subtractInventory(this.getConstitutionMaterialNeeded(totalUpgradeMaterial, this.ClassName), inventoryNum)
             return  this.calculateAllConstitutionCurrenciesCost(totalCost, inventoryNum);
         },
         calculateConstitutionCurrenciesCost(startLevel, totalCost, targetLevel = '') {
@@ -206,7 +206,6 @@ export default {
             };
             let energy = 0, lifeEssence = 0, money = 0;
             let upgrade_cost = {};
-
             if (targetLevel === '') {
                 upgrade_cost = upgrade_rules[startLevel];
             } else {
@@ -218,7 +217,6 @@ export default {
             }
 
             for (const [upgradeLvl, multiplier] of Object.entries(upgrade_cost)) {
-
                 for (const [key, v] of Object.entries(totalCost[upgradeLvl])) {
                     if (['百年果', '毒角片', '花幽飲'].includes(key)) {
                         energy += v * multiplier.energy;
@@ -286,7 +284,6 @@ export default {
                     '雪參' : '∞'
                 });
             }
-            console.log(totalCost)
             return totalCost;
         },
 

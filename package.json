@@ -13,7 +13,8 @@
     "papaparse": "^5.4.1",
     "sass": "^1.57.1",
     "vite-svg-loader": "^4.0.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",
