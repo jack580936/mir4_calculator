@@ -284,7 +284,6 @@ export default {
                     '雪參' : '∞'
                 });
             }
-            console.log(totalCost)
             return totalCost;
         },
 
