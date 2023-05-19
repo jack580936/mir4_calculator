@@ -11,7 +11,26 @@
 * 委託攻略
 * 一些小功能
 
-如果有任何建議或是想要新增的功能，歡迎在 Issues 中提出。
+如果有任何建議或是想要新增的功能，歡迎在 Issues 中提出
+如果覺得這個網頁不錯，請給我一個星星 ⭐
+
+---
+
+This is a simple calculator that provides Mir4 players with some small features to make the game easier to play.
+
+You can access the website here: https://jack580936.github.io/mir4_calculator/
+
+* Equipment craft calculation
+* Constitution craft calculation
+* Mystery guide
+* Resource distribution in various maps
+* Request guide
+* Some additional features
+
+If you have any suggestions or would like to add new features, feel free to raise them in the Issues section.
+If you find this website helpful, please give it a star ⭐
+
+----
 
 ## Recommended IDE Setup
 
