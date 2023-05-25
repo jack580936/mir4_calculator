@@ -12,7 +12,7 @@ import PdfViewer from "@/components/util/PdfViewer.vue";
           <div class="sidebar-content">
             <nav class="menu open-current-submenu">
               <ul>
-                <li class="menu-header"><span> 奇緣 </span></li>
+                <li class="menu-header"><span>奇緣</span></li>
                 <li v-for="(pdfSrc,name,index) in tabs" :key="index"
                     :class="['menu-item',{ active: pdfUrl === pdfSrc }]" @click="changePdfUrl(pdfSrc)">
                   <span>{{ name }}</span>
