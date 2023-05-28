@@ -7,12 +7,18 @@ import mystery from "@/components/Mystery.vue";
 import Resource from "@/components/Resource.vue";
 import Requests from "@/components/Requests.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
+import DragonArtifact from "@/components/DragonArtifact.vue";
 
 const routes = [
   {
     path: '/:catchAll(.*)',
     name: '首頁',
     redirect: '/constitution'
+  },
+  {
+    path: '/dragon-artifact',
+    name: '龍神器',
+    component: DragonArtifact
   },
   {
     path: '/legendary-equipment',
