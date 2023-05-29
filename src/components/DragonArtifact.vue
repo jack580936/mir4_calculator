@@ -1,6 +1,5 @@
 <script setup>
 
-import {getMaterialFromPool} from "@/utils/dragonArtifact";
 </script>
 
 <template>
@@ -25,7 +24,7 @@ import {getMaterialFromPool} from "@/utils/dragonArtifact";
               <h4>總需求</h4>
           </div>
           <div class="dragonArtifactNeedList">
-            <div class="dragonArtifactNeedItem" v-for="(value, material) in getMaterialFromPool(selectedLevelOption,selectedDragonArtifactOption)" :key="material">
+            <div class="dragonArtifactNeedItem" v-for="(value, material) in getDragonArtifactMaterial(selectedLevelOption,selectedDragonArtifactOption)" :key="material">
               <img :class="`img-thumbnail ${getLevelFromKeyword(material)}`" :src="getImageUrl(`dragonArtifact/${removeLevelKeyword(material)}.png`)" alt="Icon" />
               <div class="dragonArtifactNeedItemName">{{ material }}</div>
               <div class="dragonArtifactNeedItemNum">{{ value }}</div>
@@ -33,18 +32,22 @@ import {getMaterialFromPool} from "@/utils/dragonArtifact";
           </div>
         <div class="dragonArtifactSpecialNeed" v-if="selectedLevelOption && selectedDragonArtifactOption">
           <div class="dragonArtifactNeedTitle">
-              <h4>神龍器材料需求</h4>
+              <h4>龍神器材料需求</h4>
           </div>
-          <div class="dragonArtifactSpecialNeedList">
-            <div class="dragonArtifactSpecialNeedItem" v-for="(value, material) in getDragonMaterialFromPool(selectedLevelOption,selectedDragonArtifactOption)" :key="material">
-              <img :class="`input-group img-thumbnail ${getLevelFromKeyword(material)}`" :src="getImageUrl(`dragonArtifact/${removeLevelKeyword(material)}.png`)" alt="Icon" />
-              <div class="input-group dragonArtifactNeedItemName">{{ material }}</div>
-              <div class="input-group dragonArtifactNeedItemNum">{{ value }}</div>
-            </div>
+          <div class="dragonArtifactSpecialTotalNeed">
+            <template v-for="dragonMaterial in getDragonMaterialFromPool(selectedLevelOption,selectedDragonArtifactOption)">
+              <div class="dragonArtifactSpecialNeedList">
+                <div class="dragonArtifactSpecialNeedItem" v-for="(value, material) in dragonMaterial" :key="material">
+                  <img :class="`input-group img-thumbnail ${getLevelFromKeyword(material)}`" :src="getImageUrl(`dragonArtifact/${removeLevelKeyword(material)}.png`)" alt="Icon" />
+                  <div class="input-group dragonArtifactNeedItemName">{{ material }}</div>
+                  <div class="input-group dragonArtifactNeedItemNum">{{ value }}</div>
+                </div>
+              </div>
+            </template>
           </div>
         </div>
         </div>
-        <div class="dragonArtifactInventory">
+        <div class="dragonArtifactInventory" v-show="true">
             <h4>庫存</h4>
             <div class="inventory-list">
                 <template v-for="material_category in initInventoryNum">
@@ -76,8 +79,11 @@ import {getMaterialFromPool} from "@/utils/dragonArtifact";
 <script>
 import {getImageUrl} from "@/utils";
 import {counter} from "@/utils/intervalCountNum"
-import {getInventoriesInit, getMaterialFromPool} from "@/utils/dragonArtifact"
-import {accuracy, attack, eva, hp, mp, physicalDefense, spellDefense} from "@/utils/constitutionData";
+import {
+  getInventoriesInit,
+  getDragonArtifactMaterial,
+  getEachLevelMaterialFromPool,
+} from "@/utils/dragonArtifact"
 export default {
     name: "DragonArtifact",
     data() {
@@ -109,7 +115,8 @@ export default {
         getImageUrl,
         ...counter,
         getInventoriesInit,
-        getMaterialFromPool,
+        getDragonArtifactMaterial,
+        getEachLevelMaterialFromPool,
         selectTopOption(option) {
           this.selectedLevelOption = option;
           this.selectedDragonArtifactOption = null;
@@ -121,6 +128,9 @@ export default {
             return str.replace(/傳說|英雄|稀有|高級/g, "");
         },
         getLevelFromKeyword(str) {
+            if([str].includes(["傳說", "英雄", "稀有", "高級"])) {
+              return "Uncommon";
+            }
             let level = str.substring(0, 2);
             if (level === "傳說") {
                 return "Legendary";
@@ -134,17 +144,18 @@ export default {
             return "Uncommon";
         },
         getDragonMaterialFromPool(level, dragonArtifact) {
-            const materialPool = this.getMaterialFromPool(level, dragonArtifact);
+            const materialPool = this.getDragonArtifactMaterial(level, dragonArtifact);
+            console.log(materialPool);
             for(const item in materialPool){
                 const itemValue = materialPool[item];
                 if(["神笏", "印"].includes(dragonArtifact) && item.includes("萬年鋼鐵")){
-                    return this.getMaterialFromPool(level, item, itemValue);
+                    return this.getEachLevelMaterialFromPool(level, item, itemValue);
                 }
                 else if(["寶冠", "天書"].includes(dragonArtifact)&& item.includes("萬年寒玉")){
-                    return this.getMaterialFromPool(level, item, itemValue);
+                    return this.getEachLevelMaterialFromPool(level, item, itemValue);
                 }
                 else if(["翼裝"].includes(dragonArtifact)&& item.includes("萬年寒鐵")){
-                    return this.getMaterialFromPool(level, item, itemValue);
+                    return this.getEachLevelMaterialFromPool(level, item, itemValue);
                 }
             }
         },
@@ -170,9 +181,16 @@ export default {
   width: 100%;
   height: calc(100% - 42px);
   overflow: auto;
+  background-image: url("../assets/bg/dragonBG.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
 
-    * li, label, h4 {
+    * li, label {
       background-color: #15202B;
+      color: #eeeef4;
+    }
+    * h4{
       color: #eeeef4;
     }
     .input-group > input,{
@@ -195,6 +213,8 @@ export default {
 .dragonArtifactSelect{
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  justify-content: center;
   .dragonArtifactLevelSelect{
     display: flex;
     flex-direction: row;
@@ -288,6 +308,13 @@ display: flex;
 .dragonArtifactSpecialNeed{
   display: flex;
   flex-direction: column;
+  .dragonArtifactSpecialTotalNeed{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+
+  }
   .dragonArtifactSpecialNeedList{
     display: flex;
     flex-direction: column;

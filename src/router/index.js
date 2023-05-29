@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/:catchAll(.*)',
     name: '首頁',
-    redirect: '/constitution'
+    redirect: '/dragon-artifact'
   },
   {
     path: '/dragon-artifact',
