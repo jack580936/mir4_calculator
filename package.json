@@ -1,5 +1,6 @@
 {
   "name": "mir4_calculator",
+  "type": "module",
   "version": "0.0.0",
   "private": true,
   "scripts": {

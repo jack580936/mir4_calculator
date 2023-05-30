@@ -3,15 +3,15 @@
     <div class="demo">
       <div class="nav nav-tabs sticky-top">
         <ul class="leftTab-container nav">
-          <li v-for="route in $router.options.routes" :key="route.name" class="nav-item">
-            <router-link v-if="!excludeRoutes.includes(route.name)" :to="route.path" class="nav-link" :class="{ active: $route.path === route.path }">
+          <li v-for="route in routes" :key="route.name" class="nav-item">
+            <router-link v-if="!isExcludedRoute(route.name)" :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}">
               {{ route.name }}
             </router-link>
           </li>
         </ul>
         <ul class="rightTab-container nav">
-          <li v-for="route in $router.options.routes" :key="route.name" class="nav-item">
-            <router-link v-if="rightTabRoutes.includes(route.name)" :to="route.path" class="nav-link" :class="{ active: $route.path === route.path }">
+          <li v-for="route in routes" :key="route.name" class="nav-item">
+            <router-link v-if="isRightTabRoute(route.name)" :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}">
               {{ route.name }}
             </router-link>
           </li>
@@ -36,14 +36,28 @@ export default {
   name: "App",
   data() {
     return {
-      excludeRoutes: ['更新日誌', '首頁'],
+      excludedRoutes: ['更新日誌', '首頁'],
       rightTabRoutes: ['更新日誌'],
     };
+  },
+  computed: {
+    routes() {
+      return this.$router.options.routes;
+    },
   },
   methods: {
     getImageUrl(url) {
       return new URL(`/src/assets/${url}`, import.meta.url).href;
     },
-  }
-}
+    isExcludedRoute(routeName) {
+      return this.excludedRoutes.includes(routeName);
+    },
+    isRightTabRoute(routeName) {
+      return this.rightTabRoutes.includes(routeName);
+    },
+    isActiveRoute(routePath) {
+      return this.$route.path === routePath;
+    },
+  },
+};
 </script>

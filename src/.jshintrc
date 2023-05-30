@@ -1,3 +1,4 @@
-{
-  "esversion": 11
+{  "esversion": 11,
+  "undef": true,
+  "unused": true
 }
