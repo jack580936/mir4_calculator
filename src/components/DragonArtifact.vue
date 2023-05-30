@@ -51,9 +51,9 @@
             <h4>庫存</h4>
             <div class="inventory-list">
                 <template v-for="material_category in initInventoryNum">
-                    <div class="inventory mb-3 col-12 col-sm-6 col-xl-4 col-xxl-4">
+                    <div class="inventory mb-3 col-12 col-sm-6 col-xl-4 col-xxl-4" >
                         <template v-for="(material,index) in material_category" :key="index">
-                            <div class="input-group input-group-sm" >
+                            <div class="input-group input-group-sm"  >
                                 <img :src="getImageUrl(`dragonArtifact/${material.class}.png`)"
                                      :class="`input-group img-thumbnail ${material.level}`"
                                      alt>
@@ -106,7 +106,7 @@ export default {
     },
     computed: {
         initInventoryNum() {
-            this.inventoriesBase = this.getInventoriesInit();
+            this.inventoriesBase = this.getInventoriesInit(this.selectedLevelOption,this.selectedDragonArtifactOption);
             return this.inventoriesBase;
         },
 
@@ -143,6 +143,21 @@ export default {
                 return "Uncommon";
             }
             return "Uncommon";
+        },
+        getShowInventoryColumn(name){
+              let showInventoryColumn = {};
+              if(["神笏", "印"].includes(this.selectedDragonArtifactOption)){
+                  showInventoryColumn = ['萬年鋼鐵','月陰石','邪念珠','傳說鋼鐵','英雄鋼鐵','稀有鋼鐵','高級鋼鐵','冰晶石'] ;
+                  return showInventoryColumn.some(substring => name.includes(substring))
+              }
+              else if(["寶冠", "天書"].includes(this.selectedDragonArtifactOption)){
+                  showInventoryColumn =  ['萬年寒玉','礦片','靈石','白金','冰晶石'];
+                  return showInventoryColumn.some(substring => name.includes(substring))
+              }
+              else if(["翼裝"].includes(this.selectedDragonArtifactOption)){
+                  showInventoryColumn =  ['萬年寒鐵','武魂','伏魔神珠','傳說鋼鐵','英雄鋼鐵','稀有鋼鐵','高級鋼鐵','冰晶石'];
+                  return showInventoryColumn.some(substring => name.includes(substring))
+              }
         },
         getDragonMaterialFromPool(level, dragonArtifact) {
           const materialPool = this.getDragonArtifactMaterial(level, dragonArtifact);
@@ -344,7 +359,7 @@ display: flex;
 
 .dragonArtifactInventory{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;

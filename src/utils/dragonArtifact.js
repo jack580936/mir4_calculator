@@ -134,7 +134,7 @@ const inventoryBase = [
     {name: '冰晶石', show_name: '冰晶石'},
 ];
 
-export function getInventoriesInit() {
+export function getInventoriesInit(SelectLevel,DragonArtifactOption) {
     let inventoryNum = [];
     const level_mapping = [
         {name: 'Legendary', show_name: '傳說'},
@@ -142,11 +142,37 @@ export function getInventoriesInit() {
         {name: 'Rare', show_name: '稀有'},
         {name: 'Uncommon', show_name: '高級'}
     ];
+    let skipLevel = [];
+    if(SelectLevel === '傳說'){
+      skipLevel = [];
+    }
+    else if(SelectLevel === '英雄'){
+      skipLevel = ['Legendary'];
+    }
+    else if(SelectLevel === '稀有'){
+      skipLevel = ['Legendary','Epic'];
+    }
+    else if(SelectLevel === '高級'){
+      skipLevel = ['Legendary','Epic','Rare'];
+    }
+    else{
+      skipLevel = ['Legendary','Epic','Rare','Uncommon'];
+    }
 
+    let showInventoryColumn = [];
+    if(["神笏", "印"].includes(DragonArtifactOption)){
+      showInventoryColumn = ['萬年鋼鐵','月陰石','邪念珠','鋼鐵','冰晶石'] ;
+    }
+    else if(["寶冠", "天書"].includes(DragonArtifactOption)){
+      showInventoryColumn =  ['萬年寒玉','礦片','靈石','白金','冰晶石'];
+    }
+    else if(["翼裝"].includes(DragonArtifactOption)){
+      showInventoryColumn =  ['萬年寒鐵','武魂','伏魔神珠','鋼鐵','冰晶石'];
+    }
     inventoryBase.forEach(item => {
         let temp = [];
         level_mapping.forEach(level => {
-            if (['萬年鋼鐵', '萬年寒鐵', '萬年寒玉'].includes(item.name) && level.show_name === '高級') {
+            if ((['萬年鋼鐵', '萬年寒鐵', '萬年寒玉'].includes(item.name) && level.show_name === '高級') || !showInventoryColumn.includes(item.name) || skipLevel.includes(level.name)) {
                 return; // Skip the current iteration
             }
             temp.push({
@@ -170,7 +196,7 @@ export function getInventoriesInit() {
     // ]);
     return inventoryNum;
 }
-
+console.log(getInventoriesInit('Legendary','神笏'));
 export function getDragonArtifactMaterial(Level, item, num = 1) {
     const materialKey = Level + item;
     const materialPool = new MaterialPool(base_pool);
@@ -216,35 +242,47 @@ export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, Target
             return ['高級鋼鐵','高級月陰石','高級邪念珠','高級伏魔神珠','高級武魂','高級礦片','高級靈石','高級白金','高級冰晶石'];
         }
     }
-    function getNeedFromLevel(currentCalcLevel , TargetMaterial) {
+    function getNeedFromLevel(TargetLevel, currentCalcLevel , TargetMaterial) {
       let materials = [];
 
       if(TargetMaterial.includes("萬年鋼鐵")){
           materials = [
-              ['高級鋼鐵', '高級月陰石', '高級邪念珠', '高級冰晶石'],
-              ['稀有鋼鐵', '稀有月陰石', '稀有邪念珠', '稀有冰晶石'],
+              ['傳說鋼鐵', '傳說月陰石', '傳說邪念珠', '傳說冰晶石'],
               ['英雄鋼鐵', '英雄月陰石', '英雄邪念珠', '英雄冰晶石'],
-              ['傳說鋼鐵', '傳說月陰石', '傳說邪念珠', '傳說冰晶石']
+              ['稀有鋼鐵', '稀有月陰石', '稀有邪念珠', '稀有冰晶石'],
+              ['高級鋼鐵', '高級月陰石', '高級邪念珠', '高級冰晶石']
           ];
       }else if (TargetMaterial.includes("萬年寒鐵")){
           materials = [
-              ['高級鋼鐵', '高級伏魔神珠', '高級武魂', '高級冰晶石'],
-              ['稀有鋼鐵', '稀有伏魔神珠', '稀有武魂', '稀有冰晶石'],
+              ['傳說鋼鐵', '傳說伏魔神珠', '傳說武魂', '傳說冰晶石'],
               ['英雄鋼鐵', '英雄伏魔神珠', '英雄武魂', '英雄冰晶石'],
-              ['傳說鋼鐵', '傳說伏魔神珠', '傳說武魂', '傳說冰晶石']
+              ['稀有鋼鐵', '稀有伏魔神珠', '稀有武魂', '稀有冰晶石'],
+              ['高級鋼鐵', '高級伏魔神珠', '高級武魂', '高級冰晶石']
           ];
       }else if (TargetMaterial.includes("萬年寒玉")){
           materials = [
-              ['高級白金', '高級礦片', '高級靈石', '高級冰晶石'],
-              ['稀有白金', '稀有礦片', '稀有靈石', '稀有冰晶石'],
+              ['傳說白金', '傳說礦片', '傳說靈石', '傳說冰晶石'],
               ['英雄白金', '英雄礦片', '英雄靈石', '英雄冰晶石'],
-              ['傳說白金', '傳說礦片', '傳說靈石', '傳說冰晶石']
+              ['稀有白金', '稀有礦片', '稀有靈石', '稀有冰晶石'],
+              ['高級白金', '高級礦片', '高級靈石', '高級冰晶石']
           ];
       }
+
+      if (TargetLevel === '英雄'){
+          materials.shift();
+      }else if (TargetLevel === '稀有'){
+          materials.shift();
+          materials.shift();
+      }else if (TargetLevel === '高級'){
+          materials.shift();
+          materials.shift();
+          materials.shift();
+      }
+
       let need = [];
       // currentCalcLevel = 1 or 2 or 3 or 4
-      // 傳說 = 4, 英雄 = 3, 稀有 = 2, 高級 = 1
-      for (let i = 0; i <= (currentCalcLevel -1); i++) {
+      // 傳說 = 0, 英雄 = 1, 稀有 = 2, 高級 = 3
+      for (let i = 0; i <= currentCalcLevel; i++) {
         need = need.concat(materials[i]);
       }
 
@@ -252,13 +290,12 @@ export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, Target
     }
 
 
-    function getInventoryCost(materialPool, totalInventory, currentCalcLevel, TargetMaterial, stopTarget) {
+    function getInventoryCost(materialPool, totalInventory, TargetMaterial, stopTarget, TargetLevel, currentCalcLevel ) {
         let inventoryCost = {};
 
-        const calcInventoryColumn = getNeedFromLevel(currentCalcLevel, TargetMaterial);
+        const calcInventoryColumn = getNeedFromLevel(TargetLevel, currentCalcLevel, TargetMaterial);
         totalInventory.flat().forEach(item =>{
             if (['龍鐵', '黑鐵', '生命精華', '閃粉', '銅幣',TargetMaterial, ...calcInventoryColumn].includes(item.show_name)) {
-                const itemLevel = item.show_name.match(/^(英雄|傳說|稀有|高級)/)?.[0];
                 const needMaterials = materialPool.extractMaterials(item.show_name, item.value, stopTarget);
                 Object.assign(inventoryCost,dictAdd(needMaterials, inventoryCost));
             }
@@ -293,13 +330,13 @@ export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, Target
 
     const materialPool = new MaterialPool(base_pool);
     const stopTarget = getMaterialPool(TargetLevel);
-    const currentCalcLevel = stopTarget.length;
     let material = [];
 
     for (let i = 0; i < stopTarget.length; i++) {
         // sort by key
+        let currentCalcLevel = i;
         let result = materialPool.extractMaterials(TargetMaterial, TargetNum, stopTarget[i]);
-        let totalHave = getInventoryCost(materialPool, totalInventory, currentCalcLevel, TargetMaterial, stopTarget[i]);
+        let totalHave = getInventoryCost(materialPool, totalInventory, TargetMaterial, stopTarget[i], TargetLevel, currentCalcLevel);
         let sortedResult = Object.fromEntries(Object.entries(result).sort((a, b) => b[0].length - a[0].length));
         sortedResult = dictMinus(sortedResult, totalHave);
         material.push(sortedResult);
@@ -334,3 +371,5 @@ const totalInventoryTest = [
 ];
 
 console.log(getEachLevelMaterialFromPool('英雄', '英雄萬年鋼鐵', 30, totalInventoryTest));
+
+
