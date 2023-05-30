@@ -67,7 +67,7 @@ export default {
                 },
                 {
                   title: "峡谷洞穴",
-                  url: this.getImageUrl('Requests/GorgeCliffPath/征服王的遺產峡谷洞穴.png'),
+                  url: this.getImageUrl('Requests/GorgeCliffPath/征服王的遺產峽谷洞穴.png'),
                   description: "峡谷洞穴箱子分布",
                   author: "知乎 @骆驼玩游戏",
                 },

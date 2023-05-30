@@ -63,7 +63,6 @@ export default {
           });
         }
       }
-       console.log(groups);
       return groups;
     },
   },
