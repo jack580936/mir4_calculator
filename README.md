@@ -4,6 +4,7 @@
 
 您可以從此進入網站： https://jack580936.github.io/mir4_calculator/
 
+* 龍神器裝備計算
 * 裝備材料計算
 * 體質材料計算
 * 奇緣攻略
@@ -20,6 +21,7 @@ This is a simple calculator that provides Mir4 players with some small features 
 
 You can access the website here: https://jack580936.github.io/mir4_calculator/
 
+* Dragon Artifact equipment craft calculation
 * Equipment craft calculation
 * Constitution craft calculation
 * Mystery guide
