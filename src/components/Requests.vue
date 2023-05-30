@@ -39,7 +39,7 @@ export default {
   name: "Requests",
   data() {
     return {
-      currentTab: shallowRef(SabukCastle),
+      currentTab: shallowRef(GorgeCliffPath),
       tabs: shallowRef({
         '九龍冰原': NineDragonIceField,
         '沙巴克城': SabukCastle,

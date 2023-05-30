@@ -1,9 +1,9 @@
 <template>
   <div class="nav-bar">
     <ul>
-      <template v-for="(title, index) in imageTitles" :key="index">
-        <li class="" :class="{ active: currentTab === title }">
-          <a href="#" @click.prevent="scrollToImage(index)">{{ title }}</a>
+      <template v-for="(group, index) in imageGroups" :key="index">
+        <li class="" :class="{ active: currentTab === group.title }">
+          <a href="#" @click.prevent="scrollToImage(index)">{{ group.title }}</a>
         </li>
       </template>
     </ul>
@@ -11,13 +11,18 @@
   <div class="container-fluid" ref="container">
     <h1>{{ PageTitle }}</h1>
     <div class="image-grid">
-      <div class="image-container" v-for="(image, index) in images" :key="image.title">
-        <h4 :id="`image-${index}`">{{ image.title }}</h4>
-        <span style="white-space: pre-line">{{ image.description || "" }}</span>
-        <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)"/>
+      <div class="image-container" v-for="(group, index) in imageGroups" :key="group.title">
+        <h4 :id="`image-${index}`">{{ group.title }}</h4>
+        <div class="image-group" v-for="(image, imageIndex) in group.images" :key="imageIndex">
+          <h5>{{ image.title }}</h5>
+          <span style="white-space: pre-line">{{ image.description || "" }}</span>
+          <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)"/>
+          <div class="author" v-if="image.author">{{ image.author }}</div>
+        </div>
       </div>
       <div v-if="showLargeImage" class="large-image-container" @click="showLargeImage = false">
         <img :src="largeImageUrl" :alt="largeImageTitle"/>
+        <div class="author" v-if="getAuthorForImage(largeImageUrl)">{{ getAuthorForImage(largeImageUrl) }}</div>
       </div>
     </div>
   </div>
@@ -41,25 +46,48 @@ export default {
       showLargeImage: false,
       largeImageUrl: "",
       largeImageTitle: "",
-      currentTab: this.images[0].title,
+      currentTab: "",
     };
   },
   computed: {
-    imageTitles() {
-      return this.images.map((image) => image.title);
+    imageGroups() {
+      const groups = [];
+      for (const image of this.images) {
+        const existingGroup = groups.find(group => group.title === image.title);
+        if (existingGroup) {
+          existingGroup.images.push(image);
+        } else {
+          groups.push({
+            title: image.title,
+            images: image.images,
+          });
+        }
+      }
+       console.log(groups);
+      return groups;
     },
   },
   methods: {
     scrollToImage(index) {
       const element = document.getElementById(`image-${index}`);
       if (element) {
-        element.scrollIntoView({behavior: "smooth"});
+        element.scrollIntoView({ behavior: "smooth" });
       }
     },
     enlargeImage(url) {
       this.largeImageUrl = url;
-      this.largeImageTitle = this.images.find((image) => image.url === url).title;
+      this.largeImageTitle = this.images.find((image) => image.url === url)?.title || "";
       this.showLargeImage = true;
+    },
+    getAuthorForImage(url) {
+      const group = this.imageGroups.find(group => group.images.some(image => image.url === url));
+      if (group) {
+        const image = group.images.find(image => image.url === url);
+        if (image && image.author) {
+          return image.author;
+        }
+      }
+      return "";
     },
   },
   mounted() {
@@ -199,11 +227,42 @@ h1 {
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-}
 
-.image-container > span {
+  & > span{
   color: #e6f2ff;
   text-align: left;
+  }
+
+  .image-group{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 10px;
+
+    & > span{
+      color: #e6f2ff;
+    }
+
+    & > h5{
+      color: #e6f2ff;
+      padding-top: 2rem;
+      padding-bottom: .5rem;
+    }
+
+    .author{
+      color: #e6f2ff;
+      text-align: left;
+      align-self: flex-end;
+    }
+
+  }
+
 }
 
 img {
@@ -223,12 +282,12 @@ img {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   overflow: auto;
-}
 
-.large-image-container img {
-  max-width: fit-content;
-  max-height: fit-content;
-  scale: 1.25;
+  & > img{
+    max-width: fit-content;
+    max-height: fit-content;
+    scale: 1.25;
+  }
 }
 
 .nav-bar li.active a {
