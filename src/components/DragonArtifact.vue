@@ -47,7 +47,7 @@
           </div>
         </div>
         </div>
-        <div class="dragonArtifactInventory" v-show="true">
+        <div class="dragonArtifactInventory" v-show="selectedDragonArtifactOption">
             <h4>庫存</h4>
             <div class="inventory-list">
                 <template v-for="material_category in initInventoryNum">
@@ -120,6 +120,7 @@ export default {
         selectTopOption(option) {
           this.selectedLevelOption = option;
           this.selectedDragonArtifactOption = null;
+          this.inventoriesBase= [{}]
         },
         selectBottomOption(option) {
           this.selectedDragonArtifactOption = option;
@@ -144,21 +145,21 @@ export default {
             return "Uncommon";
         },
         getDragonMaterialFromPool(level, dragonArtifact) {
-            const materialPool = this.getDragonArtifactMaterial(level, dragonArtifact);
-            console.log(materialPool);
-            for(const item in materialPool){
-                const itemValue = materialPool[item];
-                if(["神笏", "印"].includes(dragonArtifact) && item.includes("萬年鋼鐵")){
-                    return this.getEachLevelMaterialFromPool(level, item, itemValue);
-                }
-                else if(["寶冠", "天書"].includes(dragonArtifact)&& item.includes("萬年寒玉")){
-                    return this.getEachLevelMaterialFromPool(level, item, itemValue);
-                }
-                else if(["翼裝"].includes(dragonArtifact)&& item.includes("萬年寒鐵")){
-                    return this.getEachLevelMaterialFromPool(level, item, itemValue);
-                }
-            }
+          const materialPool = this.getDragonArtifactMaterial(level, dragonArtifact);
+          for(const item in materialPool){
+              const itemValue = materialPool[item];
+              if(["神笏", "印"].includes(dragonArtifact) && item.includes("萬年鋼鐵")){
+                  return this.getEachLevelMaterialFromPool(level, item, itemValue, this.inventoriesBase);
+              }
+              else if(["寶冠", "天書"].includes(dragonArtifact)&& item.includes("萬年寒玉")){
+                  return this.getEachLevelMaterialFromPool(level, item, itemValue, this.inventoriesBase);
+              }
+              else if(["翼裝"].includes(dragonArtifact)&& item.includes("萬年寒鐵")){
+                  return this.getEachLevelMaterialFromPool(level, item, itemValue, this.inventoriesBase);
+              }
+          }
         },
+
     },
 };
 </script>
