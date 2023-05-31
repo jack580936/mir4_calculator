@@ -135,148 +135,139 @@ const inventoryBase = [
 ];
 
 export function getInventoriesInit(SelectLevel,DragonArtifactOption) {
-    let inventoryNum = [];
-    const level_mapping = [
+    const levelMapping = [
         {name: 'Legendary', show_name: '傳說'},
         {name: 'Epic', show_name: '英雄'},
         {name: 'Rare', show_name: '稀有'},
         {name: 'Uncommon', show_name: '高級'}
     ];
-    let skipLevel = [];
-    if(SelectLevel === '傳說'){
-      skipLevel = [];
-    }
-    else if(SelectLevel === '英雄'){
-      skipLevel = ['Legendary'];
-    }
-    else if(SelectLevel === '稀有'){
-      skipLevel = ['Legendary','Epic'];
-    }
-    else if(SelectLevel === '高級'){
-      skipLevel = ['Legendary','Epic','Rare'];
-    }
-    else{
-      skipLevel = ['Legendary','Epic','Rare','Uncommon'];
-    }
 
-    let showInventoryColumn = [];
-    if(["神笏", "印"].includes(DragonArtifactOption)){
-      showInventoryColumn = ['萬年鋼鐵','月陰石','邪念珠','鋼鐵','冰晶石'] ;
-    }
-    else if(["寶冠", "天書"].includes(DragonArtifactOption)){
-      showInventoryColumn =  ['萬年寒玉','礦片','靈石','白金','冰晶石'];
-    }
-    else if(["翼裝"].includes(DragonArtifactOption)){
-      showInventoryColumn =  ['萬年寒鐵','武魂','伏魔神珠','鋼鐵','冰晶石'];
-    }
-    inventoryBase.forEach(item => {
-        let temp = [];
-        level_mapping.forEach(level => {
-            if ((['萬年鋼鐵', '萬年寒鐵', '萬年寒玉'].includes(item.name) && level.show_name === '高級') || !showInventoryColumn.includes(item.name) || skipLevel.includes(level.name)) {
-                return; // Skip the current iteration
+    const skipLevelMap = {
+        '傳說': [],
+        '英雄': ['Legendary'],
+        '稀有': ['Legendary', 'Epic'],
+        '高級': ['Legendary', 'Epic', 'Rare']
+    };
+    let skipLevel = skipLevelMap[SelectLevel] || ['Legendary', 'Epic', 'Rare', 'Uncommon'];
+
+    const showInventoryColumnMap = {
+        '神笏': ['萬年鋼鐵', '月陰石', '邪念珠', '鋼鐵', '冰晶石'],
+        '印': ['萬年鋼鐵', '月陰石', '邪念珠', '鋼鐵', '冰晶石'],
+        '寶冠': ['萬年寒玉', '礦片', '靈石', '白金', '冰晶石'],
+        '天書': ['萬年寒玉', '礦片', '靈石', '白金', '冰晶石'],
+        '翼裝': ['萬年寒鐵', '武魂', '伏魔神珠', '鋼鐵', '冰晶石']
+    };
+    const showInventoryColumn = showInventoryColumnMap[DragonArtifactOption] || [];
+
+    let inventoryNum;
+    inventoryNum = inventoryBase.reduce((result, item) => {
+        const temp = Object.keys(levelMapping).reduce((arr, level) => {
+            if (
+                (['萬年鋼鐵', '萬年寒鐵', '萬年寒玉'].includes(item.name) && levelMapping[level].show_name === '高級') ||
+                !showInventoryColumn.includes(item.name) ||
+                skipLevel.includes(levelMapping[level].name)
+            ) {
+                return arr;
             }
-            temp.push({
-                show_name: `${level.show_name}${item.show_name}`,
-                name: `${level.name}${item.name}`,
-                level: level.name,
+            arr.push({
+                show_name: `${levelMapping[level].show_name}${item.show_name}`,
+                name: `${levelMapping[level].name}${item.name}`,
+                level: levelMapping[level].name,
                 class: item.name,
                 value: null
             });
-        });
+            return arr;
+        }, []);
+
         if (temp.length > 0) {
-            inventoryNum.push(temp);
+            result.push(temp);
         }
-    });
-    // inventoryNum.push([
-    //     {show_name: '龍鐵', name: '龍鐵', level: 'Uncommon', class: '龍鐵', value: null},
-    //     {show_name: '黑鐵', name: '黑鐵', level: 'Uncommon', class: '黑鐵', value: null},
-    //     {show_name: '生命精華', name: '生命精華', level: 'Uncommon', class: '生命精華', value: null},
-    //     {show_name: '閃粉', name: '閃粉', level: 'Uncommon', class: '閃粉', value: null},
-    //     {show_name: '銅幣', name: '銅幣',  level: 'Uncommon', class: '銅幣', value: null},
-    // ]);
+        return result;
+    }, []);
+    inventoryNum.push([
+        {show_name: '龍鐵', name: '龍鐵', level: 'Uncommon', class: '龍鐵', value: null},
+        {show_name: '黑鐵', name: '黑鐵', level: 'Uncommon', class: '黑鐵', value: null},
+        {show_name: '生命精華', name: '生命精華', level: 'Uncommon', class: '生命精華', value: null},
+        {show_name: '閃粉', name: '閃粉', level: 'Uncommon', class: '閃粉', value: null},
+        {show_name: '銅幣', name: '銅幣',  level: 'Uncommon', class: '銅幣', value: null},
+    ]);
     return inventoryNum;
 }
 // console.log(getInventoriesInit('Legendary','神笏'));
 export function getDragonArtifactMaterial(Level, item, num = 1) {
     const materialKey = Level + item;
     const materialPool = new MaterialPool(base_pool);
+    let stopTarget = [];
 
-    let stoptarget = [];
-    if(["神笏", "印"].includes(item)){
-        stoptarget.push(Level + "萬年鋼鐵");
-        return materialPool.extractMaterials(materialKey, num, stoptarget);
-    }
-    else if(["寶冠", "天書"].includes(item)){
-        stoptarget.push(Level + "萬年寒玉");
-        return materialPool.extractMaterials(materialKey, num, stoptarget);
-    }
-    else if(["翼裝"].includes(item)){
-        stoptarget.push(Level + "萬年寒鐵");
-        return materialPool.extractMaterials(materialKey, num, stoptarget);
-    }
+  switch (item) {
+    case "神笏":
+    case "印":
+      stopTarget.push(Level + "萬年鋼鐵");
+      break;
+    case "寶冠":
+    case "天書":
+      stopTarget.push(Level + "萬年寒玉");
+      break;
+    case "翼裝":
+      stopTarget.push(Level + "萬年寒鐵");
+      break;
+    default:
+      break;
+  }
+  return materialPool.extractMaterials(materialKey, num, stopTarget);
 }
 // console.log(getDragonArtifactMaterial('英雄', '天書', 2));
 
 export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, TargetNum, totalInventory) {
 
-    function getMaterialPool(TargetLevel) {
-        if (TargetLevel === '傳說') {
-            return [['傳說'], ['英雄'], ['稀有'], ['高級']].map(([x]) => getStopListToTargetLevel(x));
-        } else if (TargetLevel === '英雄') {
-            return [['英雄'], ['稀有'], ['高級']].map(([x]) => getStopListToTargetLevel(x));
-        } else if (TargetLevel === '稀有') {
-            return [['稀有'], ['高級']].map(([x]) => getStopListToTargetLevel(x));
-        } else if (TargetLevel === '高級') {
-            return [['高級']].map(([x]) => getStopListToTargetLevel(x));
-        }
-    }
 
-    function getStopListToTargetLevel(TargetLevel){
-        if (TargetLevel === '傳說') {
-            return ['傳說鋼鐵','傳說月陰石','傳說邪念珠','傳說伏魔神珠','傳說武魂','傳說礦片','傳說靈石','傳說白金','傳說冰晶石'];
-        } else if (TargetLevel === '英雄') {
-            return ['英雄鋼鐵','英雄月陰石','英雄邪念珠','英雄伏魔神珠','英雄武魂','英雄礦片','英雄靈石','英雄白金','英雄冰晶石'];
-        } else if (TargetLevel === '稀有') {
-            return ['稀有鋼鐵','稀有月陰石','稀有邪念珠','稀有伏魔神珠','稀有武魂','稀有礦片','稀有靈石','稀有白金','稀有冰晶石'];
-        } else if (TargetLevel === '高級') {
-            return ['高級鋼鐵','高級月陰石','高級邪念珠','高級伏魔神珠','高級武魂','高級礦片','高級靈石','高級白金','高級冰晶石'];
-        }
+    function getMaterialPool(TargetLevel) {
+        const levelListMap = {
+        '傳說': ['傳說', '英雄', '稀有', '高級'],
+        '英雄': ['英雄', '稀有', '高級'],
+        '稀有': ['稀有', '高級'],
+        '高級': ['高級']
+        };
+        const levelMap = {
+        '傳說': ['傳說鋼鐵', '傳說月陰石', '傳說邪念珠', '傳說伏魔神珠', '傳說武魂', '傳說礦片', '傳說靈石', '傳說白金', '傳說冰晶石'],
+        '英雄': ['英雄鋼鐵', '英雄月陰石', '英雄邪念珠', '英雄伏魔神珠', '英雄武魂', '英雄礦片', '英雄靈石', '英雄白金', '英雄冰晶石'],
+        '稀有': ['稀有鋼鐵', '稀有月陰石', '稀有邪念珠', '稀有伏魔神珠', '稀有武魂', '稀有礦片', '稀有靈石', '稀有白金', '稀有冰晶石'],
+        '高級': ['高級鋼鐵', '高級月陰石', '高級邪念珠', '高級伏魔神珠', '高級武魂', '高級礦片', '高級靈石', '高級白金', '高級冰晶石']
+      };
+
+      return levelListMap[TargetLevel].map(level => levelMap[level]);
     }
     function getNeedFromLevel(TargetLevel, currentCalcLevel , TargetMaterial) {
-      let materials = [];
+      const materialMap = {
+        '萬年鋼鐵': [
+          ['傳說鋼鐵', '傳說月陰石', '傳說邪念珠', '傳說冰晶石'],
+          ['英雄鋼鐵', '英雄月陰石', '英雄邪念珠', '英雄冰晶石'],
+          ['稀有鋼鐵', '稀有月陰石', '稀有邪念珠', '稀有冰晶石'],
+          ['高級鋼鐵', '高級月陰石', '高級邪念珠', '高級冰晶石']
+        ],
+        '萬年寒鐵': [
+          ['傳說鋼鐵', '傳說伏魔神珠', '傳說武魂', '傳說冰晶石'],
+          ['英雄鋼鐵', '英雄伏魔神珠', '英雄武魂', '英雄冰晶石'],
+          ['稀有鋼鐵', '稀有伏魔神珠', '稀有武魂', '稀有冰晶石'],
+          ['高級鋼鐵', '高級伏魔神珠', '高級武魂', '高級冰晶石']
+        ],
+        '萬年寒玉': [
+          ['傳說白金', '傳說礦片', '傳說靈石', '傳說冰晶石'],
+          ['英雄白金', '英雄礦片', '英雄靈石', '英雄冰晶石'],
+          ['稀有白金', '稀有礦片', '稀有靈石', '稀有冰晶石'],
+          ['高級白金', '高級礦片', '高級靈石', '高級冰晶石']
+        ]
+      };
 
-      if(TargetMaterial.includes("萬年鋼鐵")){
-          materials = [
-              ['傳說鋼鐵', '傳說月陰石', '傳說邪念珠', '傳說冰晶石'],
-              ['英雄鋼鐵', '英雄月陰石', '英雄邪念珠', '英雄冰晶石'],
-              ['稀有鋼鐵', '稀有月陰石', '稀有邪念珠', '稀有冰晶石'],
-              ['高級鋼鐵', '高級月陰石', '高級邪念珠', '高級冰晶石']
-          ];
-      }else if (TargetMaterial.includes("萬年寒鐵")){
-          materials = [
-              ['傳說鋼鐵', '傳說伏魔神珠', '傳說武魂', '傳說冰晶石'],
-              ['英雄鋼鐵', '英雄伏魔神珠', '英雄武魂', '英雄冰晶石'],
-              ['稀有鋼鐵', '稀有伏魔神珠', '稀有武魂', '稀有冰晶石'],
-              ['高級鋼鐵', '高級伏魔神珠', '高級武魂', '高級冰晶石']
-          ];
-      }else if (TargetMaterial.includes("萬年寒玉")){
-          materials = [
-              ['傳說白金', '傳說礦片', '傳說靈石', '傳說冰晶石'],
-              ['英雄白金', '英雄礦片', '英雄靈石', '英雄冰晶石'],
-              ['稀有白金', '稀有礦片', '稀有靈石', '稀有冰晶石'],
-              ['高級白金', '高級礦片', '高級靈石', '高級冰晶石']
-          ];
-      }
-
-      if (TargetLevel === '英雄'){
+      const materials = materialMap[TargetMaterial.match(/(萬年鋼鐵|萬年寒鐵|萬年寒玉)/)[0]];
+      if (TargetLevel !== '傳說') {
+        materials.shift();
+        if (TargetLevel !== '英雄') {
           materials.shift();
-      }else if (TargetLevel === '稀有'){
-          materials.shift();
-          materials.shift();
-      }else if (TargetLevel === '高級'){
-          materials.shift();
-          materials.shift();
-          materials.shift();
+          if (TargetLevel !== '稀有') {
+            materials.shift();
+          }
+        }
       }
 
       let need = [];
@@ -285,17 +276,18 @@ export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, Target
       for (let i = 0; i <= currentCalcLevel; i++) {
         need = need.concat(materials[i]);
       }
+      // 主要龍神器材料大家都要算
+      need.push(TargetMaterial);
 
       return need;
     }
 
 
-    function getInventoryCost(materialPool, totalInventory, TargetMaterial, stopTarget, TargetLevel, currentCalcLevel ) {
+    function getInventoryCost(materialPool, totalInventory, stopTarget, calcInventoryColumn ) {
         let inventoryCost = {};
 
-        const calcInventoryColumn = getNeedFromLevel(TargetLevel, currentCalcLevel, TargetMaterial);
         totalInventory.flat().forEach(item =>{
-            if (['龍鐵', '黑鐵', '生命精華', '閃粉', '銅幣',TargetMaterial, ...calcInventoryColumn].includes(item.show_name)) {
+            if (['龍鐵', '黑鐵', '生命精華', '閃粉', '銅幣', ...calcInventoryColumn].includes(item.show_name)) {
                 const needMaterials = materialPool.extractMaterials(item.show_name, item.value, stopTarget);
                 Object.assign(inventoryCost,dictAdd(needMaterials, inventoryCost));
             }
@@ -336,7 +328,8 @@ export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, Target
         // sort by key
         let currentCalcLevel = i;
         let result = materialPool.extractMaterials(TargetMaterial, TargetNum, stopTarget[i]);
-        let totalHave = getInventoryCost(materialPool, totalInventory, TargetMaterial, stopTarget[i], TargetLevel, currentCalcLevel);
+        const calcInventoryColumn = getNeedFromLevel(TargetLevel, currentCalcLevel, TargetMaterial);
+        let totalHave = getInventoryCost(materialPool, totalInventory, stopTarget[i], calcInventoryColumn);
         let sortedResult = Object.fromEntries(Object.entries(result).sort((a, b) => b[0].length - a[0].length));
         sortedResult = dictMinus(sortedResult, totalHave);
         material.push(sortedResult);
