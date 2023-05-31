@@ -47,6 +47,7 @@ export default {
       largeImageUrl: "",
       largeImageTitle: "",
       currentTab: "",
+      navBarTabScroll: false,
     };
   },
   computed: {
@@ -70,7 +71,11 @@ export default {
     scrollToImage(index) {
       const element = document.getElementById(`image-${index}`);
       if (element) {
+        this.navBarTabScroll = true;
         element.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          this.navBarTabScroll = false;
+        }, 1000);
       }
     },
     enlargeImage(url) {
@@ -88,10 +93,8 @@ export default {
       }
       return "";
     },
-  },
-  mounted() {
-    const container = this.$refs.container;
-    container.addEventListener("scroll", () => {
+    /* mounted addEventListener function */
+    scrollHandler(container){
       const containerTop = container.getBoundingClientRect().top;
       const titles = document.querySelectorAll(".nav-bar li a");
       let currentTitle = titles[0];
@@ -109,43 +112,70 @@ export default {
         }
       }
       this.currentTab = currentTitle.innerText;
-    });
-    const navBar = document.querySelector('.nav-bar');
-    let isMouseDown = false;
-    let startX = 0;
-    let scrollLeft = 0;
 
-    navBar.addEventListener('mousedown', (e) => {
-      isMouseDown = true;
-      startX = e.pageX - navBar.offsetLeft;
-      scrollLeft = navBar.scrollLeft;
-    });
+      // currentTitle.innerText scrollIntoView
+      if (!this.navBarTabScroll) {
+        const activeTitle = document.querySelector('.nav-bar li.active');
+        if (activeTitle) {
+          activeTitle.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
+      }
+    },
+    mouseDownHandler(e) {
+      this.isMouseDown = true;
+      this.startX = e.pageX - this.navBar.offsetLeft;
+      this.scrollLeft = this.navBar.scrollLeft;
+    },
 
-    navBar.addEventListener('mouseleave', () => {
-      isMouseDown = false;
-    });
+    mouseUpHandler(e) {
+      this.isMouseDown = false;
+    },
 
-    navBar.addEventListener('mouseup', () => {
-      isMouseDown = false;
-    });
-
-    navBar.addEventListener('mousemove', (e) => {
-      if (!isMouseDown) return;
+    mouseMoveHandler(e) {
+      if (!this.isMouseDown) return;
       if (e.buttons === 1) {
         e.preventDefault();
-        const x = e.pageX - navBar.offsetLeft;
-        const walk = (x - startX) * 2; // 控制滾動速度，調整這個值可以改變速度
-        navBar.scrollLeft = scrollLeft - walk;
+        const x = e.pageX - this.navBar.offsetLeft;
+        const walk = (x - this.startX) * 2; // Adjust this value to control the scrolling speed
+        this.navBar.scrollLeft = this.scrollLeft - walk;
       }
-    });
+    },
 
-    navBar.addEventListener('touchstart', (e) => {
-      isMouseDown = true;
-      startX = e.touches[0].pageX - navBar.offsetLeft;
-      scrollLeft = navBar.scrollLeft;
-    });
+    mouseLeaveHandler(e) {
+      this.isMouseDown = false;
+    },
 
+    touchStartHandler(e) {
+      this.isMouseDown = true;
+      this.startX = e.touches[0].pageX - this.navBar.offsetLeft;
+      this.scrollLeft = this.navBar.scrollLeft;
+    },
   },
+  mounted() {
+    const container = this.$refs.container;
+    container.addEventListener("scroll", this.scrollHandler.bind(this, container));
+
+    const navBar = document.querySelector('.nav-bar');
+    this.navBar = navBar;
+    this.isMouseDown = false;
+    this.startX = 0;
+    this.scrollLeft = 0;
+    navBar.addEventListener('mousedown', this.mouseDownHandler);
+    navBar.addEventListener('mouseleave', this.mouseLeaveHandler);
+    navBar.addEventListener('mouseup', this.mouseUpHandler);
+    navBar.addEventListener('mousemove', this.mouseMoveHandler);
+    navBar.addEventListener('touchstart', this.touchStartHandler);
+  },
+  beforeDestroy() {
+    const container = this.$refs.container;
+    container.removeEventListener("scroll", this.scrollHandler);
+
+    this.navBar.removeEventListener('mousedown', this.mouseDownHandler);
+    this.navBar.removeEventListener('mouseleave', this.mouseLeaveHandler);
+    this.navBar.removeEventListener('mouseup', this.mouseUpHandler);
+    this.navBar.removeEventListener('mousemove', this.mouseMoveHandler);
+    this.navBar.removeEventListener('touchstart', this.touchStartHandler);
+  }
 };
 </script>
 
