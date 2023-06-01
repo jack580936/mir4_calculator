@@ -3,7 +3,7 @@
     <ul>
       <template v-for="(group, index) in imageGroups" :key="index">
         <li class="" :class="{ active: currentTab === group.title }">
-          <a href="#" @click.prevent="scrollToImage(index)">{{ group.title }}</a>
+          <a href="#" @click.prevent="scrollToTitle(index)">{{ group.title }}</a>
         </li>
       </template>
     </ul>
@@ -12,8 +12,8 @@
     <h1>{{ PageTitle }}</h1>
     <div class="image-grid">
       <div class="image-container" v-for="(group, index) in imageGroups" :key="group.title">
-        <h4 :id="`image-${index}`">{{ group.title }}</h4>
-        <div class="image-group" v-for="(image, imageIndex) in group.images" :key="imageIndex">
+        <h4 :id="`title-${index}`">{{ group.title }}</h4>
+        <div class="image-group" v-for="(image, imageIndex) in group.images" :key="imageIndex" >
           <h5>{{ image.title }}</h5>
           <span style="white-space: pre-line">{{ image.description || "" }}</span>
           <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)"/>
@@ -47,7 +47,7 @@ export default {
       largeImageUrl: "",
       largeImageTitle: "",
       currentTab: "",
-      navBarTabScroll: false,
+      navBarTitleClicked: false,
     };
   },
   computed: {
@@ -68,14 +68,23 @@ export default {
     },
   },
   methods: {
-    scrollToImage(index) {
-      const element = document.getElementById(`image-${index}`);
+    scrollToTitle(index) {
+      const element = document.getElementById(`title-${index}`);
+      const IntersectionObserverCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.target === element && entry.isIntersecting) {
+            // 標題已經成功移動至畫面中將控制還給 activeTitle.scrollIntoView
+            this.navBarTitleClicked = false;
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
       if (element) {
-        this.navBarTabScroll = true;
-        element.scrollIntoView({ behavior: "smooth" });
-        setTimeout(() => {
-          this.navBarTabScroll = false;
-        }, 1000);
+        this.navBarTitleClicked = true;
+        element.scrollIntoView({ behavior: "smooth", block:"start"});
+        let observer = new IntersectionObserver(IntersectionObserverCallback, { root: this.$refs.container,rootMargin: "0px 0px -80% 0px" , threshold: 0.9});
+        observer.observe(element);
       }
     },
     enlargeImage(url) {
@@ -102,7 +111,7 @@ export default {
       for (let i = 0; i < this.images.length; i++) {
         const image = this.images[i];
         const title = titles[i];
-        const element = document.getElementById(`image-${i}`);
+        const element = document.getElementById(`title-${i}`);
         if (element) {
           const elementTop = element.getBoundingClientRect().top;
           if (elementTop - containerTop < 200) {
@@ -114,7 +123,7 @@ export default {
       this.currentTab = currentTitle.innerText;
 
       // currentTitle.innerText scrollIntoView
-      if (!this.navBarTabScroll) {
+      if (!this.navBarTitleClicked) {
         const activeTitle = document.querySelector('.nav-bar li.active');
         if (activeTitle) {
           activeTitle.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
@@ -153,7 +162,7 @@ export default {
   },
   mounted() {
     const container = this.$refs.container;
-    container.addEventListener("scroll", this.scrollHandler.bind(this, container));
+    container.addEventListener("scroll", this.scrollHandler.bind(this, container), { passive: true });
 
     const navBar = document.querySelector('.nav-bar');
     this.navBar = navBar;
@@ -164,7 +173,7 @@ export default {
     navBar.addEventListener('mouseleave', this.mouseLeaveHandler);
     navBar.addEventListener('mouseup', this.mouseUpHandler);
     navBar.addEventListener('mousemove', this.mouseMoveHandler);
-    navBar.addEventListener('touchstart', this.touchStartHandler);
+    navBar.addEventListener('touchstart', this.touchStartHandler, { passive: true });
   },
   beforeDestroy() {
     const container = this.$refs.container;
