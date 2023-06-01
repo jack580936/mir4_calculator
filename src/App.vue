@@ -24,9 +24,11 @@
           </li>
         </ul>
       </div>
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+      <router-view v-slot="{ Component }">
+        <keep-alive :include="this.keepAliveComponent">
+          <component :is="Component"/>
+        </keep-alive>
+      </router-view>
     </div>
   </main>
 </template>
@@ -38,6 +40,7 @@ export default {
     return {
       excludedRoutes: ['更新日誌', '首頁'],
       rightTabRoutes: ['更新日誌'],
+      keepAliveComponent: ['DragonArtifact','EpicEquipment','LegendaryEquipment','Mystery','Resource','Requests']
     };
   },
   computed: {
