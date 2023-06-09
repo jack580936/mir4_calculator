@@ -1,53 +1,58 @@
 <script setup>
-
+import SideBar from "@/components/util/SideBar.vue";
 </script>
 
 <template>
-  <div id="mySidebar">
-    <div class="has-sidebar">
-      <div id="sidebar" class="sidebar break-point-sm has-bg-image">
-        <div class="sidebar-layout">
-          <div class="sidebar-content">
-            <nav class="menu open-current-submenu">
-              <ul>
-                <li class="menu-header"><span> 委託 </span></li>
-                <li v-for="(component,name,index) in tabs" :key="index"
-                    :class="['menu-item',{ active: currentTab === component }]" @click="currentTab = component">
-                  <span>{{ name }}</span>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="sidebar-footer">
-          <p>圖片太小，點一下會放大唷 (,,・ω・,,)</p>
-        </div>
-      </div>
-    </div>
-    <component :is="currentTab"></component>
-  </div>
+  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentRequestTab" />
+  <router-view v-slot="{ Component, route}">
+      <component :is="Component" :PageTitle= "requestData[route.name].PageTitle" :images="requestData[route.name].images"/>
+  </router-view>
 </template>
 
 <script>
 import {ref, shallowRef} from 'vue'
 import {getImageUrl} from "@/utils";
-import SabukCastle from "@/components/requests/SabukCastle.vue";
-import PhantasiaDesert from "@/components/requests/PhantasiaDesert.vue";
-import NineDragonIceField from "@/components/requests/NineDragonIceField.vue";
-import GorgeCliffPath from "@/components/requests/GorgeCliffPath.vue";
+import {requestData} from "@/utils/requestData.js";
+
+
 export default {
   name: "Requests",
   data() {
     return {
-      currentTab: shallowRef(GorgeCliffPath),
-      tabs: shallowRef({
-        '九龍冰原': NineDragonIceField,
-        '沙巴克城': SabukCastle,
-        '峽谷懸崖路': GorgeCliffPath,
-        '夢村沙漠': PhantasiaDesert,
+      sideBarTitle: "委託",
+      currentRequestTab: null,
+      tabs: [
+        {
+          name: '九龍冰原',
+          path: '/requests/nine-dragon-ice-field',
+        },
+        {
+          name: '沙巴克城',
+          path: '/requests/sabuk-castle',
+        },
+        {
+          name: '夢村沙漠',
+          path: '/requests/phantasia-desert',
+        },
+        {
+          name: '峽谷懸崖路',
+          path: '/requests/gorge-cliff-path',
+        }
 
-      })
+      ],
+      requestData: requestData,
     }
+  },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      if (to.name === '委託') {
+        // 當點選前往委託頁面時，預設顯示沙巴克城的委託(預設為沙巴克城是因為router中設定預設首頁為沙巴克城)
+        this.currentRequestTab = '沙巴克城';
+        next();
+      }
+      this.currentRequestTab = to.name;
+      next();
+    });
   },
   methods: {
     getImageUrl,
@@ -57,32 +62,5 @@ export default {
 
 <style scoped>
 
-.menu-header {
-  font-weight: 600;
-  padding: 10px 15px;
-  font-size: 0.8em;
-  letter-spacing: 2px;
-  transition: opacity 0.3s;
-  color: rgb(91, 102, 135);
-  list-style-type: none;
-}
 
-
-.menu-item {
-  padding: 10px 35px;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  transition: opacity 0.3s;
-  color: rgb(123, 130, 156);
-  list-style-type: none;
-}
-
-ul {
-  padding: 0;
-}
-
-.active {
-  background-color: #ffcc00; /* your desired highlight color */
-  color: #ffffff; /* your desired text color */
-}
 </style>

@@ -1,28 +1,30 @@
 <template>
-  <div class="nav-bar">
-    <ul>
-      <template v-for="(group, index) in imageGroups" :key="index">
-        <li class="" :class="{ active: currentTab === group.title }">
-          <a href="#" @click.prevent="scrollToTitle(index)">{{ group.title }}</a>
-        </li>
-      </template>
-    </ul>
-  </div>
-  <div class="container-fluid" ref="container">
-    <h1>{{ PageTitle }}</h1>
-    <div class="image-grid">
-      <div class="image-container" v-for="(group, index) in imageGroups" :key="group.title">
-        <h4 :id="`title-${index}`">{{ group.title }}</h4>
-        <div class="image-group" v-for="(image, imageIndex) in group.images" :key="imageIndex" >
-          <h5>{{ image.title }}</h5>
-          <span style="white-space: pre-line">{{ image.description || "" }}</span>
-          <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)"/>
-          <div class="author" v-if="image.author">{{ image.author }}</div>
+  <div class="Mapviwer">
+    <div class="nav-bar">
+      <ul>
+        <template v-for="(group, index) in imageGroups" :key="index">
+          <li class="" :class="{ active: currentTab === group.title }">
+            <a href="#" @click.prevent="scrollToTitle(index)">{{ group.title }}</a>
+          </li>
+        </template>
+      </ul>
+    </div>
+    <div class="container-fluid" ref="container">
+      <h1>{{ PageTitle }}</h1>
+      <div class="image-grid">
+        <div class="image-container" v-for="(group, index) in imageGroups" :key="group.title">
+          <h4 :id="`title-${index}`">{{ group.title }}</h4>
+          <div class="image-group" v-for="(image, imageIndex) in group.images" :key="imageIndex" >
+            <h5>{{ image.title }}</h5>
+            <span style="white-space: pre-line">{{ image.description || "" }}</span>
+            <img :src="image.url" :alt="image.title" @click="enlargeImage(image.url)"/>
+            <div class="author" v-if="image.author">{{ image.author }}</div>
+          </div>
         </div>
-      </div>
-      <div v-if="showLargeImage" class="large-image-container" @click="showLargeImage = false">
-        <img :src="largeImageUrl" :alt="largeImageTitle"/>
-        <div class="author" v-if="getAuthorForImage(largeImageUrl)">{{ getAuthorForImage(largeImageUrl) }}</div>
+        <div v-if="showLargeImage" class="large-image-container" @click="showLargeImage = false">
+          <img :src="largeImageUrl" :alt="largeImageTitle"/>
+          <div class="author" v-if="getAuthorForImage(largeImageUrl)">{{ getAuthorForImage(largeImageUrl) }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -208,7 +210,6 @@ h4 {
 h1 {
   text-align: center;
   padding-top: 5rem;
-  padding-left: 250px;
 }
 
 .nav-bar {
@@ -216,8 +217,9 @@ h1 {
   padding: 10px 10px 10px 10px;
   max-height: 44px;
   overflow-x: overlay;
-  position: fixed;
-  left: 250px;
+  overflow-y: hidden;
+  position: absolute;
+  left: 0;
   right: 0;
 
 }
@@ -252,7 +254,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 250px;
   padding-bottom: 18rem;
   overflow: hidden;
 

@@ -23,14 +23,22 @@
   --bs-nav-tabs-link-active-border-color: #8899A6;
   background-color: #192734 ;
 }
+.nav-link{
 
-.nav-link:hover{
-  color: #fff;
+  &:hover{
+    color: #fff;
+  }
+  &:focus{
+      color: #fff;
+  }
+}
+
+a{
+  text-decoration: none;
 }
 
 .nav-tabs{
   --bs-nav-tabs-border-color: #8899A6;
-
 }
 
 .requirement {
@@ -257,26 +265,6 @@ h4,h5{
   height: calc(100vh - 42px);
   overflow: hidden;
   /* 其他樣式 */
-}
-
-#sidebar {
-  position: fixed;
-  width: 250px;
-  height: calc(100% - 41px);
-  background-color: #22303C;
-  /* 其他樣式 */
-}
-
-.sidebar-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  padding: 0.5rem;
-  margin: 0;
-  color: #e6f2ff;
-  font-size: smaller;
-  text-align: -webkit-center;
 }
 
 .eggs {
