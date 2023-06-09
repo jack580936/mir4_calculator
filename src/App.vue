@@ -3,15 +3,15 @@
     <div class="demo">
       <div class="nav nav-tabs sticky-top">
         <ul class="leftTab-container nav">
-          <li v-for="route in routes" :key="route.name" class="nav-item">
-            <router-link v-if="!isExcludedRoute(route.name)" :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}">
+          <li v-for="route in leftRouteTabs" :key="route.name" class="nav-item">
+            <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}" @click="currentTab = route.path">
               {{ route.name }}
             </router-link>
           </li>
         </ul>
         <ul class="rightTab-container nav">
-          <li v-for="route in routes" :key="route.name" class="nav-item">
-            <router-link v-if="isRightTabRoute(route.name)" :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}">
+          <li v-for="route in rightRouteTabs" :key="route.name" class="nav-item">
+            <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}"  @click="currentTab = route.path">
               {{ route.name }}
             </router-link>
           </li>
@@ -24,9 +24,9 @@
           </li>
         </ul>
       </div>
-      <router-view v-slot="{ Component }">
+      <router-view v-slot="{ Component, route }">
         <keep-alive :include="this.keepAliveComponent">
-          <component :is="Component"/>
+            <component :is="Component"/>
         </keep-alive>
       </router-view>
     </div>
@@ -38,28 +38,37 @@ export default {
   name: "App",
   data() {
     return {
-      excludedRoutes: ['更新日誌', '首頁'],
-      rightTabRoutes: ['更新日誌'],
+      currentTab: null,
+      leftRouteTabs: [
+        {name: '龍神器', path: '/dragon-artifact'},
+        {name: '傳說裝備', path: '/legendary-equipment'},
+        {name: '史詩裝備', path: '/epic-equipment'},
+        {name: '奇緣', path: '/mystery'},
+        {name: '資源點', path: '/resource'},
+        {name: '委託', path: '/requests'},
+        {name: '一些小功能', path: '/other-calculate'}
+      ],
+      rightRouteTabs: [
+        {name: '更新日誌', path: '/change-log'},
+      ],
       keepAliveComponent: ['DragonArtifact','EpicEquipment','LegendaryEquipment','Mystery','Resource','Requests']
     };
   },
   computed: {
-    routes() {
-      return this.$router.options.routes;
-    },
+
+  },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      this.currentTab = to.path;
+      next();
+    });
   },
   methods: {
     getImageUrl(url) {
       return new URL(`/src/assets/${url}`, import.meta.url).href;
     },
-    isExcludedRoute(routeName) {
-      return this.excludedRoutes.includes(routeName);
-    },
-    isRightTabRoute(routeName) {
-      return this.rightTabRoutes.includes(routeName);
-    },
     isActiveRoute(routePath) {
-      return this.$route.path === routePath;
+      return this.currentTab === routePath;
     },
   },
 };
