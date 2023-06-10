@@ -43,17 +43,6 @@ export default {
       requestData: requestData,
     }
   },
-  created() {
-    this.$router.beforeEach((to, from, next) => {
-      if (to.name === '委託') {
-        // 當點選前往委託頁面時，預設顯示沙巴克城的委託(預設為沙巴克城是因為router中設定預設首頁為沙巴克城)
-        this.currentRequestTab = '沙巴克城';
-        next();
-      }
-      this.currentRequestTab = to.name;
-      next();
-    });
-  },
   methods: {
     getImageUrl,
   }

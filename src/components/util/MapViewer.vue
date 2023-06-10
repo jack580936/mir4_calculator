@@ -1,5 +1,5 @@
 <template>
-  <div class="Mapviwer">
+  <div class="map-viewer container-fluid">
     <div class="nav-bar">
       <ul>
         <template v-for="(group, index) in imageGroups" :key="index">
@@ -128,7 +128,7 @@ export default {
       if (!this.navBarTitleClicked) {
         const activeTitle = document.querySelector('.nav-bar li.active');
         if (activeTitle) {
-          activeTitle.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+          activeTitle.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         }
       }
     },
@@ -194,7 +194,7 @@ export default {
 .container-fluid {
   margin-left: 0;
   width: 100%;
-  height: calc(100vh - 42px);
+  height: 100vh;
   overflow: auto;
   background-color: #15202B;
 }
@@ -326,6 +326,12 @@ img {
     max-width: fit-content;
     max-height: fit-content;
     scale: 1.25;
+  }
+
+  & > .author{
+    color: #e6f2ff;
+    text-align: left;
+    align-self: flex-end;
   }
 }
 

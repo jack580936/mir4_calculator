@@ -1,62 +1,65 @@
 <script setup>
 
+import SideBar from "@/components/util/SideBar.vue";
 </script>
 
 <template>
-  <div id="mySidebar">
-    <div class="has-sidebar">
-      <div id="sidebar" class="sidebar break-point-sm has-bg-image">
-        <div class="sidebar-layout">
-          <div class="sidebar-content">
-            <nav class="menu open-current-submenu">
-              <ul>
-                <li class="menu-header"><span> 地圖 </span></li>
-                <li v-for="(component,name,index) in tabs" :key="index"
-                    :class="['menu-item',{ active: currentTab === component }]" @click="currentTab = component">
-                  <span>{{ name }}</span>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="sidebar-footer">
-          <p>圖片太小，點一下會放大唷 (,,・ω・,,)</p>
-        </div>
-      </div>
-    </div>
-    <component :is="currentTab"></component>
-  </div>
-
+  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentRequestTab" />
+  <router-view v-slot="{ Component, route}">
+      <component :is="Component" :PageTitle= "mapData[route.name].PageTitle" :images="mapData[route.name].images"/>
+  </router-view>
 </template>
 
 <script>
 import {ref, shallowRef} from 'vue'
 import {getImageUrl} from "@/utils";
-import SecertPeak from "@/components/map_resource/SecretPeak.vue";
-import MagicSquare from "@/components/map_resource/MagicSquare.vue";
-import PhantasiaAreaChest from "@/components/map_resource/PhantasiaAreaChest.vue";
-import SabukAreaChest from "@/components/map_resource/SabukAreaChest.vue";
-import PhantasiaAreaResource from "@/components/map_resource/PhantasiaAreaResource.vue";
-import SabukAreaResource from "@/components/map_resource/SabukAreaResource.vue";
-import SnowFieldAreaResource from "@/components/map_resource/SnowFieldAreaResource.vue";
-import SpiritualCenterArea from "@/components/map_resource/SpiritualCenterArea.vue";
-import ValleyResource from "@/components/map_resource/ValleyResource.vue";
+import {mapData} from "@/utils/mapData.js";
 export default {
   name: "Resource",
   data() {
     return {
-      currentTab: shallowRef(SecertPeak),
-      tabs: shallowRef({
-        '雪原地區(採集)': SnowFieldAreaResource,
-        '沙巴克地區(採集)': SabukAreaResource,
-        '沙巴克地區(寶箱)': SabukAreaChest,
-        '夢村地區(採集)': PhantasiaAreaResource,
-        '夢村地區(寶箱)': PhantasiaAreaChest,
-        '道觀地區': SpiritualCenterArea,
-        '秘庭峰': SecertPeak,
-        '魔方陣': MagicSquare,
-        '秘谷': ValleyResource,
-      })
+      sideBarTitle: "地圖資源",
+      currentRequestTab: null,
+      tabs: [
+            {
+                path: '/resource/secret-peak',
+                name: '秘庭峰',
+            },
+            {
+                path: '/resource/magic-square',
+                name: '魔方陣',
+            },
+            {
+                path: '/resource/snow-field-area-resource',
+                name: '雪原地區(採集)',
+            },
+            {
+                path: '/resource/sabuk-area-resource',
+                name: '沙巴克地區(採集)',
+            },
+            {
+                path: '/resource/sabuk-area-chest',
+                name: '沙巴克地區(寶箱)',
+            },
+            {
+                path: '/resource/phantasia-area-resource',
+                name: '夢村地區(採集)',
+            },
+            {
+                path: '/resource/phantasia-area-chest',
+                name: '夢村地區(寶箱)',
+            },
+            {
+                path: '/resource/spiritual-area',
+                name: '道觀地區',
+            },
+            {
+                path: '/resource/valley',
+                name: '秘谷',
+            },
+
+      ],
+      mapData: mapData,
     }
   },
   methods: {

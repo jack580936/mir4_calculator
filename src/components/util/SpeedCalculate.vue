@@ -49,9 +49,9 @@ export default {
 <style scoped>
 
 .container-fluid {
-  margin-left: 250px;
-  width: calc(100% - 250px);
-  height: calc(100% - 41px);
+  margin: 0;
+  width: 100%;
+  height: 100%;
   overflow: auto;
   /* 其他樣式 */
 }

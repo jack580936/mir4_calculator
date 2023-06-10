@@ -9,30 +9,27 @@ const ToggleMenu = () => {
 </script>
 
 <template>
-  <aside id="mySidebar">
-    <div id="sidebar" class="sidebar">
-      <div class="sidebar-layout">
-        <div class="sidebar-content">
-          <nav class="menu open-current-submenu">
-            <ul>
-              <li class="menu-header">
-                <span @click="ToggleMenu">{{sideBarTitle}}</span>
-              </li>
-              <template v-for="tab in tabs" :key="tab.name">
-                <router-link :to="{name: tab.name}">
-                  <li :class="['menu-item',{ active: currentTab === tab.name }]" @click="currentTab = tab.name">
-                    <span>{{ tab.name}}</span>
-                  </li>
-                </router-link>
-              </template>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <div class="sidebar-footer">
-        <p>圖片太小，點一下會放大唷 (,,・ω・,,)</p>
-      </div>
-    </div>
+
+<div class="side-bar">
+  <input type="checkbox" name="" id="sideMenu-active">
+  <aside class="sideMenu">
+    <nav class="menu open-current-submenu">
+      <ul>
+        <li class="menu-header">
+          <span @click="ToggleMenu">{{sideBarTitle}}</span>
+        </li>
+        <template v-for="tab in tabs" :key="tab.name">
+          <router-link :to="{name: tab.name}">
+            <li :class="['menu-item',{ active: currentTab === tab.name }]" @click="currentTab = tab.name">
+              <span>{{ tab.name}}</span>
+            </li>
+          </router-link>
+        </template>
+      </ul>
+    </nav>
+    <label for="sideMenu-active">
+      <img src="@/assets/icon/chevron_right.png" alt="sidebar-arrow" class="sidebar-arrow">
+    </label>
   </aside>
 </template>
 
@@ -59,30 +56,7 @@ export default {
   },
 }
 </script>
-<style scoped>
-
-#sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-  min-height: calc(100% - 41px);
-  height: calc(100% - 41px);
-  background-color: #22303C;
-  z-index: 50;
-  transition: 0.2s ease-out;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    min-height: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 1;
-    left: -100%;
-    top: 0;
-    overflow-x: hidden;
-    transition: 0.5s;
-  }
-}
+<style lang="scss" scoped>
 
 .sidebar-footer {
   position: absolute;
@@ -94,6 +68,10 @@ export default {
   color: #e6f2ff;
   font-size: smaller;
   text-align: -webkit-center;
+}
+
+a,label {
+	cursor: pointer;
 }
 
 label {
@@ -112,7 +90,32 @@ label {
   box-shadow: 5px 0 5px rgba(23, 23, 54, 0.6);
 }
 
+#sideMenu-active:checked + .sideMenu {
+  transform: translateX(0);
+  label .sidebar-arrow {
+		transform: scaleX(-1); // 使 label 裡的圖案橫向反轉
+	}
+}
 
+#sideMenu-active {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.sideMenu {
+  position: absolute;
+  z-index: 1;
+  background: #22303c;
+  width: 300px;
+  height: 100vh;
+  border-right: 3px solid #d1d1d1;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 5px rgba(23, 23, 54, 0.6);
+  transform: translateX(-100%);
+  transition: 0.5s;
+}
 .menu-header {
   font-weight: 600;
   padding: 10px 15px;
@@ -141,4 +144,5 @@ ul {
   background-color: #ffcc00; /* your desired highlight color */
   color: #ffffff; /* your desired text color */
 }
+
 </style>

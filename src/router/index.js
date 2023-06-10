@@ -9,6 +9,9 @@ import Requests from "@/components/Requests.vue";
 import ChangeLog from "@/components/ChangeLog.vue";
 import DragonArtifact from "@/components/DragonArtifact.vue";
 import MapViewer from "@/components/util/MapViewer.vue";
+import PdfViewer from "@/components/util/PdfViewer.vue";
+import SpeedCalculate from "@/components/util/SpeedCalculate.vue";
+import InfoLevel from "@/components/util/InfoLevel.vue";
 
 const routers = [
     {
@@ -39,12 +42,85 @@ const routers = [
     {
         path: '/mystery',
         name: '奇緣',
-        component: mystery
+        component: mystery,
+        redirect: '/mystery/grieving-the-death-of-a-friend',
+        children: [
+            {
+                path: '/mystery/grieving-the-death-of-a-friend',
+                name: '伯牙絕弦',
+                component: PdfViewer,
+                props: true,
+            },
+            {
+                path: '/mystery/reckless-courage',
+                name: '浩然之氣',
+                component: PdfViewer,
+                props: true,
+            },
+        ]
     },
     {
         path: '/resource',
         name: '地圖資源',
-        component: Resource
+        component: Resource,
+        // 地圖資源預設首頁
+        redirect: '/resource/secret-peak',
+        children: [
+            {
+                path: '/resource/secret-peak',
+                name: '秘庭峰',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/magic-square',
+                name: '魔方陣',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/snow-field-area-resource',
+                name: '雪原地區(採集)',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/sabuk-area-resource',
+                name: '沙巴克地區(採集)',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/sabuk-area-chest',
+                name: '沙巴克地區(寶箱)',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/phantasia-area-resource',
+                name: '夢村地區(採集)',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/phantasia-area-chest',
+                name: '夢村地區(寶箱)',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/spiritual-area',
+                name: '道觀地區',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/resource/valley',
+                name: '秘谷',
+                component: MapViewer,
+                props: true,
+            },
+        ],
     },
     {
         path: '/requests',
@@ -82,7 +158,20 @@ const routers = [
     {
         path: '/other-calculate',
         name: '一些小功能',
-        component: OtherCalculate
+        component: OtherCalculate,
+        redirect: '/other-calculate/speed-boost',
+        children: [
+            {
+                path: '/other-calculate/speed-boost',
+                name: '採集挖礦速度計算',
+                component: SpeedCalculate,
+            },
+            {
+                path: '/other-calculate/lvl',
+                name: '各等級資訊',
+                component: InfoLevel,
+            },
+        ],
     },
     {
         path: '/change-log',

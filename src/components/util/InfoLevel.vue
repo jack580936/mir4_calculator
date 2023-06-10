@@ -104,7 +104,7 @@ computed: {
 
 .container-fluid{
 
-  padding-left: 250px;
+  padding: 5rem;
   overflow: auto;
 }
 

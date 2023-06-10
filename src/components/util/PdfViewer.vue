@@ -16,7 +16,7 @@ export default {
     },
     pdfTitle: {
       type: String,
-      required: true
+
     }
   },
   methods: {
@@ -32,7 +32,7 @@ export default {
 iframe {
   border: none;
   margin: 0;
-  padding: 0 0 0 250px;
+  padding: 0;
   width: 100%;
   height: 100%;
   overflow: scroll;
@@ -41,7 +41,7 @@ iframe {
 .container-fluid {
   margin-left: 0;
   width: 100%;
-  height: calc(100vh - 42px);
+  height: 100vh;
   overflow: hidden;
 }
 </style>

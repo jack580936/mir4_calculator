@@ -1,83 +1,53 @@
 <script setup>
 import PdfViewer from "@/components/util/PdfViewer.vue";
+import SideBar from "@/components/util/SideBar.vue";
 
 
 </script>
 
 <template>
-  <div id="mySidebar">
-    <div class="has-sidebar">
-      <div id="sidebar" class="sidebar break-point-sm has-bg-image">
-        <div class="sidebar-layout">
-          <div class="sidebar-content">
-            <nav class="menu open-current-submenu">
-              <ul>
-                <li class="menu-header"><span>奇緣</span></li>
-                <li v-for="(pdfSrc,name,index) in tabs" :key="index"
-                    :class="['menu-item',{ active: pdfUrl === pdfSrc }]" @click="changePdfUrl(pdfSrc)">
-                  <span>{{ name }}</span>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="sidebar-footer">
-          <p>如有侵權，請告知，將立即下架。</p>
-        </div>
-      </div>
-    </div>
-    <PdfViewer :pdfUrl="pdfUrl" :pdfTitle="pdfUrl"/>
-  </div>
+  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentRequestTab" />
+  <router-view v-slot="{ Component, route}">
+      <component :is="Component"  :pdfUrl="mysteryData[route.name]" :pdfTitle="mysteryData[route.name]"/>
+  </router-view>
 </template>
 <script>
+import PdfViewer from "@/components/util/PdfViewer.vue";
+
 export default {
   name: "Mystery",
 
   data() {
     return {
-      pdfUrl: "伯牙絕弦.pdf",
-      tabs: {
+      sideBarTitle: "奇緣",
+      currentRequestTab: null,
+      tabs: [
+            {
+                path: '/mystery/grieving-the-death-of-a-friend',
+                name: '伯牙絕弦',
+            },
+            {
+                path: '/mystery/reckless-courage',
+                name: '浩然之氣',
+            },
+          ],
+      mysteryData: {
         "伯牙絕弦": "伯牙絕弦.pdf",
         "浩然之氣": "浩然之氣.pdf",
       }
     }
   },
   methods:{
-    changePdfUrl(url){
-      this.pdfUrl = url;
-    }
   }
 }
 </script>
 
 <style scoped>
 
-.menu-header{
-  font-weight: 600;
-  padding: 10px 15px;
-  font-size: 0.8em;
-  letter-spacing: 2px;
-  transition: opacity 0.3s;
-  color: rgb(91, 102, 135);
-  list-style-type: none;
-}
-
-.menu-item{
-  padding: 10px 35px;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  transition: opacity 0.3s;
-  color: rgb(123, 130, 156);
-  list-style-type: none;
-}
-
-ul{
-  padding: 0;
-}
-
 .active {
   background-color: #ffcc00; /* your desired highlight color */
   color: #ffffff; /* your desired text color */
 }
+
 
 </style>

@@ -1,15 +1,15 @@
 <template>
   <main>
     <div class="demo">
-      <div class="nav nav-tabs sticky-top">
-        <ul class="leftTab-container nav">
+      <div class="nav nav-tabs">
+        <ul class="leftTab-container">
           <li v-for="route in leftRouteTabs" :key="route.name" class="nav-item">
             <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}" @click="currentTab = route.path">
               {{ route.name }}
             </router-link>
           </li>
         </ul>
-        <ul class="rightTab-container nav">
+        <ul class="rightTab-container">
           <li v-for="route in rightRouteTabs" :key="route.name" class="nav-item">
             <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}"  @click="currentTab = route.path">
               {{ route.name }}
@@ -24,12 +24,14 @@
           </li>
         </ul>
       </div>
+    </div>
+    <div class="component-view">
       <router-view v-slot="{ Component, route }">
         <keep-alive :include="this.keepAliveComponent">
             <component :is="Component"/>
         </keep-alive>
       </router-view>
-    </div>
+     </div>
   </main>
 </template>
 
@@ -44,7 +46,7 @@ export default {
         {name: '傳說裝備', path: '/legendary-equipment'},
         {name: '史詩裝備', path: '/epic-equipment'},
         {name: '奇緣', path: '/mystery'},
-        {name: '資源點', path: '/resource'},
+        {name: '地圖資源', path: '/resource'},
         {name: '委託', path: '/requests'},
         {name: '一些小功能', path: '/other-calculate'}
       ],

@@ -1,20 +1,5 @@
 import {getImageUrl} from "@/utils";
 export const requestData= {
-        '委託':{
-          PageTitle: "委託",
-          images: [
-            {
-              title: "",
-              images: [
-                {
-                  title: "",
-                  url: '',
-                  description: "",
-                }
-              ]
-            }
-          ]
-        },
         '夢村沙漠': {
           PageTitle: "夢村沙漠(Phantasia Desert)",
           images: [
@@ -288,6 +273,23 @@ export const requestData= {
                   title: "加強維修壁壘2",
                   url: getImageUrl('Requests/SabukCastle/SabukCastle-AdditionalWallMaintenance2.png'),
                   description: "",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "卑賤的惡人",
+              images: [
+                {
+                  title: "卑賤的惡人1",
+                  url: getImageUrl('Requests/SabukCastle/卑賤的惡人1.png'),
+                  description: "惡行簿x1 以及 懸賞金通緝令x10\n惡行簿可以從15張通緝單(餘基植處) or 1張惡人通緝單(李手藝處) 製作而成\n懸賞金通緝令 可以通過擊敗石刻迷宮1-4層BOSS怪物獲得",
+                  author: "",
+                },
+                {
+                  title: "卑賤的惡人2",
+                  url: getImageUrl('Requests/SabukCastle/卑賤的惡人2.png'),
+                  description: "惡人通緝單x5 以及 懸賞金通緝令x10\n懸賞金通緝令 可以通過擊敗石刻迷宮1-4層BOSS怪物獲得",
                   author: "",
                 },
               ],
