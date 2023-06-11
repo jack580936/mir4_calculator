@@ -4,7 +4,7 @@ import SideBar from "@/components/util/SideBar.vue";
 </script>
 
 <template>
-  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentRequestTab" />
+  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentMapTab" />
   <router-view v-slot="{ Component, route}">
       <component :is="Component" :PageTitle= "mapData[route.name].PageTitle" :images="mapData[route.name].images"/>
   </router-view>
@@ -18,8 +18,9 @@ export default {
   name: "Resource",
   data() {
     return {
+      currentTab: '地圖資源',
       sideBarTitle: "地圖資源",
-      currentRequestTab: null,
+      currentMapTab: "秘庭峰",
       tabs: [
             {
                 path: '/resource/secret-peak',
@@ -62,6 +63,17 @@ export default {
       mapData: mapData,
     }
   },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      if (to.name === '地圖資源') {
+        // 當點選前往委託頁面時，預設顯示秘庭峰的地圖資源(預設為秘庭峰是因為router中設定預設首頁為秘庭峰)
+        this.currentMapTab = '秘庭峰';
+        next();
+      }
+      this.currentMapTab = to.name;
+      next();
+    });
+  },
   methods: {
     getImageUrl,
   }
@@ -70,33 +82,10 @@ export default {
 
 <style scoped>
 
-.menu-header {
-  font-weight: 600;
-  padding: 10px 15px;
-  font-size: 0.8em;
-  letter-spacing: 2px;
-  transition: opacity 0.3s;
-  color: rgb(91, 102, 135);
-  list-style-type: none;
-}
-
-
-.menu-item {
-  padding: 10px 35px;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  transition: opacity 0.3s;
-  color: rgb(123, 130, 156);
-  list-style-type: none;
-}
-
 ul {
   padding: 0;
 }
 
-.active {
-  background-color: #ffcc00; /* your desired highlight color */
-  color: #ffffff; /* your desired text color */
-}
+
 
 </style>

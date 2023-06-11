@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createPinia } from "pinia";
 import App from './App.vue';
 import router from './router';
 
@@ -6,4 +7,4 @@ import router from './router';
 import 'bootstrap';
 import "./assets/all.scss";
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router,createPinia()).mount('#app');

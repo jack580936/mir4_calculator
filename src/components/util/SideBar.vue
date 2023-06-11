@@ -31,6 +31,8 @@ const ToggleMenu = () => {
       <img src="@/assets/icon/chevron_right.png" alt="sidebar-arrow" class="sidebar-arrow">
     </label>
   </aside>
+</div>
+<div class="sidebar-mask" ></div>
 </template>
 
 <script>
@@ -96,6 +98,17 @@ label {
 		transform: scaleX(-1); // 使 label 裡的圖案橫向反轉
 	}
 }
+#sideMenu-active:checked ~ .sidebar-mask{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.5;
+}
+
 
 #sideMenu-active {
   position: absolute;
@@ -105,7 +118,7 @@ label {
 
 .sideMenu {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   background: #22303c;
   width: 300px;
   height: 100vh;

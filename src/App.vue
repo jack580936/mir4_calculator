@@ -53,7 +53,7 @@ export default {
       rightRouteTabs: [
         {name: '更新日誌', path: '/change-log'},
       ],
-      keepAliveComponent: ['DragonArtifact','EpicEquipment','LegendaryEquipment','Mystery','Resource','Requests']
+      keepAliveComponent: ['DragonArtifact','EpicEquipment','LegendaryEquipment']
     };
   },
   computed: {

@@ -144,21 +144,6 @@ export default {
             }
             return "Uncommon";
         },
-        getShowInventoryColumn(name){
-              let showInventoryColumn = {};
-              if(["神笏", "印"].includes(this.selectedDragonArtifactOption)){
-                  showInventoryColumn = ['萬年鋼鐵','月陰石','邪念珠','傳說鋼鐵','英雄鋼鐵','稀有鋼鐵','高級鋼鐵','冰晶石'] ;
-                  return showInventoryColumn.some(substring => name.includes(substring))
-              }
-              else if(["寶冠", "天書"].includes(this.selectedDragonArtifactOption)){
-                  showInventoryColumn =  ['萬年寒玉','礦片','靈石','白金','冰晶石'];
-                  return showInventoryColumn.some(substring => name.includes(substring))
-              }
-              else if(["翼裝"].includes(this.selectedDragonArtifactOption)){
-                  showInventoryColumn =  ['萬年寒鐵','武魂','伏魔神珠','傳說鋼鐵','英雄鋼鐵','稀有鋼鐵','高級鋼鐵','冰晶石'];
-                  return showInventoryColumn.some(substring => name.includes(substring))
-              }
-        },
         getDragonMaterialFromPool(level, dragonArtifact) {
           const materialPool = this.getDragonArtifactMaterial(level, dragonArtifact);
           for(const item in materialPool){
@@ -195,7 +180,6 @@ export default {
   background-color: #15202B;
   color: #eeeef4;
   width: 100%;
-  height: calc(100% - 42px);
   overflow: auto;
   background-image: url("../assets/bg/dragonBG.png");
   background-repeat: no-repeat;
