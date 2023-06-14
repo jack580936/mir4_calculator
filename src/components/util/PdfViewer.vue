@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <iframe
-      :src="`${getPdfUrl(pdfUrl)}#view=fitH`" :title="pdfTitle" height="100%" width="100%"
+      :src="getPdfUrl(pdfUrl)"
     ></iframe>
   </div>
 </template>
@@ -16,15 +16,20 @@ export default {
     },
     pdfTitle: {
       type: String,
-
     }
+  },
+  data() {
+    return {};
+  },
+  mounted() {
+    // Any additional logic you may have
   },
   methods: {
     getPdfUrl(url) {
       return new URL(`/src/assets/mystery/${url}`, import.meta.url).href;
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
