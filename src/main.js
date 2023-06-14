@@ -7,4 +7,8 @@ import router from './router';
 import 'bootstrap';
 import "./assets/all.scss";
 
-createApp(App).use(router,createPinia()).mount('#app');
+const app = createApp(App);
+app.use(router);
+app.use(createPinia());
+app.mount('#app');
+
