@@ -72,7 +72,7 @@ export default {
     const tabStore = useTabStore();
     this.$router.beforeEach((to, from, next) => {
 
-      tabStore.currentTab = to.path.match(/^(\/[^/]+)/)[0];
+      tabStore.currentTab = to.path.match(/^\/[^\/]+/)[0];
       next();
     });
   },
