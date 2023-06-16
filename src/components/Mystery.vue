@@ -1,5 +1,4 @@
 <script setup>
-import PdfViewer from "@/components/util/PdfViewer.vue";
 import SideBar from "@/components/util/SideBar.vue";
 
 
@@ -11,8 +10,8 @@ import SideBar from "@/components/util/SideBar.vue";
       <component :is="Component"  :pdfUrl="mysteryData[route.name]" :pdfTitle="mysteryData[route.name]"/>
   </router-view>
 </template>
+
 <script>
-import PdfViewer from "@/components/util/PdfViewer.vue";
 
 export default {
   name: "Mystery",

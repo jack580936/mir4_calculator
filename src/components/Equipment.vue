@@ -9,7 +9,7 @@
                     <h4 class="col-12">製作數量</h4>
                     <template v-for="item in list" class="material">
                         <div class="input-group input-group-sm">
-                          <img :src="getImageUrl(`${item.key}.png`)" :class="`input-group img-thumbnail ${this.ClassName}`" alt="...">
+                          <img :src="getImageUrl(`${item.key}.png`)" :class="`input-group img-thumbnail ${ClassName}`" alt="...">
                           <label class="input-group-text">{{ item.name }} </label>
                           <button class="btn add-btn" type="button" @mousedown="startCount(item,100, $event)" @mouseup="stopInterval" @mouseleave="stopInterval">+</button>
                           <input v-model.number="item.value" :min="minimum" :max="maximum"

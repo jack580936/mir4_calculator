@@ -47,20 +47,6 @@ export default {
   data() {
     return {};
   },
-  props: {
-    sideBarTitle: {
-      type: String,
-      required: true,
-    },
-    tabs: {
-      type: Array,
-      required: true,
-    },
-    currentTab: {
-      type: String,
-      required: true,
-    },
-  },
 }
 </script>
 <style lang="scss" scoped>
