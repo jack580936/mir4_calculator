@@ -1,7 +1,15 @@
 <script setup>
 import {ref} from 'vue'
 
+const props = defineProps({
+  sideBarTitle: String,
+  tabs: Array,
+  currentTab: String
+})
+
 const isExpanded = ref(null);
+let activeTab = ref(props.currentTab);
+
 
 const ToggleMenu = () => {
   isExpanded.value = !isExpanded.value;
@@ -9,7 +17,7 @@ const ToggleMenu = () => {
 
 const changeSideBarThenClose = (tab) => {
   ToggleMenu();
-  this.currentTab = tab.name;
+  activeTab= tab.name;
 }
 </script>
 
@@ -25,7 +33,7 @@ const changeSideBarThenClose = (tab) => {
         </li>
         <template v-for="tab in tabs" :key="tab.name">
           <router-link :to="{name: tab.name}">
-            <li :class="['menu-item',{ active: currentTab === tab.name }]" @click="changeSideBarThenClose(tab)">
+            <li :class="['menu-item',{ active: activeTab === tab.name }]" @click="changeSideBarThenClose(tab)">
               <span>{{ tab.name}}</span>
             </li>
           </router-link>
