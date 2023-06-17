@@ -43,8 +43,6 @@ const tabStore = useTabStore();
 
 <script>
 
-import {useTabStore} from "@/store/tab.js";
-
 export default {
   name: "App",
   data() {

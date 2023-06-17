@@ -278,6 +278,150 @@ export const requestData= {
               ],
             },
             {
+              title: "偉大的占星師",
+              images: [
+                {
+                  title: "偉大的占星師1",
+                  url: getImageUrl('Requests/SabukCastle/偉大的占星師1.png'),
+                  description: "擊敗魔方陣7層-首長之屋I的【古血魔】，就是那兩隻猩猩\n上次死亡後開始計算30分鐘後刷新",
+                  author: "",
+                },
+                {
+                  title: "偉大的占星師2",
+                  url: getImageUrl('Requests/SabukCastle/偉大的占星師2.png'),
+                  description: "擊敗魔方陣7層-首長之屋II的【靈骨綴鬼王】\n上一隻死亡後開始計算1小時後刷新",
+                  author: "",
+                },
+                {
+                  title: "偉大的占星師3",
+                  url: getImageUrl('Requests/SabukCastle/偉大的占星師3.png'),
+                  description: "擊敗魔方陣7層-首長之屋III的【鬼骨之將】\n固定0/3/6/9/12/15/18/21整點刷新",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "珍貴的好友",
+              images: [
+                {
+                  title: "珍貴的好友3",
+                  url: getImageUrl('Requests/SabukCastle/珍貴的好友3.png'),
+                  description: "",
+                  author: "",
+                },
+                {
+                  title: "珍貴的好友3-小師妹的墓",
+                  url: getImageUrl('Requests/SabukCastle/珍貴的好友3-小師妹的墓.png'),
+                  description: "",
+                  author: "",
+                },
+                {
+                  title: "珍貴的好友4",
+                  url: getImageUrl('Requests/SabukCastle/珍貴的好友4.png'),
+                  description: "收集黑米草5000個，石刻墓3層所有怪物都會掉",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "賺錢的戰爭",
+              images: [
+                {
+                  title: "賺錢的戰爭1",
+                  url: getImageUrl('Requests/SabukCastle/賺錢的戰爭1.png'),
+                  description: "擊敗秘庭峰7層裡的【巨豚】\n上一隻死亡後開始計算1小時刷新",
+                  author: "",
+                },
+                {
+                  title: "賺錢的戰爭2",
+                  url: getImageUrl('Requests/SabukCastle/賺錢的戰爭2.png'),
+                  description: "擊敗秘庭峰7層裡的【魔龍盔甲蟲】\n上一隻死亡後開始計算1小時刷新",
+                  author: "",
+                },
+                {
+                  title: "賺錢的戰爭3",
+                  url: getImageUrl('Requests/SabukCastle/賺錢的戰爭3.png'),
+                  description: "擊敗秘庭峰7層裡的【鬼魂螞蟻】\n固定4/10/16/22整點刷新",
+                  author: "",
+                },
+                {
+                  title: "賺錢的戰爭4",
+                  url: getImageUrl('Requests/SabukCastle/賺錢的戰爭4.png'),
+                  description: "擊敗秘庭峰7層裡的【真骨鬼王】\n固定1/7/13/19整點刷新",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "特別的守護者",
+              images: [
+                {
+                  title: "特別的守護者1",
+                  url: getImageUrl('Requests/SabukCastle/特別的守護者1.png'),
+                  description: "收集奸邪之氣350個，【石刻迷宮1層】全區怪物皆會掉落",
+                  author: "",
+                },
+                {
+                  title: "特別的守護者2",
+                  url: getImageUrl('Requests/SabukCastle/特別的守護者2.png'),
+                  description: "回收被汙染的精華350個，【石刻迷宮2層】全區怪物皆會掉落",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "招致毀滅的劍",
+              images: [
+                {
+                  title: "招致毀滅的劍1",
+                  url: getImageUrl('Requests/SabukCastle/招致毀滅的劍1.png'),
+                  description: "收集血花落照碎片3500個，【普通】劍池1層所有怪物皆會掉落",
+                  author: "",
+                },
+                {
+                  title: "招致毀滅的劍2",
+                  url: getImageUrl('Requests/SabukCastle/招致毀滅的劍2.png'),
+                  description: "收集黑天暗雲碎片3500個，【普通】劍池2層所有怪物皆會掉落",
+                  author: "",
+                },
+                {
+                  title: "招致毀滅的劍3",
+                  url: getImageUrl('Requests/SabukCastle/招致毀滅的劍3.png'),
+                  description: "收集九宮雲霧碎片3500個，【菁英】劍池1層所有怪物皆會掉落",
+                  author: "",
+                },
+                {
+                  title: "招致毀滅的劍4",
+                  url: getImageUrl('Requests/SabukCastle/招致毀滅的劍4.png'),
+                  description: "收集萬里碧海碎片3500個，【菁英】劍池2層所有怪物皆會掉落",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "不負責任的管理員",
+              images: [
+                {
+                  title: "不負責任的管理員1",
+                  url: getImageUrl('Requests/SabukCastle/不负责任的管理人1.png'),
+                  description: "【沙巴克城】左上角，有兩個隱遁道人，對話即可完成任務",
+                  author: "",
+                },
+                {
+                  title: "不負責任的管理員2",
+                  url: getImageUrl('Requests/SabukCastle/不負責任的管理員2.png'),
+                  description: "【討伐】赤炎火龍洞穴完成3次",
+                  author: "",
+                },
+                {
+                  title: "不負責任的管理員3",
+                  url: getImageUrl('Requests/SabukCastle/不負責任的管理員3.png'),
+                  description: "【門派遠征】青雷龍完成一次",
+                  author: "",
+                },
+              ],
+            },
+            {
               title: "卑賤的惡人",
               images: [
                 {
@@ -295,11 +439,103 @@ export const requestData= {
               ],
             },
             {
-              title: "黑武鏢局的好友",
+              title: "信任的代價",
               images: [
                 {
-                  title: "黑武鏢局的好友1",
-                  url: getImageUrl('Requests/SabukCastle/黑武镖局的好友1.png'),
+                  title: "信任的代價-萬能鑰匙",
+                  url: getImageUrl('Requests/SabukCastle/信任的代價-萬能鑰匙.png'),
+                  description: "三種材料於【劍池】、【石刻墓】、【石刻迷宮】、【夢村秘谷】的寶箱中獲得(夢村秘谷寶箱比較多)\n蒐集完畢後，於李手藝處製作",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "信任的代價-寶箱位置",
+                  url: getImageUrl('Requests/SabukCastle/信任的代價-寶箱位置.png'),
+                  description: "傳送至比奇城-無影客，寶箱在他後面的小路盡頭(比奇城的右上角)",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "信任的代價-寶箱形象",
+                  url: getImageUrl('Requests/SabukCastle/信任的代價-寶箱形象.png'),
+                  description: "",
+                  author: "永恆白小純",
+                },
+              ],
+            },
+            {
+              title: "雙重奸細/双重间谍",
+              images: [
+                {
+                  title: "雙重奸細-萬能鑰匙",
+                  url: getImageUrl('Requests/SabukCastle/信任的代價-萬能鑰匙.png'),
+                  description: "開啟寶箱的鑰匙與信任代價的鑰匙相同，都是【萬能鑰匙】",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "雙重奸細-寶箱位置",
+                  url: getImageUrl('Requests/SabukCastle/雙重奸細-寶箱位置.png'),
+                  description: "傳送至比奇城-于洪，寶箱就在他旁邊",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "雙重奸細-寶箱形象",
+                  url: getImageUrl('Requests/SabukCastle/雙重奸細-寶箱形象.png'),
+                  description: "",
+                  author: "永恆白小純",
+                },
+              ],
+            },
+            {
+              title: "我是最棒的達人",
+              images: [
+                {
+                  title: "我是最棒的達人",
+                  url: getImageUrl('Requests/SabukCastle/我是最棒的達人.png'),
+                  description: "劍池地圖挖礦，然後找余基植製造",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "你是神手嗎/你是巧手吗",
+              images: [
+                {
+                  title: "你是神手嗎1",
+                  url: getImageUrl('Requests/SabukCastle/你是神手嗎1.png'),
+                  description: "",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "你是神手嗎1-洞穴入口",
+                  url: getImageUrl('Requests/SabukCastle/你是神手嗎1-洞穴入口.png'),
+                  description: "",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "你是神手嗎1-魔憐草",
+                  url: getImageUrl('Requests/SabukCastle/你是神手嗎1-魔憐草.png'),
+                  description: "",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "你是神手嗎2",
+                  url: getImageUrl('Requests/SabukCastle/你是神手嗎2.png'),
+                  description: "",
+                  author: "永恆白小純",
+                },
+                {
+                  title: "你是神手嗎2-仙人草",
+                  url: getImageUrl('Requests/SabukCastle/你是神手嗎2-仙人草.png'),
+                  description: "",
+                  author: "永恆白小純",
+                },
+              ],
+            },
+            {
+              title: "沙巴克皇朝實錄",
+              images: [
+                {
+                  title: "沙巴克皇朝實錄1",
+                  url: getImageUrl('Requests/SabukCastle/沙巴克皇室实录1.png'),
                   description: "",
                   author: "",
                 },
@@ -317,52 +553,167 @@ export const requestData= {
               ],
             },
             {
+              title: "美味的寶物/好吃的寶物",
+              images: [
+                {
+                  title: "美味的寶物-植物長相",
+                  url: getImageUrl('Requests/SabukCastle/美味的寶物.png'),
+                  description: "採集50個任務植物",
+                  author: "知乎@骆驼玩游戏",
+                },
+                {
+                  title: "美味的寶物-分布圖",
+                  url: getImageUrl('Requests/SabukCastle/美味的寶物-分布.png'),
+                  description: "採集50個任務植物",
+                  author: "知乎@骆驼玩游戏",
+                },
+              ],
+            },
+            {
               title: "那個男人的隱情",
               images: [
                 {
                   title: "",
-                  url: getImageUrl('Requests/SabukCastle/那个男人的隐情.png'),
+                  url: getImageUrl('Requests/SabukCastle/那個男人的隱情.png'),
+                  description: "",
+                  author: "",
+                },
+                {
+                  title: "那個男人的隱情-珊瑚寶石盒",
+                  url: getImageUrl('Requests/SabukCastle/那個男人的隱情-珊瑚寶石盒.png'),
                   description: "",
                   author: "",
                 },
               ],
             },
             {
-              title: "你是巧手嗎",
+              title: "那個女人的隱情",
               images: [
                 {
-                  title: "你是巧手嗎1",
-                  url: getImageUrl('Requests/SabukCastle/你是巧手嗎1.png'),
+                  title: "",
+                  url: getImageUrl('Requests/SabukCastle/那個女人的隱情.png'),
+                  description: "劍池地圖挖草，然後找李手藝制造",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "沙巴克的主人",
+              images: [
+                {
+                  title: "沙巴克的主人1",
+                  url: getImageUrl('Requests/SabukCastle/沙巴克的主人1.png'),
+                  description: "【普通】劍池2層，擊敗知名BOSS 25隻",
+                  author: "",
+                },
+                {
+                  title: "沙巴克的主人2",
+                  url: getImageUrl('Requests/SabukCastle/沙巴克的主人2.png'),
+                  description: "【普通】石刻墓3層，擊敗知名BOSS 50隻",
+                  author: "",
+                },
+                {
+                  title: "沙巴克的主人3",
+                  url: getImageUrl('Requests/SabukCastle/沙巴克的主人3.png'),
+                  description: "夢村迷宮4層 世界BOSS【血教神魔】，每日10/20整點刷新",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "黑武鏢局的好友",
+              images: [
+                {
+                  title: "黑武镖局的好友1",
+                  url: getImageUrl('Requests/SabukCastle/黑武鏢局的好友1.png'),
                   description: "",
                   author: "",
                 },
                 {
-                  title: "你是巧手嗎2",
-                  url: getImageUrl('Requests/SabukCastle/你是巧手嗎2.png'),
+                  title: "黑武鏢局的好友1-機關裝置",
+                  url: getImageUrl('Requests/SabukCastle/黑武鏢局的好友1-機關裝置.png'),
                   description: "",
                   author: "",
                 },
               ],
             },
             {
-              title: "沙巴克皇朝實錄",
+              title: "紅與黑",
               images: [
                 {
-                  title: "沙巴克皇朝實錄1",
-                  url: getImageUrl('Requests/SabukCastle/沙巴克皇室实录1.png'),
+                  title: "紅與黑",
+                  url: getImageUrl('Requests/SabukCastle/紅與黑.png'),
+                  description: "魔方陣8層擊殺首長之屋的BOSS，I、II、III都會掉落\n收集完畢後找李手藝製作破碎的符咒",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "商帝與劍光",
+              images: [
+                {
+                  title: "商帝與劍光1",
+                  url: getImageUrl('Requests/SabukCastle/商帝與劍光1.png'),
+                  description: "",
+                  author: "",
+                },
+                {
+                  title: "商帝與劍光1-採集",
+                  url: getImageUrl('Requests/SabukCastle/商帝與劍光1-採集.png'),
                   description: "",
                   author: "",
                 },
               ],
             },
             {
-              title: "不負責任的管理員",
+              title: "陳年約定",
               images: [
                 {
-                  title: "不負責任的管理員1",
-                  url: getImageUrl('Requests/SabukCastle/不负责任的管理人1.png'),
+                  title: "陳年約定1",
+                  url: getImageUrl('Requests/SabukCastle/陳年約定1.png'),
                   description: "",
                   author: "",
+                },
+                {
+                  title: "陳年約定1-酒罈形象",
+                  url: getImageUrl('Requests/SabukCastle/陳年約定1-酒罈形象.png'),
+                  description: "",
+                  author: "",
+                },
+                {
+                  title: "陳年約定2",
+                  url: getImageUrl('Requests/SabukCastle/陳年約定2.png'),
+                  description: "找李手藝製作 風散壁藏身處地圖\n1.風散壁的痕跡 -【峽谷洞穴】知名BOSS掉落\n風散壁的信物 - 【魔方陣8層】魔物之屋怪物掉落",
+                  author: "",
+                },
+                {
+                  title: "陳年約定2-風散壁召喚位置",
+                  url: getImageUrl('Requests/SabukCastle/陳年約定2-風散壁召喚位置.png'),
+                  description: "",
+                  author: "",
+                },
+                {
+                  title: "陳年約定2-風散壁召喚位置形象",
+                  url: getImageUrl('Requests/SabukCastle/陳年約定2-風散壁召喚位置形象.png'),
+                  description: "",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "絕妙的交易",
+              images: [
+                {
+                  title: "絕妙的交易",
+                  url: getImageUrl('Requests/SabukCastle/絕妙的交易.png'),
+                  description: "在沙巴克壁壘3個地圖開箱子即可拿到材料，然後找李手藝制造【匠人的萬能鑰匙】",
+                  author: "",
+                },
+                {
+                  title: "絕妙的交易-寶箱位置",
+                  url: getImageUrl('Requests/SabukCastle/絕妙的交易.png'),
+                  description: "NPC京喜，旁邊的寶箱",
+                  author: "知乎@骆驼玩游戏",
                 },
               ],
             },
@@ -389,45 +740,12 @@ export const requestData= {
               ],
             },
             {
-              title: "絕妙的交易",
-              images: [
-                {
-                  title: "",
-                  url: getImageUrl('Requests/SabukCastle/絕妙的交易.png'),
-                  description: "在沙巴克壁壘3個地圖開箱子即可以拿到材料，然後找李手藝制造",
-                  author: "",
-                },
-              ],
-            },
-            {
               title: "傳說一劍",
               images: [
                 {
                   title: "傳說一劍1",
                   url: getImageUrl('Requests/SabukCastle/傳說一劍1.png'),
                   description: "第一个BOSS，擊殺後有機率刷任務物品，在BOSS脚下",
-                  author: "",
-                },
-              ],
-            },
-            {
-              title: "我是最棒的達人",
-              images: [
-                {
-                  title: "",
-                  url: getImageUrl('Requests/SabukCastle/我是最棒的达人.png'),
-                  description: "劍池地圖挖礦(金紅礦不會出)，然後找余基植製造",
-                  author: "",
-                },
-              ],
-            },
-            {
-              title: "那個女人的隱情",
-              images: [
-                {
-                  title: "",
-                  url: getImageUrl('Requests/SabukCastle/那個女人的隱情.png'),
-                  description: "劍池地圖挖草(金红草不會出)，然後找李手藝制造",
                   author: "",
                 },
               ],
@@ -472,22 +790,28 @@ export const requestData= {
               ],
             },
             {
-              title: "蒙冤訴苦",
+              title: "叫苦連連/蒙冤訴苦",
               images: [
                 {
-                  title: "蒙冤訴苦前置",
-                  url: getImageUrl('Requests/SabukCastle/蒙冤訴苦前置.png'),
-                  description: "下面那個紅色框框",
+                  title: "叫苦連連位置",
+                  url: getImageUrl('Requests/SabukCastle/叫苦連連-觸發位置.png'),
+                  description: "",
                   author: "",
                 },
                 {
-                  title: "蒙冤訴苦1-1",
+                  title: "觸發任務的血",
+                  url: getImageUrl('Requests/SabukCastle/叫苦連連-地上的血.png'),
+                  description: "採集後觸發任務",
+                  author: "",
+                },
+                {
+                  title: "叫苦連連1-1",
                   url: getImageUrl('Requests/SabukCastle/蒙冤訴苦1-1.png'),
                   description: "",
                   author: "",
                 },
                 {
-                  title: "蒙冤訴苦1-2",
+                  title: "叫苦連連1-2",
                   url: getImageUrl('Requests/SabukCastle/蒙冤訴苦1-2.png'),
                   description: "",
                   author: "",

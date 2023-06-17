@@ -199,7 +199,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container-fluid {
   margin-left: 0;
   width: 100%;
