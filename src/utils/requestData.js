@@ -683,7 +683,7 @@ export const requestData= {
                 {
                   title: "陳年約定2",
                   url: getImageUrl('Requests/SabukCastle/陳年約定2.png'),
-                  description: "找李手藝製作 風散壁藏身處地圖\n1.風散壁的痕跡 -【峽谷洞穴】知名BOSS掉落\n風散壁的信物 - 【魔方陣8層】魔物之屋怪物掉落",
+                  description: "找李手藝製作 風散壁藏身處地圖\n1. 風散壁的痕跡 -【峽谷洞穴】知名BOSS掉落\n2. 風散壁的信物 - 【魔方陣8層】魔物之屋怪物掉落",
                   author: "永恆白小純",
                 },
                 {

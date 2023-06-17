@@ -331,24 +331,29 @@ h1 {
   bottom: 0;
   z-index: 9999;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #000c;
   overflow: auto;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
   & > img{
-    height: 100vh;
-    width: 100vw;
-    padding: 1rem;
+    height: 95vh;
+    width: 95vw;
+    padding: 5rem 1rem 1rem 1rem;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px #0003;
     object-fit: contain;
 
   }
 
   & > .author{
-    color: rgb(230, 242, 255);
+    color: #e6f2ff;
     text-align: left;
     align-self: flex-end;
+    width: auto;
   }
 }
 
