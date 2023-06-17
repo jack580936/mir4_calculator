@@ -33,7 +33,7 @@ const tabStore = useTabStore();
     </div>
     <div class="component-view">
       <router-view v-slot="{ Component, route }">
-        <keep-alive :include="this.keepAliveComponent">
+        <keep-alive :include="keepAliveComponentList">
             <component :is="Component"/>
         </keep-alive>
       </router-view>
@@ -60,7 +60,7 @@ export default {
       rightRouteTabs: [
         {name: '更新日誌', path: '/change-log'},
       ],
-      keepAliveComponent: ['DragonArtifact','EpicEquipment','LegendaryEquipment']
+      keepAliveComponentList: ['DragonArtifact','EpicEquipment','LegendaryEquipment']
     };
   },
   computed: {
