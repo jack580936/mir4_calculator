@@ -59,7 +59,7 @@ export default {
                 name: '道觀地區',
             },
             {
-                path: '/resource/valley',
+                path: '/resource/Valley',
                 name: '秘谷',
             },
 
