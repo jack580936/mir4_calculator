@@ -154,7 +154,7 @@ ul {
 
 .active {
   background-color: #ffcc00; /* your desired highlight color */
-  color: #ffffff; /* your desired text color */
+  color: #22303c; /* your desired text color */
 }
 
 .sidebar-mask{

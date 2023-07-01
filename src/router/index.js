@@ -64,7 +64,7 @@ const routers = [
         name: '地圖資源',
         component: Resource,
         // 地圖資源預設首頁
-        redirect: '/resource/secret-peak',
+        redirect: '/resource/Mirage-Ship',
         children: [
             {
                 path: '/resource/secret-peak',
@@ -120,6 +120,12 @@ const routers = [
                 component: MapViewer,
                 props: true,
             },
+            {
+                path: '/resource/Mirage-Ship',
+                name: '蜃氣船',
+                component: MapViewer,
+                props: true,
+            },
         ],
     },
     {
@@ -127,7 +133,7 @@ const routers = [
         name: '委託',
         component: Requests,
         // 委託預設首頁
-        redirect: '/requests/sabuk-castle',
+        redirect: '/requests/Mirage-Ship-Deck',
         children: [
             {
                 path: '/requests/gorge-cliff-path',
@@ -152,7 +158,19 @@ const routers = [
                 name: '沙巴克城',
                 component: MapViewer,
                 props: true,
-            }
+            },
+            {
+                path: '/requests/Mirage-Ship-Inner-Cabins',
+                name: '蜃氣船內部船艙',
+                component: MapViewer,
+                props: true,
+            },
+            {
+                path: '/requests/Mirage-Ship-Deck',
+                name: '蜃氣船甲板',
+                component: MapViewer,
+                props: true,
+            },
         ],
     },
     {

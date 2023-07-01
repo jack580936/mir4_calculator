@@ -20,8 +20,12 @@ export default {
     return {
       currentTab: '地圖資源',
       sideBarTitle: "地圖資源",
-      currentMapTab: "秘庭峰",
+      currentMapTab: "蜃氣船",
       tabs: [
+            {
+                path: '/resource/Mirage-Ship',
+                name: '蜃氣船',
+            },
             {
                 path: '/resource/secret-peak',
                 name: '秘庭峰',

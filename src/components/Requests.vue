@@ -20,8 +20,16 @@ export default {
   data() {
     return {
       sideBarTitle: "委託",
-      currentRequestTab: '沙巴克城',
+      currentRequestTab: '蜃氣船甲板',
       tabs: [
+        {
+          name: '蜃氣船內部船艙',
+          path: '/requests/Mirage-Ship-Inner-Cabins',
+        },
+        {
+          name: '蜃氣船甲板',
+          path: '/requests/Mirage-Ship-Deck',
+        },
         {
           name: '九龍冰原',
           path: '/requests/nine-dragon-ice-field',
@@ -37,8 +45,7 @@ export default {
         {
           name: '峽谷懸崖路',
           path: '/requests/gorge-cliff-path',
-        }
-
+        },
       ],
       requestData: requestData,
     }

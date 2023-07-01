@@ -1,5 +1,6 @@
 import {getImageUrl} from "@/utils";
 export const requestData= {
+// --------------------------------------夢村沙漠--------------------------------------------
         '夢村沙漠': {
           PageTitle: "夢村沙漠(Phantasia Desert)",
           images: [
@@ -44,6 +45,7 @@ export const requestData= {
             },
           ],
         },
+// --------------------------------------峽谷懸崖路--------------------------------------------
         '峽谷懸崖路': {
           PageTitle: "峽谷懸崖路(Gorge Cliff Path)",
           images: [
@@ -203,6 +205,7 @@ export const requestData= {
             },
           ],
         },
+// --------------------------------------九龍冰原--------------------------------------------
         '九龍冰原': {
           PageTitle: "九龍冰原(Nine Dragon Ice Field)",
           images: [
@@ -263,6 +266,7 @@ export const requestData= {
             },
           ],
         },
+// --------------------------------------沙巴克城--------------------------------------------
         '沙巴克城': {
           PageTitle: "沙巴克城(Sabuk Castle)",
           images: [
@@ -858,5 +862,119 @@ export const requestData= {
               ],
             },
           ],
-        }
+        },
+// --------------------------------------蜃氣船內部船艙--------------------------------------------
+        '蜃氣船內部船艙': {
+          PageTitle: "蜃氣船內部船艙(Mirage Ship Inner Cabins)",
+          images: [
+            {
+              title: "金光蜜蜂海盜團1",
+              images: [
+                {
+                  title: "金光蜜蜂海盜團1-資料位置",
+                  url: getImageUrl('Requests/MirageShipInnerCabins/金光蜜蜂海盜團1-資料位置.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+                {
+                  title: "金光蜜蜂海盜團1-資料形象",
+                  url: getImageUrl('Requests/MirageShipInnerCabins/金光蜜蜂海盜團1-資料形象.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+              ],
+            },
+            {
+              title: "消失的黑蛇團1",
+              images: [
+                {
+                  title: "消失的黑蛇團1-蹤跡位置",
+                  url: getImageUrl('Requests/MirageShipInnerCabins/消失的黑蛇團1-蹤跡位置.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+                {
+                  title: "消失的黑蛇團1-蹤跡形象",
+                  url: getImageUrl('Requests/MirageShipInnerCabins/消失的黑蛇團1-蹤跡形象.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+              ],
+            },
+          ],
+        },
+// --------------------------------------蜃氣船甲板-----------------------------------------------
+        '蜃氣船甲板': {
+          PageTitle: "蜃氣船內部船艙(Mirage Ship Deck)",
+          images: [
+            {
+              title: "令人討厭的沃瑪鬼1",
+              images: [
+                {
+                  title: "令人討厭的沃瑪鬼1-石像分布圖",
+                  url: getImageUrl('Requests/MirageShipDeck/令人討厭的沃瑪鬼1-石像分布圖.png'),
+                  description: "",
+                  author: "Starlight 郡主、麻糬好好吃",
+                },
+                {
+                  title: "令人討厭的沃瑪鬼1-石像形象",
+                  url: getImageUrl('Requests/MirageShipDeck/令人討厭的沃瑪鬼1-石像形象.png'),
+                  description: "",
+                  author: "Starlight 郡主、麻糬好好吃",
+                },
+              ],
+            },
+            {
+              title: "令人討厭的沃瑪鬼2",
+              images: [
+                {
+                  title: "令人討厭的沃瑪鬼2-石像分布圖",
+                  url: getImageUrl('Requests/MirageShipDeck/令人討厭的沃瑪鬼2-石像分布圖.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+                {
+                  title: "令人討厭的沃瑪鬼2-石像形象",
+                  url: getImageUrl('Requests/MirageShipDeck/令人討厭的沃瑪鬼2-石像形象.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+              ],
+            },
+            {
+              title: "令人討厭的沃瑪鬼3",
+              images: [
+                {
+                  title: "令人討厭的沃瑪鬼3-石像分布圖",
+                  url: getImageUrl('Requests/MirageShipDeck/令人討厭的沃瑪鬼3-石像分布圖.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+                {
+                  title: "令人討厭的沃瑪鬼3-石像形象",
+                  url: getImageUrl('Requests/MirageShipDeck/令人討厭的沃瑪鬼3-石像形象.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+              ],
+            },
+            {
+              title: "追蹤背後1",
+              images: [
+                {
+                  title: "追蹤背後1-碎布位置",
+                  url: getImageUrl('Requests/MirageShipDeck/追蹤背後1-碎布位置.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+                {
+                  title: "追蹤背後1-碎布形象",
+                  url: getImageUrl('Requests/MirageShipDeck/追蹤背後1-碎布形象.png'),
+                  description: "",
+                  author: "Starlight 郡主",
+                },
+              ],
+            },
+          ],
+        },
       };
