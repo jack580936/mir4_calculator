@@ -370,7 +370,7 @@ export const mapData= {
       PageTitle: "雪原地區資源(SnowField Area Resource)",
       images: [
             {
-              title: "九龍冰原",
+              title: "九龍冰原(Nine Dragon Ice Field)",
               images: [
                 {
                   title: "",
@@ -509,5 +509,32 @@ export const mapData= {
               ],
             },
           ],
-        }
+        },
+    '蜃氣船':{
+      PageTitle: "蜃氣船(Mirage Ship)",
+      images: [
+            {
+              title: "蜃氣船內部船艙",
+              images: [
+                {
+                  title: "空虛珠分布",
+                  url: getImageUrl('map_resource/MirageShip/MirageShipInnerCabins/蜃氣船內部船艙空虛珠分布圖.png'),
+                  description: "",
+                  author: "",
+                },
+              ],
+            },
+            {
+              title: "1界沃瑪森林",
+              images: [
+                {
+                  title: "1界沃瑪森林資源點",
+                  url: getImageUrl('map_resource/MirageShip/1界沃瑪森林/1界沃瑪森林.png'),
+                  description: "",
+                  author: "",
+                },
+              ],
+            },
+          ],
+        },
 };

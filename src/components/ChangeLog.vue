@@ -15,6 +15,15 @@ export default {
     return {
       logs: [
         {
+          title: 'Version 1.9',
+          changes: [
+              '1. 蜃氣船內部船艙委託更新',
+              '2. 蜃氣船甲板委託更新',
+              '3. 蜃氣船地圖資源更新',
+              '20230702'
+          ]
+        },
+        {
           title: 'Version 1.8',
           changes: [
               '1. 側邊欄',
