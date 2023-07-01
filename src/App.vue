@@ -1,17 +1,23 @@
+<script setup>
+import {useTabStore} from "@/store/tab.js";
+
+const tabStore = useTabStore();
+</script>
+
 <template>
   <main>
     <div class="demo">
       <div class="nav nav-tabs">
         <ul class="leftTab-container">
-          <li v-for="route in leftRouteTabs" :key="route.name" class="nav-item">
-            <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}" @click="currentTab = route.path">
+          <li v-for="route in leftRouteTabs" :key="route.name" class="nav-item" @click="tabStore.currentTab = route.path">
+            <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}" >
               {{ route.name }}
             </router-link>
           </li>
         </ul>
         <ul class="rightTab-container">
-          <li v-for="route in rightRouteTabs" :key="route.name" class="nav-item">
-            <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}"  @click="currentTab = route.path">
+          <li v-for="route in rightRouteTabs" :key="route.name" class="nav-item"  @click="tabStore.currentTab = route.path">
+            <router-link :to="route.path" :class="{'nav-link': true, 'active': isActiveRoute(route.path)}" >
               {{ route.name }}
             </router-link>
           </li>
@@ -27,7 +33,7 @@
     </div>
     <div class="component-view">
       <router-view v-slot="{ Component, route }">
-        <keep-alive :include="this.keepAliveComponent">
+        <keep-alive :include="keepAliveComponentList">
             <component :is="Component"/>
         </keep-alive>
       </router-view>
@@ -36,15 +42,16 @@
 </template>
 
 <script>
+
 export default {
   name: "App",
   data() {
     return {
-      currentTab: null,
       leftRouteTabs: [
         {name: '龍神器', path: '/dragon-artifact'},
         {name: '傳說裝備', path: '/legendary-equipment'},
         {name: '史詩裝備', path: '/epic-equipment'},
+        {name: '體質', path: '/constitution'},
         {name: '奇緣', path: '/mystery'},
         {name: '地圖資源', path: '/resource'},
         {name: '委託', path: '/requests'},
@@ -53,15 +60,17 @@ export default {
       rightRouteTabs: [
         {name: '更新日誌', path: '/change-log'},
       ],
-      keepAliveComponent: ['DragonArtifact','EpicEquipment','LegendaryEquipment']
+      keepAliveComponentList: ['DragonArtifact','EpicEquipment','LegendaryEquipment']
     };
   },
   computed: {
 
   },
   created() {
+    const tabStore = useTabStore();
     this.$router.beforeEach((to, from, next) => {
-      this.currentTab = to.path;
+
+      tabStore.currentTab = to.path.match(/^\/[^\/]+/)[0];
       next();
     });
   },
@@ -70,7 +79,8 @@ export default {
       return new URL(`/src/assets/${url}`, import.meta.url).href;
     },
     isActiveRoute(routePath) {
-      return this.currentTab === routePath;
+      const tabStore = useTabStore();
+      return tabStore.currentTab === routePath;
     },
   },
 };

@@ -218,7 +218,6 @@ export default {
   background-color: #15202B;
   color: #eeeef4;
   width: 100%;
-  height: calc(100% - 42px);
   overflow: auto;
 
     * li, label, h4 {

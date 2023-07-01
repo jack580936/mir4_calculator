@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       sideBarTitle: "功能",
-      currentRequestTab: null,
+      currentRequestTab: '採集挖礦速度計算',
       tabs: [
             {
                 path: '/other-calculate/speed-boost',

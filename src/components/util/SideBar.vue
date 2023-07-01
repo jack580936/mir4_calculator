@@ -1,17 +1,30 @@
 <script setup>
 import {ref} from 'vue'
 
+const props = defineProps({
+  sideBarTitle: String,
+  tabs: Array,
+  currentTab: String
+})
+
 const isExpanded = ref(null);
+let activeTab = ref(props.currentTab);
+
 
 const ToggleMenu = () => {
   isExpanded.value = !isExpanded.value;
+}
+
+const changeSideBarThenClose = (tab) => {
+  ToggleMenu();
+  activeTab= tab.name;
 }
 </script>
 
 <template>
 
 <div class="side-bar">
-  <input type="checkbox" name="" id="sideMenu-active">
+  <input type="checkbox" name="" id="sideMenu-active" v-model="isExpanded">
   <aside class="sideMenu">
     <nav class="menu open-current-submenu">
       <ul>
@@ -20,7 +33,7 @@ const ToggleMenu = () => {
         </li>
         <template v-for="tab in tabs" :key="tab.name">
           <router-link :to="{name: tab.name}">
-            <li :class="['menu-item',{ active: currentTab === tab.name }]" @click="currentTab = tab.name">
+            <li :class="['menu-item',{ active: activeTab === tab.name }]" @click="changeSideBarThenClose(tab)">
               <span>{{ tab.name}}</span>
             </li>
           </router-link>
@@ -32,7 +45,7 @@ const ToggleMenu = () => {
     </label>
   </aside>
 </div>
-<div class="sidebar-mask" ></div>
+<div class="sidebar-mask" v-show="isExpanded" @click="ToggleMenu"></div>
 </template>
 
 <script>
@@ -40,21 +53,7 @@ import {getImageUrl} from "@/utils";
 export default {
   name: "SideBar",
   data() {
-
-  },
-  props: {
-    sideBarTitle: {
-      type: String,
-      required: true,
-    },
-    tabs: {
-      type: Array,
-      required: true,
-    },
-    currentTab: {
-      type: String,
-      required: true,
-    },
+    return {};
   },
 }
 </script>
@@ -79,7 +78,7 @@ a,label {
 label {
   width: 20px;
   height: 80px;
-  background-color: #d1d1d1;
+  background-color: #708597;
   color: #686666;
   position: absolute;
   right: -20px;
@@ -122,7 +121,7 @@ label {
   background: #22303c;
   width: 300px;
   height: 100vh;
-  border-right: 3px solid #d1d1d1;
+  border-right: 3px solid #708597;
   display: flex;
   flex-direction: column;
   box-shadow: 5px 0 5px rgba(23, 23, 54, 0.6);
@@ -157,5 +156,18 @@ ul {
   background-color: #ffcc00; /* your desired highlight color */
   color: #ffffff; /* your desired text color */
 }
+
+.sidebar-mask{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    z-index: 1;
+    opacity: 60%;
+}
+
+
 
 </style>

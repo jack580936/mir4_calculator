@@ -64,15 +64,6 @@ export default {
     }
   },
   created() {
-    this.$router.beforeEach((to, from, next) => {
-      if (to.name === '地圖資源') {
-        // 當點選前往委託頁面時，預設顯示秘庭峰的地圖資源(預設為秘庭峰是因為router中設定預設首頁為秘庭峰)
-        this.currentMapTab = '秘庭峰';
-        next();
-      }
-      this.currentMapTab = to.name;
-      next();
-    });
   },
   methods: {
     getImageUrl,

@@ -133,13 +133,13 @@ export const mapData= {
                     images: [
                         {
                             title: "石刻迷宮3層",
-                            url: getImageUrl('map_resource/phantasiaArea/chest/RockcutLab3F.png'),
+                            url: getImageUrl('map_resource/phantasiaArea/chest/石刻迷宮3(寶箱).png'),
                             description: "",
                             author: "",
                         },
                         {
                             title: "石刻迷宮4層",
-                            url: getImageUrl('map_resource/phantasiaArea/chest/RockcutLab4F.png'),
+                            url: getImageUrl('map_resource/phantasiaArea/chest/石刻迷宮4(寶箱).png'),
                             description: "",
                             author: "",
                         },

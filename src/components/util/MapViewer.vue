@@ -69,6 +69,14 @@ export default {
       return groups;
     },
   },
+  watch: {
+    $route() {
+      const container = this.$refs.container;
+      if (container) {
+        container.scrollTo(0, 0);
+      }
+    },
+  },
   methods: {
     scrollToTitle(index) {
       const element = document.getElementById(`title-${index}`);
@@ -85,7 +93,8 @@ export default {
       if (element) {
         this.navBarTitleClicked = true;
         element.scrollIntoView({ behavior: "smooth", block:"start"});
-        let observer = new IntersectionObserver(IntersectionObserverCallback, { root: this.$refs.container,rootMargin: "0px 0px -80% 0px" , threshold: 0.9});
+        let observer = new IntersectionObserver(IntersectionObserverCallback,
+            { root: this.$refs.container,rootMargin: "0px 0px -80% 0px" , threshold: 0.9});
         observer.observe(element);
       }
     },
@@ -186,11 +195,11 @@ export default {
     this.navBar.removeEventListener('mouseup', this.mouseUpHandler);
     this.navBar.removeEventListener('mousemove', this.mouseMoveHandler);
     this.navBar.removeEventListener('touchstart', this.touchStartHandler);
-  }
+  },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container-fluid {
   margin-left: 0;
   width: 100%;
@@ -268,7 +277,7 @@ h1 {
   align-items: center;
 
   & > span{
-  color: #e6f2ff;
+  color: rgb(230, 242, 255);
   text-align: left;
   }
 
@@ -285,17 +294,17 @@ h1 {
     padding: 0 10px;
 
     & > span{
-      color: #e6f2ff;
+      color: rgb(230, 242, 255);
     }
 
     & > h5{
-      color: #e6f2ff;
+      color: rgb(230, 242, 255);
       padding-top: 2rem;
       padding-bottom: .5rem;
     }
 
     .author{
-      color: #e6f2ff;
+      color: rgb(230, 242, 255);
       text-align: left;
       align-self: flex-end;
     }
@@ -304,9 +313,14 @@ h1 {
 
 }
 
-img {
-  width: 70%;
-  height: 70%;
+.image-container img {
+  width: 80%;
+  height: 80%;
+  max-width: 40rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .large-image-container {
@@ -317,21 +331,29 @@ img {
   bottom: 0;
   z-index: 9999;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #000c;
   overflow: auto;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
   & > img{
-    max-width: fit-content;
-    max-height: fit-content;
-    scale: 1.25;
+    height: 95vh;
+    width: 95vw;
+    padding: 5rem 1rem 1rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #0003;
+    object-fit: contain;
+
   }
 
   & > .author{
     color: #e6f2ff;
     text-align: left;
     align-self: flex-end;
+    width: auto;
   }
 }
 
