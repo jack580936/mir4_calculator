@@ -113,7 +113,7 @@ export default {
         // element scroll to view but not behind the nav bar
         element.scrollIntoView({ behavior: "smooth", block: "start" });
         let observer = new IntersectionObserver(IntersectionObserverCallback,
-            { root: this.$refs.container, rootMargin: "-42px 0px -75% 0px" , threshold: 0.9});
+            { root: this.$refs.container, rootMargin: "-84px 0px -75% 0px" , threshold: 0.9});
         observer.observe(element);
       }
     },
@@ -227,8 +227,7 @@ export default {
   width: 100%;
   overflow: auto;
   background-color: #15202B;
-  position: fixed;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 7rem;
 }
 
 h1, h4 {
@@ -254,6 +253,7 @@ h1 {
   overflow-x: overlay;
   overflow-y: hidden;
   position: fixed;
+  top: 42px;
   left: 0;
   right: 0;
 
