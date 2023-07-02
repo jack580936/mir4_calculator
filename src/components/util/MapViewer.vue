@@ -243,7 +243,7 @@ h4 {
 
 h1 {
   text-align: center;
-  padding-top: 5rem;
+  padding-top: 7rem;
 }
 
 .nav-bar {
