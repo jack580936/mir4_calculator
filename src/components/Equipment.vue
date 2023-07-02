@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="epic_equipment tab_page_bg container-fluid">
+    <div class="equipment tab_page_bg container-fluid">
         <div class="row col-12">
             <div id="equipment" class="col-12 col-xl-6">
                 <div id="equipment_num" class="equipment_num mb-3 col-12 col-xl-6 ">
@@ -501,6 +501,7 @@ export default {
 
 .container-fluid {
     overflow: auto;
+  padding: 3rem 1rem 0 1rem;
 }
 
 </style>

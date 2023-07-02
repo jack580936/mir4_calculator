@@ -180,11 +180,12 @@ export default {
   background-color: #15202B;
   color: #eeeef4;
   width: 100%;
+  padding: 3rem 2rem 0 2rem;
   overflow: auto;
   background-image: url("../assets/bg/dragonBG.png");
   background-repeat: no-repeat;
   background-position-x: center;
-  background-position-y: center;
+  background-position-y: calc(50% + 5rem);
 
     * li, label {
       background-color: #15202B;
@@ -245,11 +246,14 @@ export default {
       padding: 0.5rem;
       border-radius: 0.5rem;
       cursor: pointer;
+
       &:hover{
         background-color: #22303C;
+        transition: 0.5s;
       }
       &.active{
         background-color: #22303C;
+        transition: 0.5s;
       }
       & > div{
         display: flex;

@@ -21,10 +21,10 @@ body{
   --bs-nav-tabs-link-active-color: #fff;
   --bs-nav-tabs-link-active-border-color: #8899A6;
   background-color: #192734 ;
-  position: absolute;
-  top: 0;
+  position: fixed;
   left: 0;
   right: 0;
+  z-index: 3;
 
   & > ul{
     display: flex;
@@ -203,6 +203,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 h4,h5{
   padding-top: 0.5rem;
+  font-weight: bold;
 }
 
 .tab_page_bg {
