@@ -14,6 +14,7 @@ import SideBar from "@/components/util/SideBar.vue";
 import {ref, shallowRef} from 'vue'
 import {getImageUrl} from "@/utils";
 import {mapData} from "@/utils/mapData.js";
+import {useTabStore} from "@/store/tab.js";
 export default {
   name: "Resource",
   data() {
@@ -68,6 +69,8 @@ export default {
     }
   },
   created() {
+    const tabStore = useTabStore()
+    tabStore.currentMapTab = this.currentMapTab;
   },
   methods: {
     getImageUrl,

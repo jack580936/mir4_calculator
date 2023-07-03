@@ -14,7 +14,7 @@ import {getImageUrl} from "@/utils";
             <h5>{{ image.title }}</h5>
             <img :src="image.url" :alt="image.title" @click="enlargeImage(image)"/>
 
-            <span style="white-space: pre-line">{{ image.description}}</span>
+            <span v-if="image.description !== ''" style="white-space: pre-line">{{ image.description}}</span>
             <div class="author" v-if="image.author">
               <img v-if="image.authorImgUrl === ''" :src="getImageUrl('icon/person_FILL0.png')" class="author-img"  alt="author-img">
               <img v-else :src="image.authorImgUrl" class="author-img"  alt="author-img" @click="enlargeImage(image,'author')">
@@ -319,11 +319,12 @@ h1 {
     margin: 1rem auto;
     min-width: 50rem;
     max-width: 1000px;
-    padding: 0 10px;
+    padding: 1rem 1rem 2rem 1rem;
     border: 1px solid #192734;
     border-radius: 5px;
     background-color: rgba(25, 39, 52, 0.8);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
 
     & > span{
       color: rgb(230, 242, 255);
