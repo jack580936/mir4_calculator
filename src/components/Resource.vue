@@ -1,10 +1,21 @@
 <script setup>
 
 import SideBar from "@/components/util/SideBar.vue";
+import {useTabStore} from "@/store/tab.js";
+import {onMounted, ref} from "vue";
+
+const defaultMapTab = '蜃氣船';
+
+const tabStore = useTabStore();
+const currentSideBarTab = ref(defaultMapTab);
+
+onMounted(() => {
+  tabStore.currentSideBarTab = currentSideBarTab.value;
+});
 </script>
 
 <template>
-  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentMapTab" />
+  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs"/>
   <router-view v-slot="{ Component, route}">
       <component :is="Component" :PageTitle= "mapData[route.name].PageTitle" :images="mapData[route.name].images"/>
   </router-view>
@@ -21,7 +32,6 @@ export default {
     return {
       currentTab: '地圖資源',
       sideBarTitle: "地圖資源",
-      currentMapTab: "蜃氣船",
       tabs: [
             {
                 path: '/resource/Mirage-Ship',
@@ -68,9 +78,10 @@ export default {
       mapData: mapData,
     }
   },
-  created() {
-    const tabStore = useTabStore()
-    tabStore.currentMapTab = this.currentMapTab;
+  watch: {
+    currentMapTab: function (val) {
+      useTabStore().currentMapTab = val;
+    }
   },
   methods: {
     getImageUrl,

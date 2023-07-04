@@ -12,6 +12,7 @@ import MapViewer from "@/components/util/MapViewer.vue";
 import PdfViewer from "@/components/util/PdfViewer.vue";
 import SpeedCalculate from "@/components/util/SpeedCalculate.vue";
 import InfoLevel from "@/components/util/InfoLevel.vue";
+import {useTabStore} from "@/store/tab.js";
 
 const routers = [
     {
@@ -50,6 +51,11 @@ const routers = [
                 name: '伯牙絕弦',
                 component: PdfViewer,
                 props: true,
+                beforeEnter: (to, from, next) => {
+                    const tabStore = useTabStore();
+                    tabStore.currentSideBarTab = '伯牙絕弦';
+                    next();
+                },
             },
             {
                 path: '/mystery/reckless-courage',
@@ -125,6 +131,11 @@ const routers = [
                 name: '蜃氣船',
                 component: MapViewer,
                 props: true,
+                beforeEnter: (to, from, next) => {
+                    const tabStore = useTabStore();
+                    tabStore.currentSideBarTab = '蜃氣船';
+                    next();
+                },
             },
         ],
     },
@@ -170,6 +181,11 @@ const routers = [
                 name: '蜃氣船甲板',
                 component: MapViewer,
                 props: true,
+                beforeEnter: (to, from, next) => {
+                    const tabStore = useTabStore();
+                    tabStore.currentSideBarTab = '蜃氣船甲板';
+                    next();
+                },
             },
         ],
     },

@@ -1,14 +1,14 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, defineProps} from 'vue'
+import {useTabStore} from "@/store/tab.js";
 
 const props = defineProps({
   sideBarTitle: String,
   tabs: Array,
-  currentTab: String
 })
 
+const tabStore = useTabStore();
 const isExpanded = ref(null);
-let activeTab = ref(props.currentTab);
 
 
 const ToggleMenu = () => {
@@ -17,7 +17,7 @@ const ToggleMenu = () => {
 
 const changeSideBarThenClose = (tab) => {
   ToggleMenu();
-  activeTab= tab.name;
+  tabStore.currentSideBarTab = ref(tab.name).value;
 }
 </script>
 
@@ -33,7 +33,7 @@ const changeSideBarThenClose = (tab) => {
         </li>
         <template v-for="tab in tabs" :key="tab.name">
           <router-link :to="{name: tab.name}">
-            <li :class="['menu-item',{ active: activeTab === tab.name }]" @click="changeSideBarThenClose(tab)">
+            <li :class="['menu-item',{ active: tabStore.currentSideBarTab === tab.name }]" @click="changeSideBarThenClose(tab)">
               <span>{{ tab.name}}</span>
             </li>
           </router-link>
