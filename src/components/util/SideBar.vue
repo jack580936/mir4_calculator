@@ -127,6 +127,7 @@ label {
   box-shadow: 5px 0 5px rgba(23, 23, 54, 0.6);
   transform: translateX(-100%);
   transition: 0.5s;
+
 }
 .menu-header {
   font-weight: 600;
@@ -168,6 +169,8 @@ ul {
     opacity: 60%;
 }
 
-
+.open-current-submenu{
+  overflow-y: auto;
+}
 
 </style>

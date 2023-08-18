@@ -15,11 +15,51 @@ body{
   padding: 1rem;
 }
 
+@media (max-width: 849px) {
+  .sm-nav-bar{
+    background-color: #192734;
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 42px;
+    border-bottom: 1px solid #8899A6;
+    z-index: 5;
+  }
+  .current-page, .sm-nav-bar-tab-item {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    height: 42px;
+}
+  .sm-nav-bar-tab {
+    background: #192734;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 25rem;
+    overflow-y: auto;
+  }
+    .sm-nav-bar-tab-item.active {
+        background: #22303C;
+        color: #ffcc00;
+    }
+
+  .sm-nav-bar-tab{
+    :hover{
+      background: #22303C;
+      color: #ffcc00 !important;
+    }
+
+  }
+}
+
 .nav{
   --bs-nav-link-color: #8899A6;
   --bs-nav-tabs-link-active-bg: #22303C;
   --bs-nav-tabs-link-active-color: #fff;
   --bs-nav-tabs-link-active-border-color: #8899A6;
+  justify-content: space-between;
   background-color: #192734 ;
   position: fixed;
   left: 0;
@@ -266,10 +306,6 @@ h4,h5{
 
 .leftTab-container {
   float: left;
-}
-
-.nav{
-  justify-content: space-between;
 }
 
 .github-logo{
