@@ -34,7 +34,7 @@
           <div class="dragonArtifactNeedTitle">
               <h4>龍神器材料需求</h4>
           </div>
-          <div class="dragonArtifactSpecialTotalNeed">
+          <div class="dragonArtifactSpecialTotalNeed col-12">
             <template v-for="dragonMaterial in getDragonMaterialFromPool(selectedLevelOption,selectedDragonArtifactOption)">
               <div class="dragonArtifactSpecialNeedList">
                 <div class="dragonArtifactSpecialNeedItem" v-for="(value, material) in dragonMaterial" :key="material">
@@ -271,7 +271,7 @@ export default {
 }
 
 .dragonArtifactNeedList{
-display: flex;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -317,6 +317,7 @@ display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
+    flex-wrap: wrap;
 
   }
   .dragonArtifactSpecialNeedList{
