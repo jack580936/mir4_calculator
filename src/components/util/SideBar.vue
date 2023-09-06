@@ -1,5 +1,5 @@
 <script setup>
-import {ref, defineProps} from 'vue'
+import {ref} from 'vue'
 import {useTabStore} from "@/store/tab.js";
 
 const props = defineProps({

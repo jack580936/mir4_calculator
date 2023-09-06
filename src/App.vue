@@ -45,7 +45,7 @@ onMounted(() => {
         </ul>
       </div>
       <div class="sm-nav-bar" v-else>
-        <div class="current-page" @click="showSmNavBarTab = !showSmNavBarTab">
+        <div class="current-page" @click="showSmNavBarTab = !showSmNavBarTab" v-if="RouteTabs.find(route => route.path === currentTab) !== undefined">
           {{ RouteTabs.find(route => route.path === currentTab).name }}
         </div>
         <div class="sm-nav-bar-tab" v-if="showSmNavBarTab">
