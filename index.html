@@ -20,11 +20,19 @@
     <link rel="icon" href="/app.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="b8O46_srrhjUIBeq93iljqdqJEW1oUqvfNxKsvqEIBY"/>
-    <meta name="description" content="Mir4 Calculator"/>
+    <meta name="description" content="Mir4 Calculator 是一個簡單的計算器，能夠提供Mir4的玩家一些能讓遊戲更容易遊玩的小功能。"/>
     <meta name="keywords" content="Mir4 Calculator Mir4 mir4"/>
     <meta name="author" content="jack580936"/>
     <title>Mir4 Calculator</title>
-
+    <script>
+      (function(){
+        let redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
 </head>
 
 <body>

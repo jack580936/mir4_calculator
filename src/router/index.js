@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import EpicEquipment from "@/components/EpicEquipment.vue";
 import LegendaryEquipment from "@/components/LegendaryEquipment.vue";
 import Constitution from "@/components/Constitution.vue";
@@ -216,7 +216,7 @@ const routers = [
 
 
 const router = createRouter({
-    history: createWebHashHistory('mir4_calculator'),
+    history: createWebHistory('mir4_calculator'),
     routes: routers,
 });
 
