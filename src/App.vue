@@ -83,7 +83,7 @@ export default {
       RouteTabs: [
         {name: '龍神器', path: '/dragon-artifact'},
         {name: '傳說裝備', path: '/legendary-equipment'},
-        {name: '史詩裝備', path: '/epic-equipment'},
+        {name: '英雄裝備', path: '/epic-equipment'},
         {name: '體質', path: '/constitution'},
         {name: '奇緣', path: '/mystery'},
         {name: '地圖資源', path: '/resource'},
@@ -94,7 +94,7 @@ export default {
       leftRouteTabs: [
         {name: '龍神器', path: '/dragon-artifact'},
         {name: '傳說裝備', path: '/legendary-equipment'},
-        {name: '史詩裝備', path: '/epic-equipment'},
+        {name: '英雄裝備', path: '/epic-equipment'},
         {name: '體質', path: '/constitution'},
         {name: '奇緣', path: '/mystery'},
         {name: '地圖資源', path: '/resource'},
