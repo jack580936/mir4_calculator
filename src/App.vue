@@ -20,7 +20,20 @@ onMounted(() => {
 
 <template>
   <main>
-    <div class="demo">
+    <div class="welcome-container" v-if="!currentTab">
+      <div class="page-options" >
+        <router-link
+          v-for="route in RouteTabs"
+          :key="route.name"
+          :to="route.path"
+          :class="['page-option', route.path.replace(/^\//, '')]"
+          @click="currentTab = route.path; showSmNavBarTab = false"
+        >
+        {{ route.name }}
+        </router-link>
+      </div>
+    </div>
+    <div class="demo" v-if="currentTab">
       <div class="nav nav-tabs" v-if="screenWidth > 849 ">
         <ul class="leftTab-container">
           <li v-for="route in leftRouteTabs" :key="route.name" class="nav-item" @click="currentTab = route.path">
@@ -111,7 +124,9 @@ export default {
   created() {
     const tabStore = useTabStore();
     this.$router.beforeEach((to, from, next) => {
-
+      if (to.path === '/') {
+        return;
+      }
       tabStore.currentTab = to.path.match(/^\/[^\/]+/)[0];
       next();
     });

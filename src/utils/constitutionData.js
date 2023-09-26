@@ -45,56 +45,56 @@ export const physicalDefense = [
         new Level(53, '藥草葉', 67, '靈芝', 67),
         new Level(54, '藥草葉', 100, '靈芝', 100),
     ],'Epic'),
-    new Tier('Tier512', [
+    new Tier('Tier 12', [
         new Level(55, '藥草葉', 50, '靈芝', 50),
         new Level(56, '藥草葉', 50, '靈芝', 50),
         new Level(57, '藥草葉', 50, '靈芝', 50),
         new Level(58, '藥草葉', 50, '靈芝', 50),
         new Level(59, '藥草葉', 50, '靈芝', 50),
     ], 'Epic'),
-    new Tier('Tier013', [
+    new Tier('Tier 13', [
         new Level(60, '藥草葉', 60, '靈芝', 60),
         new Level(61, '藥草葉', 60, '靈芝', 60),
         new Level(62, '藥草葉', 60, '靈芝', 60),
         new Level(63, '藥草葉', 60, '靈芝', 60),
         new Level(64, '藥草葉', 60, '靈芝', 60),
     ],'Epic'),
-    new Tier('Tier514', [
+    new Tier('Tier 14', [
         new Level(65, '藥草葉', 5, '靈芝', 5),
         new Level(66, '藥草葉', 5, '靈芝', 5),
         new Level(67, '藥草葉', 5, '靈芝', 5),
         new Level(68, '藥草葉', 5, '靈芝', 5),
         new Level(69, '藥草葉', 5, '靈芝', 5),
     ], 'Legendary'),
-    new Tier('Tier015', [
+    new Tier('Tier 15', [
         new Level(70, '藥草葉', 10, '靈芝', 10),
         new Level(71, '藥草葉', 10, '靈芝', 10),
         new Level(72, '藥草葉', 10, '靈芝', 10),
         new Level(73, '藥草葉', 10, '靈芝', 10),
         new Level(74, '藥草葉', 10, '靈芝', 10),
     ], 'Legendary'),
-    new Tier('Tier516', [
+    new Tier('Tier 16', [
         new Level(75, '藥草葉', 15, '靈芝', 15),
         new Level(76, '藥草葉', 15, '靈芝', 15),
         new Level(77, '藥草葉', 15, '靈芝', 15),
         new Level(78, '藥草葉', 15, '靈芝', 15),
         new Level(79, '藥草葉', 15, '靈芝', 15),
     ], 'Legendary'),
-    new Tier('Tier017', [
+    new Tier('Tier 17', [
         new Level(80, '藥草葉', 20, '靈芝', 20),
         new Level(81, '藥草葉', 20, '靈芝', 20),
         new Level(82, '藥草葉', 20, '靈芝', 20),
         new Level(83, '藥草葉', 20, '靈芝', 20),
         new Level(84, '藥草葉', 20, '靈芝', 20),
     ], 'Legendary'),
-    new Tier('Tier518', [
+    new Tier('Tier 18', [
         new Level(85, '藥草葉', 25, '靈芝', 25),
         new Level(86, '藥草葉', 25, '靈芝', 25),
         new Level(87, '藥草葉', 25, '靈芝', 25),
         new Level(88, '藥草葉', 25, '靈芝', 25),
         new Level(89, '藥草葉', 25, '靈芝', 25),
     ], 'Legendary'),
-    new Tier('Tier019', [
+    new Tier('Tier 19', [
         new Level(90, '藥草葉', 30, '靈芝', 30),
         new Level(91, '藥草葉', 30, '靈芝', 30),
         new Level(92, '藥草葉', 30, '靈芝', 30),

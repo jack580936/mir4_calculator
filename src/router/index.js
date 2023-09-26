@@ -18,14 +18,16 @@ const routers = [
     {
         path: '/:catchAll(.*)',
         name: '首頁',
-        redirect: '/dragon-artifact',
+        meta: {
+            title: 'Mir4 Calculator',
+        }
     },
     {
         path: '/dragon-artifact',
         name: '龍神器',
         component: DragonArtifact,
         meta: {
-            title: 'Mir4 Calculator',
+            title: '龍神器',
         }
     },
     {
@@ -63,7 +65,7 @@ const routers = [
                 name: '伯牙絕弦',
                 component: PdfViewer,
                 meta: {
-                    title: '伯牙絕弦',
+                    title: '奇緣 - 伯牙絕弦',
                 },
                 props: true,
                 beforeEnter: (to, from, next) => {
@@ -77,7 +79,7 @@ const routers = [
                 name: '浩然之氣',
                 component: PdfViewer,
                 meta: {
-                    title: '浩然之氣',
+                    title: '奇緣 - 浩然之氣',
                 },
                 props: true,
             },
@@ -95,7 +97,7 @@ const routers = [
                 name: '秘庭峰',
                 component: MapViewer,
                 meta: {
-                    title: '秘庭峰',
+                    title: '地圖資源 - 秘庭峰',
                 },
                 props: true,
             },
@@ -104,7 +106,7 @@ const routers = [
                 name: '魔方陣',
                 component: MapViewer,
                 meta: {
-                    title: '魔方陣',
+                    title: '地圖資源 - 魔方陣',
                 },
                 props: true,
             },
@@ -113,7 +115,7 @@ const routers = [
                 name: '雪原地區(採集)',
                 component: MapViewer,
                 meta: {
-                    title: '雪原地區(採集)',
+                    title: '地圖資源 - 雪原地區(採集)',
                 },
                 props: true,
             },
@@ -122,7 +124,7 @@ const routers = [
                 name: '沙巴克地區(採集)',
                 component: MapViewer,
                 meta: {
-                    title: '沙巴克地區(採集)',
+                    title: '地圖資源 - 沙巴克地區(採集)',
                 },
                 props: true,
             },
@@ -131,7 +133,7 @@ const routers = [
                 name: '沙巴克地區(寶箱)',
                 component: MapViewer,
                 meta: {
-                    title: '沙巴克地區(寶箱)',
+                    title: '地圖資源 - 沙巴克地區(寶箱)',
                 },
                 props: true,
             },
@@ -140,7 +142,7 @@ const routers = [
                 name: '夢村地區(採集)',
                 component: MapViewer,
                 meta: {
-                    title: '夢村地區(採集)',
+                    title: '地圖資源 - 夢村地區(採集)',
                 },
                 props: true,
             },
@@ -149,7 +151,7 @@ const routers = [
                 name: '夢村地區(寶箱)',
                 component: MapViewer,
                 meta: {
-                    title: '夢村地區(寶箱)',
+                    title: '地圖資源 - 夢村地區(寶箱)',
                 },
                 props: true,
             },
@@ -158,7 +160,7 @@ const routers = [
                 name: '道觀地區',
                 component: MapViewer,
                 meta: {
-                    title: '道觀地區',
+                    title: '地圖資源 - 道觀地區',
                 },
                 props: true,
             },
@@ -167,7 +169,7 @@ const routers = [
                 name: '秘谷',
                 component: MapViewer,
                 meta: {
-                    title: '秘谷',
+                    title: '地圖資源 - 秘谷',
                 },
                 props: true,
             },
@@ -176,7 +178,7 @@ const routers = [
                 name: '蜃氣船',
                 component: MapViewer,
                 meta: {
-                    title: '蜃氣船',
+                    title: '地圖資源 - 蜃氣船',
                 },
                 props: true,
                 beforeEnter: (to, from, next) => {
@@ -199,7 +201,7 @@ const routers = [
                 name: '峽谷懸崖路',
                 component: MapViewer,
                 meta: {
-                    title: '峽谷懸崖路',
+                    title: '委託 - 峽谷懸崖路',
                 },
                 props: true,
             },
@@ -208,7 +210,7 @@ const routers = [
                 name: '九龍冰原',
                 component: MapViewer,
                 meta: {
-                    title: '九龍冰原',
+                    title: '委託 - 九龍冰原',
                 },
                 props: true,
             },
@@ -217,7 +219,7 @@ const routers = [
                 name: '夢村沙漠',
                 component: MapViewer,
                 meta: {
-                    title: '夢村沙漠',
+                    title: '委託 - 夢村沙漠',
                 },
                 props: true,
             },
@@ -226,7 +228,7 @@ const routers = [
                 name: '沙巴克城',
                 component: MapViewer,
                 meta: {
-                    title: '沙巴克城',
+                    title: '委託 - 沙巴克城',
                 },
                 props: true,
             },
@@ -235,7 +237,7 @@ const routers = [
                 name: '蜃氣船內部船艙',
                 component: MapViewer,
                 meta: {
-                    title: '蜃氣船內部船艙',
+                    title: '委託 - 蜃氣船內部船艙',
                 },
                 props: true,
             },
@@ -244,7 +246,7 @@ const routers = [
                 name: '蜃氣船甲板',
                 component: MapViewer,
                 meta: {
-                    title: '蜃氣船甲板',
+                    title: '委託 - 蜃氣船甲板',
                 },
                 props: true,
                 beforeEnter: (to, from, next) => {
@@ -266,7 +268,7 @@ const routers = [
                 name: '採集挖礦速度計算',
                 component: SpeedCalculate,
                 meta: {
-                    title: '採集挖礦速度計算',
+                    title: '一些小功能 - 採集挖礦速度計算',
                 },
             },
             {
@@ -274,7 +276,7 @@ const routers = [
                 name: '各等級資訊',
                 component: InfoLevel,
                 meta: {
-                    title: '各等級資訊',
+                    title: '一些小功能 - 各等級資訊',
                 },
             },
         ],

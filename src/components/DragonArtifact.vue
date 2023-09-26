@@ -171,6 +171,15 @@ export default {
     border-color: #22303C;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /* 從 透明度 0 開始 */
+  }
+  100% {
+    opacity: 1; /* 漸變到透明度 1 */
+  }
+}
+
 .dragonArtifact {
   display: flex;
   flex-direction: column;
@@ -186,6 +195,10 @@ export default {
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: calc(50% + 5rem);
+  animation: fadeIn 0.5s ease-in-out;
+  animation-fill-mode: forwards; /* 動畫結束後保持最後的狀態 */
+  opacity: 0; /* 初始透明度為 0 */
+  z-index: -1;
 
     * li, label {
       background-color: #15202B;
