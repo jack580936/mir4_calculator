@@ -37,7 +37,7 @@ export default defineConfig({
     plugins: [
         vue(),
         Sitemap({
-            'hostname': 'https://mir4calculator-p3cznla4dq-de.a.run.app',
+            'hostname': 'https://mir4calc.com',
             dynamicRoutes,
         }),
     ],
