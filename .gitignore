@@ -26,6 +26,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-/env
-/env/.env
-/env/.env.production
+
