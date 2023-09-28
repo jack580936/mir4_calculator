@@ -1,9 +1,20 @@
 <script setup>
 import SideBar from "@/components/util/SideBar.vue";
+import {useTabStore} from "@/store/tab.js";
+import {onMounted, ref} from "vue";
+
+const defaultRequestTab = ref('蜃氣船甲板');
+
+const tabStore = useTabStore();
+
+onMounted(() => {
+  tabStore.currentSideBarTab = defaultRequestTab.value;
+});
+
 </script>
 
 <template>
-  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentRequestTab" />
+  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs"/>
   <router-view v-slot="{ Component, route}">
       <component :is="Component" :PageTitle= "requestData[route.name].PageTitle" :images="requestData[route.name].images"/>
   </router-view>
@@ -20,7 +31,6 @@ export default {
   data() {
     return {
       sideBarTitle: "委託",
-      currentRequestTab: '蜃氣船甲板',
       tabs: [
         {
           name: '蜃氣船內部船艙',
@@ -49,8 +59,6 @@ export default {
       ],
       requestData: requestData,
     }
-  },
-  created() {
   },
   methods: {
     getImageUrl,

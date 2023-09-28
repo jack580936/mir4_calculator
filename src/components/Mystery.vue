@@ -1,11 +1,21 @@
 <script setup>
 import SideBar from "@/components/util/SideBar.vue";
+import {useTabStore} from "@/store/tab.js";
+import {onMounted, ref} from "vue";
 
+const defaultMysteryTab = '伯牙絕弦';
+
+const tabStore = useTabStore();
+const currentSideBarTab = ref(defaultMysteryTab);
+
+onMounted(() => {
+  tabStore.currentSideBarTab = currentSideBarTab.value;
+});
 
 </script>
 
 <template>
-  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" :currentTab="currentMysteryTab" />
+  <SideBar :side-bar-title="sideBarTitle" :tabs="tabs" />
   <router-view v-slot="{ Component, route}">
       <component :is="Component"  :pdfUrl="mysteryData[route.name]" :pdfTitle="mysteryData[route.name]"/>
   </router-view>
@@ -19,7 +29,6 @@ export default {
   data() {
     return {
       sideBarTitle: "奇緣",
-      currentMysteryTab: "伯牙絕弦",
       tabs: [
             {
                 path: '/mystery/grieving-the-death-of-a-friend',

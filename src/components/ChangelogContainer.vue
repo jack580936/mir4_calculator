@@ -1,6 +1,5 @@
 <template>
   <div class="card-container container-fluid">
-      <img :src="getImageUrl('bg/dragonBG.png')" alt="changelog"/>
     <div class="card-carousel">
          <button type="button" class="btn" @click="prevCard">&lt;</button>
          <div class="card">
@@ -69,14 +68,11 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: auto;
-
-  & > img{
-    position: absolute;
-    width: 50%;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  background-image: url("../assets/bg/dragonBG.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: calc(50% + 5rem);
 }
 
 .card-carousel {
@@ -84,6 +80,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
+  padding-top: 3rem;
 
     & > button{
       margin: 1rem;
