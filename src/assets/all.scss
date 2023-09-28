@@ -61,18 +61,32 @@ body {
     font-size: 1.5rem;
     color: #eeeef4;
     cursor: pointer;
-
-    @media (max-width: 1024px) {
-        width: 100px;
-        min-width: 100px;
-        height: 100px;
+    // 1024px 以下 以及高度小於 600px 的裝置
+    @media (max-width: 1024px) or (max-height: 800px) {
+        width: 9rem;
+        min-width: 9rem;
+        height: 9rem;
         font-size: 1rem;
     }
 
-    @media (max-width: 425px) {
-      width: 60px;
-      min-width: 60px;
-      height: 60px;
+    @media (max-width: 768px) or (max-height: 564px) {
+      width:  8rem;
+      min-width: 8rem;
+      height: 8rem;
+      font-size: .8rem;
+    }
+
+    @media (max-width: 640px) {
+      width:  4rem;
+      min-width: 4rem;
+      height: 4rem;
+      font-size: .7rem;
+    }
+
+    @media (max-width: 360px) {
+      width:  3rem;
+      min-width: 3rem;
+      height: 3rem;
       font-size: .7rem;
     }
 
