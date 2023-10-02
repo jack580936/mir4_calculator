@@ -28,6 +28,7 @@ const routers = [
         component: DragonArtifact,
         meta: {
             title: '龍神器',
+            canonical: 'https://mir4calc.com/dragon-artifact',
         }
     },
     {
@@ -36,6 +37,7 @@ const routers = [
         component: LegendaryEquipment,
         meta: {
             title: '傳說裝備',
+            canonical: 'https://mir4calc.com/legendary-equipment',
         }
     },
     {
@@ -44,6 +46,7 @@ const routers = [
         component: EpicEquipment,
         meta: {
             title: '英雄裝備',
+            canonical: 'https://mir4calc.com/epic-equipment',
         }
     },
     {
@@ -52,6 +55,7 @@ const routers = [
         component: Constitution,
         meta: {
             title: '體質',
+            canonical: 'https://mir4calc.com/constitution',
         }
     },
     {
@@ -66,6 +70,7 @@ const routers = [
                 component: PdfViewer,
                 meta: {
                     title: '奇緣 - 伯牙絕弦',
+                    canonical: 'https://mir4calc.com/mystery/grieving-the-death-of-a-friend',
                 },
                 props: true,
                 beforeEnter: (to, from, next) => {
@@ -80,6 +85,7 @@ const routers = [
                 component: PdfViewer,
                 meta: {
                     title: '奇緣 - 浩然之氣',
+                    canonical: 'https://mir4calc.com/mystery/reckless-courage',
                 },
                 props: true,
             },
@@ -98,6 +104,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 秘庭峰',
+                    canonical: 'https://mir4calc.com/resource/secret-peak',
                 },
                 props: true,
             },
@@ -107,6 +114,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 魔方陣',
+                    canonical: 'https://mir4calc.com/resource/magic-square',
                 },
                 props: true,
             },
@@ -116,6 +124,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 雪原地區(採集)',
+                    canonical: 'https://mir4calc.com/resource/snow-field-area-resource',
                 },
                 props: true,
             },
@@ -125,6 +134,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 沙巴克地區(採集)',
+                    canonical: 'https://mir4calc.com/resource/sabuk-area-resource',
                 },
                 props: true,
             },
@@ -134,6 +144,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 沙巴克地區(寶箱)',
+                    canonical: 'https://mir4calc.com/resource/sabuk-area-chest',
                 },
                 props: true,
             },
@@ -143,6 +154,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 夢村地區(採集)',
+                    canonical: 'https://mir4calc.com/resource/phantasia-area-resource',
                 },
                 props: true,
             },
@@ -152,6 +164,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 夢村地區(寶箱)',
+                    canonical: 'https://mir4calc.com/resource/phantasia-area-chest',
                 },
                 props: true,
             },
@@ -161,6 +174,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 道觀地區',
+                    canonical: 'https://mir4calc.com/resource/spiritual-area',
                 },
                 props: true,
             },
@@ -170,6 +184,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 秘谷',
+                    canonical: 'https://mir4calc.com/resource/valley',
                 },
                 props: true,
             },
@@ -179,6 +194,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '地圖資源 - 蜃氣船',
+                    canonical: 'https://mir4calc.com/resource/Mirage-Ship',
                 },
                 props: true,
                 beforeEnter: (to, from, next) => {
@@ -202,6 +218,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '委託 - 峽谷懸崖路',
+                    canonical: 'https://mir4calc.com/requests/gorge-cliff-path',
                 },
                 props: true,
             },
@@ -211,6 +228,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '委託 - 九龍冰原',
+                    canonical: 'https://mir4calc.com/requests/nine-dragon-ice-field',
                 },
                 props: true,
             },
@@ -220,6 +238,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '委託 - 夢村沙漠',
+                    canonical: 'https://mir4calc.com/requests/phantasia-desert',
                 },
                 props: true,
             },
@@ -229,6 +248,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '委託 - 沙巴克城',
+                    canonical: 'https://mir4calc.com/requests/sabuk-castle',
                 },
                 props: true,
             },
@@ -238,6 +258,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '委託 - 蜃氣船內部船艙',
+                    canonical: 'https://mir4calc.com/requests/Mirage-Ship-Inner-Cabins',
                 },
                 props: true,
             },
@@ -247,6 +268,7 @@ const routers = [
                 component: MapViewer,
                 meta: {
                     title: '委託 - 蜃氣船甲板',
+                    canonical: 'https://mir4calc.com/requests/Mirage-Ship-Deck',
                 },
                 props: true,
                 beforeEnter: (to, from, next) => {
@@ -269,6 +291,7 @@ const routers = [
                 component: SpeedCalculate,
                 meta: {
                     title: '一些小功能 - 採集挖礦速度計算',
+                    canonical: 'https://mir4calc.com/other-calculate/speed-boost',
                 },
             },
             {
@@ -277,6 +300,7 @@ const routers = [
                 component: InfoLevel,
                 meta: {
                     title: '一些小功能 - 各等級資訊',
+                    canonical: 'https://mir4calc.com/other-calculate/lvl',
                 },
             },
         ],
@@ -287,6 +311,7 @@ const routers = [
         component: ChangeLog,
         meta: {
             title: '更新日誌',
+            canonical: 'https://mir4calc.com/change-log',
         },
     },
 ];
@@ -300,6 +325,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.title) {
         document.title = to.meta.title;
+    }
+    if (to.meta.canonical) {
+        const link = document.querySelector('link[rel=canonical]');
+        link.setAttribute('href', to.meta.canonical);
     }
     next();
 });
