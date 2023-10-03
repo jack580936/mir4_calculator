@@ -49,6 +49,9 @@ onMounted(() => {
             </router-link>
           </li>
           <li>
+            <a href="https://www.buymeacoffee.com/jack580936" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px ;width: 110px ;  margin: 0.4rem 0 0 0;" ></a>
+          </li>
+          <li>
             <div class="github-logo">
               <a href="https://github.com/jack580936/mir4_calculator" target="_blank">
                 <img :src="getImageUrl('icon/github-mark-white.png')" alt="Github logo"/>
