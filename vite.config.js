@@ -32,7 +32,7 @@ const names = [
     'other-calculate/lvl',
     'change-log',
 ];
-const dynamicRoutes = names.map(name => `/mir4_calculator/${name}`);
+const dynamicRoutes = names.map(name => `/${name}`);
 export default defineConfig({
     plugins: [
         vue(),
@@ -50,7 +50,7 @@ export default defineConfig({
         host: '0.0.0.0',
         port: '7414'
     },
-    base: '/mir4_calculator/',
+    base: '',
     envDir: './env',
     build: {
         rollupOptions: {
