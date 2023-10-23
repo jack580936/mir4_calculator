@@ -2,7 +2,7 @@
 
 這是一個簡單的計算器，能夠提供Mir4的玩家一些能讓遊戲更容易遊玩的小功能。
 
-您可以從此進入網站： https://jack580936.github.io/mir4_calculator/
+您可以從此進入網站： https://mir4calc.com
 
 * 龍神器裝備計算
 * 裝備材料計算
@@ -19,7 +19,7 @@
 
 This is a simple calculator that provides Mir4 players with some small features to make the game easier to play.
 
-You can access the website here: https://jack580936.github.io/mir4_calculator/
+You can access the website here: https://mir4calc.com
 
 * Dragon Artifact equipment craft calculation
 * Equipment craft calculation
