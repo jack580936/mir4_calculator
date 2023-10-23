@@ -19,7 +19,7 @@
 
 This is a simple calculator that provides Mir4 players with some small features to make the game easier to play.
 
-You can access the website here: https://jack580936.github.io/mir4_calculator/
+You can access the website here: https://mir4calc.com
 
 * Dragon Artifact equipment craft calculation
 * Equipment craft calculation
