@@ -79,7 +79,7 @@ export default {
             minimum: 0,
             clickCount: 0,
             showGif: false,
-            currentTier: null,
+            currentTier: 10,
             ClassName: 'Epic',
             constitutionStart: 8,
             constitutionEnd: 19,
@@ -124,6 +124,7 @@ export default {
     },
     mounted() {
         this.changeCat();
+        this.setConstitutionLevel()
     },
     computed: {
         numbers() {
@@ -224,7 +225,7 @@ export default {
       background-color: #15202B;
       color: #eeeef4;
     }
-    .input-group > input,{
+    .input-group > input{
       color: #eeeef4;
       background-color: #15202B;
       border-color: #22303C;
