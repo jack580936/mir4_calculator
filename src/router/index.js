@@ -27,7 +27,7 @@ export const routers = [
         name: '龍神器',
         component: DragonArtifact,
         meta: {
-            title: '龍神器',
+            title: '龍神器 DragonArtifact',
             canonical: 'https://mir4calc.com/dragon-artifact',
         }
     },
@@ -36,7 +36,7 @@ export const routers = [
         name: '傳說裝備',
         component: LegendaryEquipment,
         meta: {
-            title: '傳說裝備',
+            title: '傳說裝備 LegendaryEquipment',
             canonical: 'https://mir4calc.com/legendary-equipment',
         }
     },
@@ -45,7 +45,7 @@ export const routers = [
         name: '英雄裝備',
         component: EpicEquipment,
         meta: {
-            title: '英雄裝備',
+            title: '英雄裝備 EpicEquipment',
             canonical: 'https://mir4calc.com/epic-equipment',
         }
     },
@@ -54,7 +54,7 @@ export const routers = [
         name: '體質',
         component: Constitution,
         meta: {
-            title: '體質',
+            title: '體質 Constitution',
             canonical: 'https://mir4calc.com/constitution',
         }
     },
