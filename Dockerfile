@@ -10,7 +10,7 @@ RUN npm run build
 FROM nginx:latest
 
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-#COPY ./dist/ /usr/share/nginx/html
+COPY ./googlea3a83c53d0b01668.html /usr/share/nginx/html
 # 复制自定义 Nginx 配置文件到容器中
 COPY nginx/nginx_conf/nginx.conf /etc/nginx/nginx.conf
 
