@@ -2,6 +2,7 @@
 import {useTabStore} from "@/store/tab.js";
 import {onMounted, ref} from "vue";
 import {storeToRefs} from "pinia";
+import PopUpMessage from "@/components/util/PopUpMessage.vue";
 
 const tabStore = useTabStore();
 const {currentTab, currentSideBarTab, screenWidth} = storeToRefs(tabStore);
@@ -19,6 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <PopUpMessage></PopUpMessage>
   <main>
     <div class="welcome-container" v-if="!currentTab">
       <div class="page-options" >
