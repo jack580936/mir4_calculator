@@ -69,7 +69,7 @@ export const routers = [
                 name: '伯牙絕弦',
                 component: PdfViewer,
                 meta: {
-                    title: '奇緣 - 伯牙絕弦',
+                    title: '奇緣 - 伯牙絕弦 grieving the death of a friend',
                     canonical: 'https://mir4calc.com/mystery/grieving-the-death-of-a-friend',
                 },
                 props: true,
@@ -84,7 +84,7 @@ export const routers = [
                 name: '浩然之氣',
                 component: PdfViewer,
                 meta: {
-                    title: '奇緣 - 浩然之氣',
+                    title: '奇緣 - 浩然之氣 reckless courage',
                     canonical: 'https://mir4calc.com/mystery/reckless-courage',
                 },
                 props: true,
