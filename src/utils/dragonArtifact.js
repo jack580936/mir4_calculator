@@ -289,14 +289,17 @@ function getNeedFromLevel(TargetLevel, currentCalcLevel, TargetMaterial) {
 }
 
 
-function getInventoryCost(materialPool, totalInventory, stopTarget, calcInventoryColumn, result) {
+function getInventoryCost(materialPool, totalInventory, stopTarget, calcInventoryColumn, wholeNeeded) {
     let inventoryCost = {};
     // 通貨
     let currency = ['龍鐵', '黑鐵', '生命精華', '閃粉', '銅幣'];
     totalInventory.flat().forEach(item => {
         if ([...currency, ...calcInventoryColumn].includes(item.show_name)) {
-            if (item.value >= result[item.show_name] && !currency.includes(item.show_name) ) {
-                item.value = result[item.show_name];
+            if (item.value >= wholeNeeded[item.show_name] && !currency.includes(item.show_name) ) {
+                if (item.show_name.includes(['萬年鋼鐵', '萬年寒鐵', '萬年寒玉']) && wholeNeeded[item.show_name] > 0) {
+                    item.value = wholeNeeded[item.show_name];
+                }
+                item.value = wholeNeeded[item.show_name];
             }
             const needMaterials = materialPool.extractMaterials(item.show_name, item.value, stopTarget);
             Object.assign(inventoryCost, dictAdd(needMaterials, inventoryCost));
@@ -331,6 +334,12 @@ function dictMinus(dict1, dict2) {
     return result;
 }
 
+// 整理所需材料的順序
+function sortMaterial(material) {
+    return Object.fromEntries(Object.entries(material).sort((a, b) => b[0].length - a[0].length));
+}
+
+
 export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, TargetNum, totalInventory) {
 
     const materialPool = new MaterialPool(base_pool);
@@ -340,11 +349,12 @@ export function getEachLevelMaterialFromPool(TargetLevel, TargetMaterial, Target
     for (let i = 0; i < stopTarget.length; i++) {
         // sort by key
         let currentCalcLevel = i;
-        let result = materialPool.extractMaterials(TargetMaterial, TargetNum, stopTarget[i]);
+        let wholeNeeded = materialPool.extractMaterials(TargetMaterial, TargetNum, stopTarget[i]);
         const calcInventoryColumn = getNeedFromLevel(TargetLevel, currentCalcLevel, TargetMaterial);
-        let totalHave = getInventoryCost(materialPool, totalInventory, stopTarget[i], calcInventoryColumn,result);
-        let sortedResult = Object.fromEntries(Object.entries(result).sort((a, b) => b[0].length - a[0].length));
-        sortedResult = dictMinus(sortedResult, totalHave);
+        let totalHave = getInventoryCost(materialPool, totalInventory, stopTarget[i], calcInventoryColumn,wholeNeeded);
+
+        let sortedResult = sortMaterial(dictMinus(wholeNeeded, totalHave));
+
         material.push(sortedResult);
         if (material[TargetMaterial] !== undefined) {
             break;

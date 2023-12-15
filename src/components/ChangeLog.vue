@@ -15,6 +15,14 @@ export default {
     return {
       logs: [
         {
+          title: 'Version 2.0',
+          changes: [
+              '1. 現在網頁擁有網域啦 mir4calc.com <3',
+              '2. 龍神器BUG修正',
+              '20231110'
+          ]
+        },
+        {
           title: 'Version 1.9',
           changes: [
               '1. 蜃氣船內部船艙委託更新',
