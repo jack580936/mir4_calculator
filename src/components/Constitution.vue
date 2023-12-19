@@ -79,10 +79,10 @@ export default {
             minimum: 0,
             clickCount: 0,
             showGif: false,
-            currentTier: 10,
+            currentTier: 13,
             ClassName: 'Epic',
             constitutionStart: 8,
-            constitutionEnd: 19,
+            constitutionEnd: 21,
             constitutionItem: {
                 physicalDefense: {name: "物理防禦", id: "physicalDefense", value: null, maxLevel: 0, minLevel: 0},
                 spellDefense: {name: "法術防禦", id: "spellDefense", value: null, maxLevel: 0, minLevel: 0},
@@ -193,7 +193,7 @@ export default {
                 {show_name: '真氣', name: 'energy', level: 'Uncommon', class: '真氣', value: null},
                 {show_name: '生命精華', name: 'lifeEssence', level: 'Uncommon', class: '生命精華', value: null},
                 {show_name: '銅幣', name: 'money', level: 'Uncommon', class: '銅幣', value: null},
-                {show_name: '雪參', name: 'snowPanax', level: 'Rare', class: '雪參', value: null},
+                {show_name: '萬年雪參', name: 'snowPanax', level: 'Epic', class: '英雄萬年雪參', value: null},
             ])
 
             return this.inventoryNum

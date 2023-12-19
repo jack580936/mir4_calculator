@@ -25,6 +25,13 @@
                             <label class="list-group-item">{{ upgradeItem.upgradeItem2 }}</label>
                             <label class="list-group-item">{{ upgradeItem.upgradeAmount2 }}</label>
                         </div>
+                        <div v-if="upgradeItem.upgradeAmount3" class="list-group list-group-flush">
+                            <img :src="getImageUrl(`Constitution/${upgradeItem.upgradeItem3}.png`)"
+                                 :class="`input-group img-thumbnail Epic`"
+                                 alt>
+                            <label class="list-group-item">{{ upgradeItem.upgradeItem3 }}</label>
+                            <label class="list-group-item">{{ upgradeItem.upgradeAmount3 }}</label>
+                        </div>
                     </template>
                 </div>
             </template>
@@ -36,7 +43,10 @@
                 <h4 v-else class="list-group-item">{{ LevelShowName[lvl] }} ➙ {{LevelShowName[ClassName]}}</h4>
                 <template v-for="(value, materialName) in items">
                     <div class="list-group list-group-sm answer-img">
-                        <img v-if="value>0 && !['真氣', '生命精華', '銅幣'].includes(materialName)"
+                        <img v-if="['英雄萬年雪參'].includes(materialName) && (lvl === 'Legendary' || lvl === 'Epic')"
+                             :src="getImageUrl(`Constitution/${materialName}.png`)"
+                             :class="`list-group-item img-thumbnail Epic`" alt="...">
+                        <img v-else-if="value>0 && !['真氣', '生命精華', '銅幣'].includes(materialName)"
                              :src="getImageUrl(`Constitution/${materialName}.png`)"
                              :class="`list-group-item img-thumbnail ${lvl}`"
                              alt="...">
@@ -52,9 +62,6 @@
                         <label v-if="value>0 || ( ['雪參'].includes(materialName) && (lvl !== 'Legendary' && lvl !== 'Epic') )" class="material list-group-item col-12">{{
                             materialName
                             }} : {{ value.toLocaleString() }}</label>
-                        <label v-else-if="value<0" class="material list-group-item col-12">{{
-                            value
-                            }} : enough</label>
                     </div>
                 </template>
             </div>
@@ -116,12 +123,16 @@ export default {
             const classification = targetTier.classification;
             const upgradeItemName1 = targetTier.levels[0].upgradeItem1;
             const upgradeItemName2 = targetTier.levels[0].upgradeItem2;
+            const upgradeItemName3 = targetTier.levels[0]?.upgradeItem3;
             let totalUpgradeAmount1 = 0;
             let totalUpgradeAmount2 = 0;
+            let totalUpgradeAmount3 = 0;
             Object.assign(totalUpgradeData, {'upgradeItem1': upgradeItemName1,
                                                     'upgradeAmount1': totalUpgradeAmount1,
                                                     'upgradeItem2': upgradeItemName2,
                                                     'upgradeAmount2': totalUpgradeAmount2,
+                                                    'upgradeItem3': upgradeItemName3,
+                                                    'upgradeAmount3': totalUpgradeAmount3,
                                                     'classification': classification,});
             if(lastLevel+1 === currentLevel){
                 return [totalUpgradeData];
@@ -130,9 +141,11 @@ export default {
                 const level = targetTier.levels[i];
                 totalUpgradeAmount1 += level.upgradeAmount1;
                 totalUpgradeAmount2 += level.upgradeAmount2;
+                totalUpgradeAmount3 += level.upgradeAmount3;
                 Object.assign(totalUpgradeData, {
                     'upgradeAmount1': totalUpgradeAmount1,
-                    'upgradeAmount2': totalUpgradeAmount2
+                    'upgradeAmount2': totalUpgradeAmount2,
+                    'upgradeAmount3': totalUpgradeAmount3,
                 });
             }
             return [totalUpgradeData];
@@ -158,8 +171,12 @@ export default {
                     if(totalUpgradeData[item.upgradeItem2] === undefined){
                         totalUpgradeData[item.upgradeItem2] = 0;
                     }
+                    if(totalUpgradeData[item.upgradeItem3] === undefined){
+                        totalUpgradeData[item.upgradeItem3] = 0;
+                    }
                     totalUpgradeData[item.upgradeItem1] += item.upgradeAmount1;
                     totalUpgradeData[item.upgradeItem2] += item.upgradeAmount2;
+                    totalUpgradeData[item.upgradeItem3] += item.upgradeAmount3;
                 })
             }
             return totalUpgradeData;
@@ -174,6 +191,7 @@ export default {
 
 
             const totalCost  = this.subtractInventory(this.getConstitutionMaterialNeeded(totalUpgradeMaterial, this.ClassName), inventoryNum)
+          console.log(totalCost)
             return  this.calculateAllConstitutionCurrenciesCost(totalCost, inventoryNum);
         },
         calculateConstitutionCurrenciesCost(startLevel, totalCost, targetLevel = '') {
@@ -218,6 +236,7 @@ export default {
 
             for (const [upgradeLvl, multiplier] of Object.entries(upgrade_cost)) {
                 for (const [key, v] of Object.entries(totalCost[upgradeLvl])) {
+                    if(key==='英雄萬年雪參') continue;
                     if (['百年果', '毒角片', '花幽飲'].includes(key)) {
                         energy += v * multiplier.energy;
                         money += v * multiplier.money;
@@ -254,7 +273,9 @@ export default {
             for (const [key, value] of Object.entries(needed)) {
                 for (const [lvl, _] of Object.entries(weight)) {
                     totalMaterial[lvl] ??= {};
-                    if ((['花幽飲', '毒角片', '百年果'].includes(key))) {
+                    if (['英雄萬年雪參'].includes(key) && ['Legendary', 'Epic'].includes(lvl)) {
+                        totalMaterial[lvl][key] = value ;
+                    }else if ((['花幽飲', '毒角片', '百年果'].includes(key))) {
                         totalMaterial[lvl][key] = value * constitutionWeight[lvl];
                     } else if (!(['energy', 'lifeEssence', 'money'].includes(key))) {
                         totalMaterial[lvl][key] = value * weight[lvl];
@@ -270,6 +291,7 @@ export default {
             const inventoryEnergy = totalInventory.flat().find(obj => obj.name === `energy`).value;
             const inventoryLifeEssence = totalInventory.flat().find(obj => obj.name === `lifeEssence`).value;
             const inventoryMoney = totalInventory.flat().find(obj => obj.name === `money`).value;
+            const inventorySnowGinseng = totalInventory.flat().find(obj => obj.name === `snowPanax`).value;
             if (this.ClassName === 'Epic') {
                 // 把Legendary拿掉 因為最高只到Epic
                 lvlList.pop()
@@ -282,6 +304,7 @@ export default {
                     '生命精華': inventoryLifeEssence < lifeEssence ? (lifeEssence - inventoryLifeEssence) : 0,
                     '銅幣': inventoryMoney < money ? (money - inventoryMoney) : 0,
                     '雪參' : '∞'
+
                 });
             }
             return totalCost;
@@ -296,9 +319,16 @@ export default {
                 Rare: [100, 10, 1, 0],
                 Uncommon: [1000, 100, 10, 1]
             };
-
             for (let lvl of Object.keys(needed)) {
                 for (const key in needed[lvl]) {
+                    if(key === '英雄萬年雪參' && ['Legendary', 'Epic'].includes(lvl)) {
+                        result[lvl] ??= {};
+                        const snowPanax = total_inventory.flat().find(obj => obj.name === `snowPanax`).value || 0;
+                        result[lvl][key] = needed['Epic'][key] - snowPanax || 0;
+                        continue;
+                    }else if (key === '英雄萬年雪參' && ['Rare','Uncommon'].includes(lvl)){
+                      continue;
+                    }
                     const LegendaryValue = total_inventory.flat().find(obj => obj.name === `Legendary_${key}`).value || 0;
                     const EpicValue = total_inventory.flat().find(obj => obj.name === `Epic_${key}`).value || 0;
                     const RareValue = total_inventory.flat().find(obj => obj.name === `Rare_${key}`).value || 0;
@@ -338,7 +368,7 @@ export default {
       background-color: #15202B;
       color: #eeeef4;
     }
-    .input-group > input,{
+    .input-group > input{
       color: #eeeef4;
       background-color: #15202B;
       border-color: #22303C;
