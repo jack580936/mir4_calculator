@@ -326,9 +326,8 @@ export default {
                         const snowPanax = total_inventory.flat().find(obj => obj.name === `snowPanax`).value || 0;
                         result[lvl][key] = needed['Epic'][key] - snowPanax || 0;
                         continue;
-                    }else if (key === '英雄萬年雪參' && ['Rare','Uncommon'].includes(lvl)){
-                      continue;
-                    }
+                    }else if (key === '英雄萬年雪參' && ['Rare','Uncommon'].includes(lvl)){continue;}
+                    if (key ==='null') {continue;}
                     const LegendaryValue = total_inventory.flat().find(obj => obj.name === `Legendary_${key}`).value || 0;
                     const EpicValue = total_inventory.flat().find(obj => obj.name === `Epic_${key}`).value || 0;
                     const RareValue = total_inventory.flat().find(obj => obj.name === `Rare_${key}`).value || 0;
