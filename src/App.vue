@@ -2,10 +2,13 @@
 import {useTabStore} from "@/store/tab.js";
 import {onMounted, ref} from "vue";
 import {storeToRefs} from "pinia";
+import Sponsor from "@/components/Sponsor.vue";
+import ShutdownNotice from "@/components/ShutdownNotice.vue";
 
 const tabStore = useTabStore();
 const {currentTab, currentSideBarTab, screenWidth} = storeToRefs(tabStore);
 const showSmNavBarTab = ref(false);
+const isSponsorModalVisible = ref(false);
 const updateScreenWidth = () => {
   screenWidth.value = window.innerWidth;
 };
@@ -20,6 +23,7 @@ onMounted(() => {
 
 <template>
   <main>
+    <ShutdownNotice />
     <div class="welcome-container" v-if="!currentTab">
       <div class="page-options" >
         <router-link
@@ -48,7 +52,12 @@ onMounted(() => {
               {{ route.name }}
             </router-link>
           </li>
-          <li>
+          <li class="nav-item">
+            <div class="sponsor-logo" @click="isSponsorModalVisible = true" title="Sponsor">
+              <img :src="getImageUrl('icon/heart.svg')" alt="Sponsor"/>
+            </div>
+          </li>
+          <li class="nav-item">
             <div class="github-logo">
               <a href="https://github.com/jack580936/mir4_calculator" target="_blank">
                 <img :src="getImageUrl('icon/github-mark-white.png')" alt="Github logo"/>
@@ -82,6 +91,7 @@ onMounted(() => {
         </keep-alive>
       </router-view>
     </div>
+    <Sponsor :visible="isSponsorModalVisible" @close="isSponsorModalVisible = false" />
   </main>
 </template>
 
@@ -145,5 +155,15 @@ export default {
 
 
 <style scoped lang="scss">
+.sponsor-logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
 </style>

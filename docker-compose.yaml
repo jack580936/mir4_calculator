@@ -1,0 +1,9 @@
+services:
+  mir4_calc:
+    build:
+      context: .
+    platform: linux/arm64  # 構建適配 ARM 的镜像
+    image: ${REMOTE_REGISTRY_IP}/mir4calc/mir4calc:${FRONTEND_VERSION}
+    container_name: mir4_calc
+    ports:
+      - "2809:80"

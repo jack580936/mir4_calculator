@@ -51,7 +51,6 @@ export default defineConfig({
         port: '7414'
     },
     base: '/mir4_calculator/',
-    envDir: './env',
     build: {
         rollupOptions: {
             output: {

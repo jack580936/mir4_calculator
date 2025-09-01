@@ -11,6 +11,7 @@ import "./assets/all.scss";
 const app = createApp(App);
 app.use(router);
 app.use(createPinia());
+console.log(import.meta.env.VITE_GTM_CONTAINER_ID);
 app.use(VueGtm, {
   id: import.meta.env.VITE_GTM_CONTAINER_ID, // 你的 GTM 容器 ID
   defer: false, // false 表示立即加載 GTM

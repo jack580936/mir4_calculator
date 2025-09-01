@@ -27,5 +27,5 @@ coverage
 *.sln
 *.sw?
 /env
-/env/.env
+/.env
 /env/.env.production
