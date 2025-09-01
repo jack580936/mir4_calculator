@@ -1,4 +1,5 @@
 {  "esversion": 11,
+  "module": true,
   "undef": true,
   "unused": true
 }
