@@ -3,7 +3,6 @@ import {useTabStore} from "@/store/tab.js";
 import {onMounted, ref} from "vue";
 import {storeToRefs} from "pinia";
 import Sponsor from "@/components/Sponsor.vue";
-import ShutdownNotice from "@/components/ShutdownNotice.vue";
 
 const tabStore = useTabStore();
 const {currentTab, currentSideBarTab, screenWidth} = storeToRefs(tabStore);
@@ -23,7 +22,6 @@ onMounted(() => {
 
 <template>
   <main>
-    <ShutdownNotice />
     <div class="welcome-container" v-if="!currentTab">
       <div class="page-options" >
         <router-link

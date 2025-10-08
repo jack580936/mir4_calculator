@@ -30,3 +30,5 @@ coverage
 /.env
 /env/.env.production
 .env
+
+.vscode
