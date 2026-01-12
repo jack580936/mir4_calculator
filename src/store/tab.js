@@ -5,6 +5,7 @@ export const useTabStore = defineStore('tab', {
     currentTab: "",
     currentSideBarTab: "",
     screenWidth: 0,
+    showSmNavBarTab: false,
   }),
   actions: {
   },
