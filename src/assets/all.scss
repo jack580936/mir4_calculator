@@ -24,21 +24,21 @@ body {
 }
 
 .page-options {
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
-  width: 100%;
-  padding: 5rem 10rem;
   background-image: url("../assets/bg/bggg.png");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-
+  background-size: cover;
   animation: fadeIn 0.5s ease-in-out;
-  animation-fill-mode: forwards; /* 動畫結束後保持最後的狀態 */
+  animation-fill-mode: forwards;
+  gap: 2rem;
   opacity: 0; /* 初始透明度為 0 */
   z-index: -1;
+  overflow: auto;
 
   @media (max-width: 1024px) {
     padding: 5rem 5rem;
@@ -48,32 +48,35 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
-    height: 200px;
+    width: 50px;
+    height: 20rem;
     justify-content: center;
     border: 1px solid #22303C;
     box-shadow: 0 1px 10px 0 #7594b7;
-    border-radius: 5px;
+    border-radius: 50px;
     background-color: #22303C;
     background-image: url("../assets/bg/bggg.png");
     opacity: 0.7;
     margin: 1rem;
-    font-size: 1.5rem;
+    writing-mode: vertical-rl;
+    font-size: 1.4rem;
     color: #eeeef4;
     cursor: pointer;
 
     @media (max-width: 1024px) {
-        width: 100px;
-        min-width: 100px;
-        height: 100px;
-        font-size: 1rem;
+        //width: 100px;
+        //min-width: 100px;
+        font-size: 1.2rem;
+        height: 15rem;
+        //font-size: 1rem;
     }
 
     @media (max-width: 425px) {
-      width: 60px;
-      min-width: 60px;
-      height: 60px;
-      font-size: .7rem;
+      //width: 60px;
+      //min-width: 60px;
+      font-size: 0.5rem;
+      height: 10rem;
+      //font-size: .7rem;
     }
 
   }
@@ -82,7 +85,7 @@ body {
     transform: scale(1.05);
     transition: all 0.2s ease-in-out;
     background-color: #192734;
-
+    box-shadow: 0 1px 20px 8px #7594b7;
   }
 }
 
